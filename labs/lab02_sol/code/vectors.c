@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 #include <math.h>
 
 typedef struct Vector3D_tag {
@@ -31,6 +33,13 @@ int main()
     vec_y.x = 0.01;
     vec_y.y = 5.0;
     vec_y.z = 17.1717;
+
+    
+    float m;
+    m = norm(vec_x);
+
+    printf("2a) norm(vec_x) = %f/n", m);
+    
 
     return 0;
 }
