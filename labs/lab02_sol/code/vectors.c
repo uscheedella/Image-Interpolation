@@ -49,8 +49,16 @@ int main()
     float m;
     m = norm(vec_x);
 
-    printf("2a) norm(vec_x) = %f/n", m);
-    
+    printf("2a) norm(vec_x) = %f\n", m);
+   
+    Vector3D vec_z1;
+    Vector3D vec_z2;
 
+    vec_z1 = axpy(alpha, vec_x, vec_y);
+    printf("2b) axpy(alpha, vec_x, vec_y) = [%f, %f, %f]^T\n", vec_z1.x, vec_z1.y, vec_z1.z);
+
+    vec_z2 = axpy(alpha, vec_y, vec_y);
+    printf("2c) axpy(beta, vec_y, vec_y) = [%f, %f, %f]^T\n", vec_z2.x, vec_z2.y, vec_z2.z);
+    
     return 0;
 }
