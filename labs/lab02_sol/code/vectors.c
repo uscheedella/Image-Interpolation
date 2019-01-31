@@ -1,8 +1,19 @@
+#include <math.h>
+
 typedef struct Vector3D_tag {
     float x;
     float y;
     float z;
 } Vector3D;
+
+float norm(Vector3D v) {
+
+    float length;
+
+    length = sqrt(pow(v.x, 2.0) + pow(v.y, 2.0) + pow(v.z, 2.0));
+
+    return length;
+}
 
 int main()
 {
