@@ -17,8 +17,7 @@ float norm(Vector3D v) {
     return length;
 }
 
-Vector3D axpy(float alpha, Vector3D vx, Vector3D vy)
-{
+Vector3D axpy(float alpha, Vector3D vx, Vector3D vy) {
     Vector3D vz;
 
     vz.x = alpha*vx.x + vy.x;
@@ -26,6 +25,10 @@ Vector3D axpy(float alpha, Vector3D vx, Vector3D vy)
     vz.z = alpha*vx.z + vy.z;
 
     return vz;
+}
+
+float inner_product(Vector3D vx, Vector3D vy) {
+    return vx.x*vy.x + vx.y*vy.y + vx.z*vy.z;
 }
 
 int main()
