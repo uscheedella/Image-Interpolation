@@ -63,5 +63,10 @@ int main()
     vec_z2 = axpy(alpha, vec_y, vec_y);
     printf("2c) axpy(beta, vec_y, vec_y) = [%f, %f, %f]^T\n", vec_z2.x, vec_z2.y, vec_z2.z);
     
+    float a;
+    a = inner_product(vec_x, vec_y);
+    printf("2d) inner_product(vec_x, vec_y) = %f\n", a);
+
+
     return 0;
 }
