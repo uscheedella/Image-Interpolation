@@ -9,6 +9,8 @@ typedef struct Vector3D_tag {
 
 float norm(Vector3D* v);
 
+void normalize(Vector3D* v);
+
 Vector3D axpy(float alpha, Vector3D vx, Vector3D vy);
 
 float inner_product(Vector3D vx, Vector3D vy);

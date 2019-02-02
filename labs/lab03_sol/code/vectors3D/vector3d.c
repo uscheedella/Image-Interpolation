@@ -11,6 +11,14 @@ float norm(Vector3D* v) {
     return length;
 }
 
+void normalize(Vector3D* v) {
+    float length = norm(v);
+
+    v->x = v->x/length;
+    v->y = v->y/length;
+    v->z = v->z/length;
+}
+
 Vector3D axpy(float alpha, Vector3D vx, Vector3D vy) {
     Vector3D vz;
 
