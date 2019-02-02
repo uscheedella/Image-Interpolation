@@ -19,14 +19,12 @@ void normalize(Vector3D* v) {
     v->z = v->z/length;
 }
 
-Vector3D axpy(float alpha, Vector3D vx, Vector3D vy) {
-    Vector3D vz;
+void axpy(float alpha, Vector3D* vx, Vector3D* vy, Vector3D* vz) {
 
-    vz.x = alpha*vx.x + vy.x;
-    vz.y = alpha*vx.y + vy.y;
-    vz.z = alpha*vx.z + vy.z;
+    vz->x = alpha*vx->x + vy->x;
+    vz->y = alpha*vx->y + vy->y;
+    vz->z = alpha*vx->z + vy->z;
 
-    return vz;
 }
 
 float inner_product(Vector3D vx, Vector3D vy) {
