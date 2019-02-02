@@ -21,21 +21,21 @@ int main()
 
     
     float m;
-    m = norm(vec_x);
+    m = norm(&vec_x);
 
     printf("L2 Q2a) norm(vec_x) = %f\n", m);
    
     Vector3D vec_z1;
     Vector3D vec_z2;
 
-    vec_z1 = axpy(alpha, vec_x, vec_y);
+    axpy(alpha, &vec_x, &vec_y, &vec_z1);
     printf("L2 Q2b) axpy(alpha, vec_x, vec_y) = [%f, %f, %f]^T\n", vec_z1.x, vec_z1.y, vec_z1.z);
 
-    vec_z2 = axpy(alpha, vec_y, vec_y);
+    axpy(alpha, &vec_y, &vec_y, &vec_z2);
     printf("L2 Q2c) axpy(beta, vec_y, vec_y) = [%f, %f, %f]^T\n", vec_z2.x, vec_z2.y, vec_z2.z);
     
     float a;
-    a = inner_product(vec_x, vec_y);
+    a = inner_product(&vec_x, &vec_y);
     printf("L2 Q2d) inner_product(vec_x, vec_y) = %f\n", a);
 
 
