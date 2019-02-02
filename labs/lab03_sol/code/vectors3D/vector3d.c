@@ -27,7 +27,7 @@ void axpy(float alpha, Vector3D* vx, Vector3D* vy, Vector3D* vz) {
 
 }
 
-float inner_product(Vector3D vx, Vector3D vy) {
-    return vx.x*vy.x + vx.y*vy.y + vx.z*vy.z;
+float inner_product(Vector3D* vx, Vector3D* vy) {
+    return vx->x*vy->x + vx->y*vy->y + vx->z*vy->z;
 }
 

@@ -13,7 +13,7 @@ void normalize(Vector3D* v);
 
 void axpy(float alpha, Vector3D* vx, Vector3D* vy, Vector3D* vz);
 
-float inner_product(Vector3D vx, Vector3D vy);
+float inner_product(Vector3D* vx, Vector3D* vy);
 
 #endif
 
