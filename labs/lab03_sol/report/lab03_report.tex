@@ -24,7 +24,7 @@
 
 
 \title{CMDA 3634 \\ Lab 03 Report}
-\author{Your Name Here}
+\author{Russell J. Hewett}
 % \date{}
 
 
@@ -38,20 +38,19 @@
     \item Use the \texttt{listings} package to include your output (\texttt{output\_pt\_a.txt}) in your pdf.  You will need to copy \texttt{output\_pt\_a.txt} to the reports directory.
     
     \textbf{ANSWER:} % answer goes here
-
-    % Hint: the correct latex command is \lstinputlisting[language={}]{output.txt}
+	\lstinputlisting[language={}]{output_pt_a.txt}
 
     \item The \texttt{axpy} routine no longer uses the return value, as the return variable is an argument to the function.  How can we make use of the function return value to get some use out of it?
 
-    \textbf{ANSWER:} % answer goes here
+    \textbf{ANSWER:} We can return an error code, indicating success or failure.  We could also return a reference to the return value, allowing the routine to be used as an argument to another function, but this could have some unintended side-effects.
 
     \item For these routines, give one reason why we might choose to pass only the structures by pointer and not the scalar values?
     
-    \textbf{ANSWER:} % answer goes here
+    \textbf{ANSWER:} We are not modifying the values in the scalar arguments.  Also, they are small so creating copies of them does not impose excessive overhead.
 
     \item Other than the instructor or TAs, who did you receive assistance from on this assignment?
     
-    \textbf{ANSWER:} % answer goes here
+    \textbf{ANSWER:} No one.
 \end{enumerate}
 
 % I leave this part commented out as some example code if you need it.
