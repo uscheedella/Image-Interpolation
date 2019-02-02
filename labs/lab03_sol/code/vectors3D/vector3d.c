@@ -2,11 +2,11 @@
 
 #include "vector3d.h"
 
-float norm(Vector3D v) {
+float norm(Vector3D* v) {
 
     float length;
 
-    length = sqrt(pow(v.x, 2.0) + pow(v.y, 2.0) + pow(v.z, 2.0));
+    length = sqrt(pow(v->x, 2.0) + pow(v->y, 2.0) + pow(v->z, 2.0));
 
     return length;
 }

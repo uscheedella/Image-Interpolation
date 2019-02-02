@@ -7,7 +7,7 @@ typedef struct Vector3D_tag {
     float z;
 } Vector3D;
 
-float norm(Vector3D v);
+float norm(Vector3D* v);
 
 Vector3D axpy(float alpha, Vector3D vx, Vector3D vy);
 
