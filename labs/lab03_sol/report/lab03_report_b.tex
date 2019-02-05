@@ -2,13 +2,14 @@
     \item Use the \texttt{listings} package to include your output (\texttt{output\_pt\_b.txt}) in your pdf.  You will need to copy \texttt{output\_pt\_b.txt} to the reports directory.
 
     \textbf{ANSWER:} % answer goes here
+	\lstinputlisting[language={}]{output_pt_b.txt}
     % Hint: the correct latex command is \lstinputlisting[language={}]{output.txt}
 
     \item Call your \texttt{sum} function with a value for \texttt{N} that is larger than the number of entries in the array.  What happens when you compile?  When you run?  What is happening here?
 
-    \textbf{ANSWER:} % answer goes here
+    \textbf{ANSWER:} This compiles with no issue.  There is no compile-time check for array out of bounds.  When we run there is a segmentation fault for attempting to access a stack array out of bounds, triggered by the system detecting the out of bounds access attempt.  This is a system security mechanism.
 
     \item Other than the instructor or TAs, who did you receive assistance from on this assignment?
     
-    \textbf{ANSWER:} % answer goes here
+    \textbf{ANSWER:} No one.
 \end{enumerate}
