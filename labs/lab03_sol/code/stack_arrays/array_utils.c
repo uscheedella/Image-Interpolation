@@ -16,3 +16,19 @@ void print_array(int* arr, int N){
     printf("%2d\n", arr[N-1]);
 }
 
+
+int sum_array(int* arr, int N){
+    int partial_sum = 0;
+
+    for(int i=0; i < N; i++){
+        partial_sum += arr[i];
+    }
+    
+    return partial_sum;
+}
+
+
+float mean_array(int* arr, int N){
+    return (float)sum_array(arr, N) / (float)N;
+}
+
