@@ -3,4 +3,6 @@
 
 void randomize_array(int* arr, int N);
 
+void print_array(int* arr, int N);
+
 #endif
