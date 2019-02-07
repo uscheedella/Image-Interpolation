@@ -4,29 +4,32 @@
 
 int main()
 {
-        Vector3D xvec;
-        Vector3D yvec;
+        Vector3D* xvec;
+        Vector3D* yvec;
 
-        xvec.x = 1.0;
-        xvec.y = 1.5;
-        xvec.z = 2.3;
+        xvec->x = 1.0;
+        xvec->y = 1.5;
+        xvec->z = 2.3;
 
-        yvec.x = 0.01;
-        yvec.y = 5;
-        yvec.z = 17.1717;
+        yvec->x = 0.01;
+        yvec->y = 5;
+        yvec->z = 17.1717;
 
-        Vector3D twob  = axpy(xvec, yvec, 0.25);
-        Vector3D twoc = axpy(xvec, yvec, 0.56);
+        Vector3D* newvec;
+	Vector3D* newvec2;
 
-	printf("2a. = %f\n", norm(&xvec));
+	axpy(0.25, xvec, yvec, newvec);
+        axpy(0.56, xvec, yvec, newvec2);
 
-        printf("2b. = %f\n", twob.x);
-        printf("2b. = %f\n", twob.y);
-        printf("2b. = %f\n", twob.z);
+	printf("2a. = %f\n", norm(xvec));
 
-        printf("2c. = %f\n", twoc.x);
-        printf("2c. = %f\n", twoc.y);
-        printf("2c. = %f\n", twoc.z);
+        printf("2b. = %f\n", newvec->x);
+        printf("2b. = %f\n", newvec->y);
+        printf("2b. = %f\n", newvec->z);
+
+        printf("2c. = %f\n", newvec2->x);
+        printf("2c. = %f\n", newvec2->y);
+        printf("2c. = %f\n", newvec2->z);
 
         printf("2d. = %f\n", inner_product(xvec, yvec));
 

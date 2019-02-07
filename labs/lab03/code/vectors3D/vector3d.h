@@ -7,10 +7,12 @@ typedef struct vector3D_tag {
 	float z;
 } Vector3D;
 
-float norm(Vector3D*);
+float norm(Vector3D* one);
 
-Vector3D axpy(Vector3D, Vector3D, float);
+void normalize(Vector3D* one);
 
-float inner_product(Vector3D, Vector3D);
+void axpy(float f, Vector3D * one, Vector3D * two , Vector3D * three);
+
+float inner_product(Vector3D* one, Vector3D* two);
 
 #endif
