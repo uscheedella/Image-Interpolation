@@ -1,0 +1,10 @@
+21 ,62 ,27 ,90 ,59 ,63 ,26 ,Sum of rand array: 6711
+Mean of rand array: 52.429688
+Sum of 32 entries after first: 1643
+Mean of 32 entries after first: 51.343750
+Sum of 32 entries after thirty third: 1677
+Mean of 32 entries after thirty third: 52.406250
+Sum of 32 entries after sixty fifth: 1619
+Mean of 32 entries after sixty fifth: 50.593750
+Sum of 32 entries after ninety seventh: 1772
+Mean of 32 entries after ninety seventh: 55.375000
