@@ -24,7 +24,7 @@
 
 
 \title{CMDA 3634 \\ Lab 03 Report}
-\author{Your Name Here}
+\author{Sriya Cheedella}
 % \date{}
 
 
@@ -37,26 +37,26 @@
 \begin{enumerate}
     \item Use the \texttt{listings} package to include your output (\texttt{output\_pt\_a.txt}) in your pdf.  You will need to copy \texttt{output\_pt\_a.txt} to the reports directory.
     
-    \textbf{ANSWER:} % answer goes here
+    \textbf{ANSWER:} \lstinputlisting[language={}]{output_pt_a.txt}
 
     % Hint: the correct latex command is \lstinputlisting[language={}]{output.txt}
 
     \item The \texttt{axpy} routine no longer uses the return value, as the return variable is an argument to the function.  How can we make use of the function return value to get some use out of it?
 
-    \textbf{ANSWER:} % answer goes here
+    \textbf{ANSWER:} Since the variable is stored outside of calling the function, it can easily changed or used as a pointer.
 
     \item For these routines, give one reason why we might choose to pass only the structures by pointer and not the scalar values?
     
-    \textbf{ANSWER:} % answer goes here
+    \textbf{ANSWER:} Scalar doesn't need to reference anything because nothing would be related to it, while a structure would be referencing other pieces of data in memory to find its own values.
 
     \item Other than the instructor or TAs, who did you receive assistance from on this assignment?
     
-    \textbf{ANSWER:} % answer goes here
+    \textbf{ANSWER:} Alisha, Snigdha, Parshod, Anthony
 \end{enumerate}
 
-% \section*{Part B}
+\section*{Part B}
 
-% \input{lab03_report_b}
+\input{lab03_report_b}
 
 
 
