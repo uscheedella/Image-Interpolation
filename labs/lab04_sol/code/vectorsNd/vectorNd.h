@@ -1,19 +1,18 @@
 #ifndef __VECTORND_H__
 #define __VECTORND_H__
 
-typedef struct Vector3D_tag {
-    float x;
-    float y;
-    float z;
-} Vector3D;
+typedef struct VectorND_tag {
+    float* data;
+    int dimension;
+} VectorND;
 
-float norm(Vector3D* v);
+//float norm(Vector3D* v);
 
-void normalize(Vector3D* v);
+//void normalize(Vector3D* v);
 
-void axpy(float alpha, Vector3D* vx, Vector3D* vy, Vector3D* vz);
+//void axpy(float alpha, Vector3D* vx, Vector3D* vy, Vector3D* vz);
 
-float inner_product(Vector3D* vx, Vector3D* vy);
+//float inner_product(Vector3D* vx, Vector3D* vy);
 
 #endif
 
