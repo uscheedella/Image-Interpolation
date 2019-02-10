@@ -1,6 +1,23 @@
+#include <stdlib.h>
+#include <stddef.h>
+#include <string.h>
+
 #include <math.h>
 
 #include "vectorNd.h"
+
+int allocate_VectorND(VectorND* v, int dimension) {
+
+    v->dimension = dimension;
+    v->data = malloc(sizeof(float)*dimension);
+
+    // malloc failed
+    if (v->data == NULL) return 1;
+
+    memset(v->data, 0, sizeof(float)*dimension);
+
+    return 0;
+}
 
 /*
 float norm(Vector3D* v) {
