@@ -1,0 +1,79 @@
+\documentclass[letter]{article}
+
+\usepackage[margin=1in]{geometry} % make more efficient use of the page
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath} % math tools
+\usepackage{amsfonts} % math tools
+\RequirePackage{amssymb} % math tools
+\RequirePackage{amsbsy} % math tools
+
+\renewcommand{\vec}[1]{\ensuremath{\boldsymbol{#1}}} % make vectors nicer
+
+\usepackage{graphicx} % graphics
+\usepackage{xcolor} % colored text
+
+\usepackage{hyperref} % URLs and such
+\usepackage{verbatim} % allows \verb-- command
+
+\usepackage{algorithmicx} % algorithm environment
+\usepackage{listings} % code listings
+
+\usepackage{natbib} % bibliography
+
+
+\title{CMDA 3634 \\ Lab 03 Report}
+\author{Russell J. Hewett}
+% \date{}
+
+
+\begin{document}
+
+\maketitle
+
+\section*{Part A}
+
+\begin{enumerate}
+    \item Use the \texttt{listings} package to include your output (\texttt{output\_pt\_a.txt}) in your pdf.  You will need to copy \texttt{output\_pt\_a.txt} to the reports directory.
+    
+    \textbf{ANSWER:} % answer goes here
+	\lstinputlisting[language={}]{output_pt_a.txt}
+
+    \item The \texttt{axpy} routine no longer uses the return value, as the return variable is an argument to the function.  How can we make use of the function return value to get some use out of it?
+
+    \textbf{ANSWER:} We can return an error code, indicating success or failure.  We could also return a reference to the return value, allowing the routine to be used as an argument to another function, but this could have some unintended side-effects.
+
+    \item For these routines, give one reason why we might choose to pass only the structures by pointer and not the scalar values?
+    
+    \textbf{ANSWER:} We are not modifying the values in the scalar arguments.  Also, they are small so creating copies of them does not impose excessive overhead.
+
+    \item Other than the instructor or TAs, who did you receive assistance from on this assignment?
+    
+    \textbf{ANSWER:} No one.
+\end{enumerate}
+
+\section*{Part B}
+
+\input{lab03_report_b}
+
+
+
+% I leave this part commented out as some example code if you need it.
+% \section{Introduction}
+% There is a theory which states that if ever anyone discovers exactly what the Universe is for and why it is here, it will instantly disappear and be replaced by something even more bizarre and inexplicable.
+% There is another theory which states that this has already happened.
+
+% \begin{figure}[h!]
+% \centering
+% \includegraphics[scale=1.7]{universe}
+% \caption{The Universe}
+% \label{fig:universe}
+% \end{figure}
+
+% \section{Conclusion}
+% ``I always thought something was fundamentally wrong with the universe'' \citep{adams1995hitchhiker}
+
+% \bibliographystyle{plain}
+% \bibliography{references}
+\end{document}
