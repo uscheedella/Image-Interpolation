@@ -29,33 +29,58 @@ int deallocate_VectorND(VectorND* v) {
     return 0;
 }
 
-/*
-float norm(Vector3D* v) {
+float norm(VectorND* v) {
 
-    float length;
+    float length = 0.0;
 
-    length = sqrt(pow(v->x, 2.0) + pow(v->y, 2.0) + pow(v->z, 2.0));
+    for(int i=0; i < v->dimension; i++){
+        length += pow(v->data[i], 2.0);
+    }
+    length = sqrt(length);
 
     return length;
 }
 
-void normalize(Vector3D* v) {
+int normalize(VectorND* v) {
     float length = norm(v);
 
-    v->x = v->x/length;
-    v->y = v->y/length;
-    v->z = v->z/length;
+    // Zero vector, nothing to do.
+    if( abs(length) < 1e-5 ) return 0;
+
+    for(int i=0; i < v->dimension; i++){
+        v->data[i] /= length;
+    }
+    
+    return 0;
 }
 
-void axpy(float alpha, Vector3D* vx, Vector3D* vy, Vector3D* vz) {
+int axpy(float alpha, VectorND* vx, VectorND* vy, VectorND* vz) {
 
-    vz->x = alpha*vx->x + vy->x;
-    vz->y = alpha*vx->y + vy->y;
-    vz->z = alpha*vx->z + vy->z;
+    // Sanity check on array dimensions
+    if ((vx->dimension != vy->dimension) ||
+        (vx->dimension != vz->dimension)){
+        return 1;
+    }
 
+    for(int i=0; i < vx->dimension; i++){
+        vz->data[i] = alpha*vx->data[i] + vy->data[i];
+    }
+
+    return 0;
 }
 
-float inner_product(Vector3D* vx, Vector3D* vy) {
-    return vx->x*vy->x + vx->y*vy->y + vx->z*vy->z;
+int inner_product(VectorND* vx, VectorND* vy, float* ip) {
+
+    *ip = 0.0;
+
+    // Sanity check on array dimensions
+    if (vx->dimension != vy->dimension) return 1;
+
+
+
+    for(int i=0; i < vx->dimension; i++){
+        *ip += vx->data[i]*vy->data[i];
+    }
+    
+    return 0;
 }
-*/

@@ -10,13 +10,13 @@ int allocate_VectorND(VectorND* v, int dimension);
 
 int deallocate_VectorND(VectorND* v);
 
-//float norm(Vector3D* v);
+float norm(VectorND* v);
 
-//void normalize(Vector3D* v);
+int normalize(VectorND* v);
 
-//void axpy(float alpha, Vector3D* vx, Vector3D* vy, Vector3D* vz);
+int axpy(float alpha, VectorND* vx, VectorND* vy, VectorND* vz);
 
-//float inner_product(Vector3D* vx, Vector3D* vy);
+int inner_product(VectorND* vx, VectorND* vy, float* ip);
 
 #endif
 
