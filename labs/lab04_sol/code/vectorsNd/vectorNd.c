@@ -19,6 +19,16 @@ int allocate_VectorND(VectorND* v, int dimension) {
     return 0;
 }
 
+int deallocate_VectorND(VectorND* v) {
+
+    v->dimension = 0;
+
+    free(v->data);
+    v->data = NULL;
+
+    return 0;
+}
+
 /*
 float norm(Vector3D* v) {
 

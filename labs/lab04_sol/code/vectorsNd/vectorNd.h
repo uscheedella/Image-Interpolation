@@ -8,6 +8,8 @@ typedef struct VectorND_tag {
 
 int allocate_VectorND(VectorND* v, int dimension);
 
+int deallocate_VectorND(VectorND* v);
+
 //float norm(Vector3D* v);
 
 //void normalize(Vector3D* v);
