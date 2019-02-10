@@ -263,5 +263,5 @@ int main()
     else{
         printf("Some Tests: Fail\n");
     }
-    return 0;
+    return all_tests;
 }
