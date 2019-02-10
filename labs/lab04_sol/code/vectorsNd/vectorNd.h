@@ -1,5 +1,5 @@
-#ifndef __VECTOR3D_H__
-#define __VECTOR3D_H__
+#ifndef __VECTORND_H__
+#define __VECTORND_H__
 
 typedef struct Vector3D_tag {
     float x;

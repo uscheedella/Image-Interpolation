@@ -1,6 +1,6 @@
 #include <math.h>
 
-#include "vector3d.h"
+#include "vectorNd.h"
 
 float norm(Vector3D* v) {
 
