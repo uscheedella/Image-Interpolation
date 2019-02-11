@@ -3,6 +3,8 @@
 #include <string.h>
 
 #include "image_types.h"
+#include "image_memory.h"
+
 #include "pam_io.h"
 
 
@@ -12,7 +14,7 @@ int load_pgm_image_8(char* filename, IntensityImage8* image) {
 
     FILE* f;
     char format[2];
-    int color_depth;
+    int w, h, color_depth;
     int n_pixels;
 
     // Open the file
@@ -23,7 +25,7 @@ int load_pgm_image_8(char* filename, IntensityImage8* image) {
     }
 
     // // Read format, width, height, color depth
-    if(fscanf(f, "%c%c %d %d %d\n", &format[0], &format[1], &image->width, &image->height, &color_depth) != 5){
+    if(fscanf(f, "%c%c %d %d %d\n", &format[0], &format[1], &w, &h, &color_depth) != 5){
         fprintf(stderr, "Error opening file %s: malformed pgm file.\n", filename);
         return 1;
     }
@@ -35,9 +37,9 @@ int load_pgm_image_8(char* filename, IntensityImage8* image) {
         return 1;
     }
 
-    n_pixels = image->width*image->height;
+    n_pixels = w*h;
 
-    image->data = malloc(n_pixels*sizeof(unsigned char));
+    allocate_IntensityImage8(image, w, h);
 
     if(fread(image->data, sizeof(unsigned char), n_pixels, f) != n_pixels){
         fprintf(stderr, "Error opening file %s: malformed pgm file.\n", filename);
