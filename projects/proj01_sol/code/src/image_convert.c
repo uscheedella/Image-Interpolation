@@ -1,0 +1,98 @@
+#include <stdio.h>
+
+#include <math.h>
+
+#include "image_types.h"
+#include "image_convert.h"
+
+
+/*
+* Converts a single channel image from 8-bit int to float.
+*
+* Arguments:
+*   in: input image pointer
+*   out: output image pointer
+*
+* Returns:
+*   error code: 0 on success, 1 on failure
+*/
+
+int convert_IntensityImage8_to_IntensityImageFloat(IntensityImage8* in, 
+                                                   IntensityImageFloat* out){
+
+    int n_pixels;
+
+    if(in->data == NULL){
+        fprintf(stderr, "Input image null.\n");
+        return 1;
+    }
+
+    if(out->data == NULL){
+        fprintf(stderr, "Output image null.\n");
+        return 1;
+    }
+
+    if(in->width != out->width){
+        fprintf(stderr, "Width mismatch.\n");
+        return 1;
+    }
+
+    if(in->width != out->width){
+        fprintf(stderr, "Height mismatch.\n");
+        return 1;
+    }
+
+    n_pixels = (in->width)*(in->height);
+
+    for(int i=0; i< n_pixels; i++){
+        out->data[i] = (float)in->data[i]/255.0;
+    }
+
+    return 0;
+}
+
+
+/*
+* Converts a single channel image from float to 8-bit int.
+*
+* Arguments:
+*   in: input image pointer
+*   out: output image pointer
+*
+* Returns:
+*   error code: 0 on success, 1 on failure
+*/
+
+int convert_IntensityImageFloat_to_IntensityImage8(IntensityImageFloat* in, 
+                                                   IntensityImage8* out){
+
+    int n_pixels;
+
+    if(in->data == NULL){
+        fprintf(stderr, "Input image null.\n");
+        return 1;
+    }
+
+    if(out->data == NULL){
+        fprintf(stderr, "Output image null.\n");
+        return 1;
+    }
+
+    if(in->width != out->width){
+        fprintf(stderr, "Width mismatch.\n");
+        return 1;
+    }
+
+    if(in->width != out->width){
+        fprintf(stderr, "Height mismatch.\n");
+        return 1;
+    }
+
+    n_pixels = (in->width)*(in->height);
+
+    for(int i=0; i< n_pixels; i++){
+        out->data[i] = (int)floor(255.0*(float)in->data[i]);
+    }
+
+    return 0;
+}
