@@ -28,6 +28,7 @@ int main(int argc, char **argv)
         nullify_IntensityImage8(&im2);
 
         allocate_IntensityImage8(&im1, 255, 255);
+        initialize_IntensityImage8(&im1);
 
 
         for(int i=0; i <255; i++) 

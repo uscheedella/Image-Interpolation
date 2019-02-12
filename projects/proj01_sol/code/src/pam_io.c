@@ -46,6 +46,7 @@ int load_pgm_image_8(char* filename, IntensityImage8* image) {
     n_pixels = w*h;
 
     allocate_IntensityImage8(image, w, h);
+    initialize_IntensityImage8(image);
 
     if(fread(image->data, sizeof(unsigned char), n_pixels, f) != n_pixels){
         fprintf(stderr, "Error opening file %s: malformed pgm file.\n", filename);
