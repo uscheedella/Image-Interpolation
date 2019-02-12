@@ -20,7 +20,7 @@
 *   error code: 0 on success
 */
 
-int nullify_IntensityImage8(IntensityImage8* image)
+int nullify_MImage8(MImage8* image)
 {
     image->width = 0;
     image->height = 0;
@@ -44,7 +44,7 @@ int nullify_IntensityImage8(IntensityImage8* image)
 *   error code: 0 on success, 1 on failure
 */
 
-int allocate_IntensityImage8(IntensityImage8* image, int width, int height)
+int allocate_MImage8(MImage8* image, int width, int height)
 {
     int n_pixels;
 
@@ -74,7 +74,7 @@ int allocate_IntensityImage8(IntensityImage8* image, int width, int height)
 *   error code: 0 on success
 */
 
-int initialize_IntensityImage8(IntensityImage8* image)
+int initialize_MImage8(MImage8* image)
 {
     int n_pixels = (image->width)*(image->height);
 
@@ -95,7 +95,7 @@ int initialize_IntensityImage8(IntensityImage8* image)
 *   error code: 0 on success
 */
 
-int deallocate_IntensityImage8(IntensityImage8* image)
+int deallocate_MImage8(MImage8* image)
 {
     image->width = 0;
     image->height = 0;

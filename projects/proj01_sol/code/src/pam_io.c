@@ -10,7 +10,7 @@
 
 // Based on https://stackoverflow.com/questions/2693631/read-ppm-file-and-store-it-in-an-array-coded-with-c
 // This is very fragile!
-int load_pgm_image_8(char* filename, IntensityImage8* image) {
+int load_pgm_image_8(char* filename, MImage8* image) {
 
     FILE* f;
     char format[2];
@@ -45,8 +45,8 @@ int load_pgm_image_8(char* filename, IntensityImage8* image) {
 
     n_pixels = w*h;
 
-    allocate_IntensityImage8(image, w, h);
-    initialize_IntensityImage8(image);
+    allocate_MImage8(image, w, h);
+    initialize_MImage8(image);
 
     if(fread(image->data, sizeof(unsigned char), n_pixels, f) != n_pixels){
         fprintf(stderr, "Error opening file %s: malformed pgm file.\n", filename);
@@ -58,7 +58,7 @@ int load_pgm_image_8(char* filename, IntensityImage8* image) {
     return 0;
 }
 
-int save_pgm_image_8(char* filename, IntensityImage8* image) {
+int save_pgm_image_8(char* filename, MImage8* image) {
 
     FILE* f;
     int n_pixels;

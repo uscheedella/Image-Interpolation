@@ -11,14 +11,14 @@
 
 int main(int argc, char **argv)
 {
-        IntensityImage8 im1;
-        IntensityImage8 im2;
+        MImage8 im1;
+        MImage8 im2;
 
-        nullify_IntensityImage8(&im1);
-        nullify_IntensityImage8(&im2);
+        nullify_MImage8(&im1);
+        nullify_MImage8(&im2);
 
-        allocate_IntensityImage8(&im1, 255, 255);
-        initialize_IntensityImage8(&im1);
+        allocate_MImage8(&im1, 255, 255);
+        initialize_MImage8(&im1);
 
 
         for(int i=0; i <255; i++) 
@@ -31,8 +31,8 @@ int main(int argc, char **argv)
 
         save_pgm_image_8("test2.pgm", &im2);
 
-        deallocate_IntensityImage8(&im1);
-        deallocate_IntensityImage8(&im1);
+        deallocate_MImage8(&im1);
+        deallocate_MImage8(&im1);
 
         return 0;
 }

@@ -3,10 +3,10 @@
 
 #include "image_types.h"
 
-int nullify_IntensityImage8(IntensityImage8* image);
-int allocate_IntensityImage8(IntensityImage8* image, int width, int height);
-int initialize_IntensityImage8(IntensityImage8* image);
-int deallocate_IntensityImage8(IntensityImage8* image);
+int nullify_MImage8(MImage8* image);
+int allocate_MImage8(MImage8* image, int width, int height);
+int initialize_MImage8(MImage8* image);
+int deallocate_MImage8(MImage8* image);
 
 // int nullify_RGBImage8(RGBImage8* image);
 // int allocate_RGBImage8(RGBImage8* image, int width, int height);

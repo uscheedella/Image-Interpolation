@@ -16,12 +16,12 @@ int main(int argc, char **argv)
         int ny = 1;
         float h = 1.0/(nx-1);
 
-        IntensityImage8 im1;
+        MImage8 im1;
         IntensityImageFloat im2;
 
-        nullify_IntensityImage8(&im1);
-        allocate_IntensityImage8(&im1, nx, ny);
-        initialize_IntensityImage8(&im1);
+        nullify_MImage8(&im1);
+        allocate_MImage8(&im1, nx, ny);
+        initialize_MImage8(&im1);
 
         nullify_IntensityImageFloat(&im2);
         allocate_IntensityImageFloat(&im2, nx, ny);
@@ -31,12 +31,12 @@ int main(int argc, char **argv)
             for(int j=0; j < ny; j++) 
                 im2.data[j*nx + i] = 0 + i*h;
 
-        convert_IntensityImageFloat_to_IntensityImage8(&im2, &im1);
+        convert_IntensityImageFloat_to_MImage8(&im2, &im1);
 
         save_pgm_image_8("test.pgm", &im1);
 
-        deallocate_IntensityImage8(&im1);
-        deallocate_IntensityImage8(&im1);
+        deallocate_MImage8(&im1);
+        deallocate_MImage8(&im1);
 
         return 0;
 }

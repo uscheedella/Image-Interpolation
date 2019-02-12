@@ -25,7 +25,7 @@ typedef struct intensity_image_8_def {
 
 	int width;
 	int height;
-} IntensityImage8;
+} MImage8;
 
 typedef struct rgb_image_8_def {
 	unsigned char* data;
