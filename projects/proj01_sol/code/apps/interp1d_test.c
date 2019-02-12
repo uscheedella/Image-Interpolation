@@ -11,15 +11,9 @@
 #include "image_convert.h"
 #include "image_interp_1d.h"
 
-
 #include "pam_io.h"
+#include "python_utilities.h"
 
-void print_numpy(char* name, int N, float* arr){
-    printf("%s = np.array([ ", name);
-    for(int i = 0; i < N-1; i++)
-        printf("%f, ", arr[i]);
-    printf("%f ])\n\n", arr[N-1]);
-}
 
 int test_convert_F_to_M(){
     int nx = 256;
@@ -37,13 +31,15 @@ int test_convert_F_to_M(){
     for(int i=0; i < nx; i++) 
         for(int j=0; j < ny; j++) 
             in.data[j*nx + i] = 0 + i*h;
-            // in.data[j*nx + i] = 0 + pow(i*h,2);
 
     nullify_MImage8(&out);
     allocate_MImage8(&out, nx, ny);
     initialize_MImage8(&out);
 
     convert_MImageF_to_MImage8(&in, &out);
+
+    print_numpy_float_array(stdout, "float_arr", nx, in.data);
+    print_numpy_char_array(stdout, "char_arr", nx, out.data);
     
     save_pgm_image_8("float_to_monochrome.pgm", &out);
 
@@ -81,6 +77,9 @@ int test_downsample(){
     initialize_MImageF(&down);
 
     interp1d_downsample(C, K, &in, &down);
+
+    print_numpy_float_array(stdout, "downsample_in", nx, in.data);
+    print_numpy_float_array(stdout, "downsample_out", nx, down.data);
 
     nullify_MImage8(&out);
     allocate_MImage8(&out, nx_down, ny);
@@ -122,7 +121,8 @@ int test_nearest(){
 
     interp1d_nearest(&in, &nearest);
 
-    print_numpy("nearest", nearest.width, nearest.data);
+    print_numpy_float_array(stdout, "nearest_in", in.width, in.data);
+    print_numpy_float_array(stdout, "nearest_out", nearest.width, nearest.data);
 
     nullify_MImage8(&out);
     allocate_MImage8(&out, nx_nearest, ny);
@@ -164,7 +164,8 @@ int test_linear(){
 
     interp1d_linear(&in, &linear);
 
-    print_numpy("linear", linear.width, linear.data);
+    print_numpy_float_array(stdout, "linear_in", in.width, in.data);
+    print_numpy_float_array(stdout, "linear_out", linear.width, linear.data);
 
     nullify_MImage8(&out);
     allocate_MImage8(&out, nx_linear, ny);
@@ -205,7 +206,8 @@ int test_cubic(){
 
     interp1d_cubic(&in, &cubic);
 
-    print_numpy("cubic", cubic.width, cubic.data);
+    print_numpy_float_array(stdout, "cubic_in", in.width, in.data);
+    print_numpy_float_array(stdout, "cubic_out", cubic.width, cubic.data);
 
     nullify_MImage8(&out);
     allocate_MImage8(&out, nx_cubic, ny);
@@ -223,8 +225,7 @@ int test_cubic(){
 
 int main(int argc, char **argv)
 {
-
-    printf("import numpy as np\n\n");
+    print_numpy_header(stdout);
 
     test_convert_F_to_M();
 
@@ -235,7 +236,6 @@ int main(int argc, char **argv)
     test_linear();
 
     test_cubic();
-
 
     return 0;
 }

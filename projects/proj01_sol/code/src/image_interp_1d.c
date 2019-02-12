@@ -3,16 +3,11 @@
 
 #include "linalg.h"
 
+#include "math_utilities.h"
 #include "image_types.h"
 
 #include "image_interp_1d.h"
 
-int min(int a, int b){
-    return a < b ? a : b;
-}
-int max(int a, int b){
-    return a > b ? a : b;
-}
 
 int compute_1d_downsample_size(int N, int C, int K){
 
