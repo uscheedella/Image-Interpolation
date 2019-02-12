@@ -17,8 +17,6 @@ int linear_solve(int N, float* A, float* b, float* x){
     
     if (info){
         fprintf(stderr, "Error in LAPACKE sgesv.");
-        return 1;
+        return info;
     }
-
-
 }
