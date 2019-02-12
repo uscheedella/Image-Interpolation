@@ -51,7 +51,7 @@ LIBS := -l$(PROJECT_LIBRARY_NAME) \
 
 
 CFLAGS := $(INCL_PATHS) $(DEBUG_FLAGS) $(OPT_FLAGS)
-LDFLAGS := $(LD_PATHS) $(LIBS)
+LDFLAGS := $(LD_PATHS)
 
 # Get all the c files from the source directory and build object names in the build directory
 OBJECTS := $(patsubst %.c,%.o,$(wildcard $(PROJECT_LIBRARY_SOURCE_PATH)/*.c))
@@ -64,9 +64,9 @@ all: project_lib $(APPS)
 
 .DEFAULT:
 	mkdir -p $(PROJECT_APP_BUILD_PATH)/$@
-	$(CC) -c $(PROJECT_APP_SOURCE_PATH)/$@.c -o $(PROJECT_APP_BUILD_PATH)/$@.o $(CFLAGS)
+	$(CC) -o $(PROJECT_APP_BUILD_PATH)/$@.o -c $(PROJECT_APP_SOURCE_PATH)/$@.c $(CFLAGS)
 	mkdir -p $(PROJECT_APP_PATH)
-	$(LD) $(LDFLAGS) $(PROJECT_APP_BUILD_PATH)/$@.o  -o $(PROJECT_APP_PATH)/$@ $(LIBS)
+	$(LD) -o $(PROJECT_APP_PATH)/$@ $(LDFLAGS) $(PROJECT_APP_BUILD_PATH)/$@.o  $(LIBS)
 
 $(PROJECT_LIBRARY_BUILD_PATH)/%.o: $(PROJECT_LIBRARY_SOURCE_PATH)/%.c
 	mkdir -p $(PROJECT_LIBRARY_BUILD_PATH)
