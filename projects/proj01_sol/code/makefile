@@ -23,6 +23,10 @@ LIBPNG_INCLUDE_PATH := /usr/include/libpng
 LIBPNG_PATH := /usr/lib/x86_64-linux-gnu
 LIBPNG := png
 
+#liblapacke
+# The include and lib directories are system directories
+LIBLAPACKE := lapacke
+
 # Optimizations, only on if debug is off
 OPT_FLAGS := -O3
 
@@ -42,7 +46,8 @@ LD_PATHS := -L$(PROJECT_LIBRARY_PATH) \
             -L$(LIBPNG_PATH)
 
 LIBS := -l$(PROJECT_LIBRARY_NAME) \
-        -l$(LIBPNG)
+        -l$(LIBPNG) \
+        -l$(LIBLAPACKE) -lm
 
 
 CFLAGS := $(INCL_PATHS) $(DEBUG_FLAGS) $(OPT_FLAGS)
