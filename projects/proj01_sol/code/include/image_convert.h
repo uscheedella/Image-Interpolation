@@ -3,11 +3,8 @@
 
 #include "image_types.h"
 
-int convert_MImage8_to_MImageF(MImage8* in, 
-                                                   MImageF* out);
+int convert_MImage8_to_MImageF(MImage8* in, MImageF* out);
 
-
-int convert_MImageF_to_MImage8(MImageF* in, 
-                                                   MImage8* out);
+int convert_MImageF_to_MImage8(MImageF* in, MImage8* out);
 
 #endif

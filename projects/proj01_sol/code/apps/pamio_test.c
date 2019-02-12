@@ -11,28 +11,28 @@
 
 int main(int argc, char **argv)
 {
-        MImage8 im1;
-        MImage8 im2;
+    MImage8 im1;
+    MImage8 im2;
 
-        nullify_MImage8(&im1);
-        nullify_MImage8(&im2);
+    nullify_MImage8(&im1);
+    nullify_MImage8(&im2);
 
-        allocate_MImage8(&im1, 255, 255);
-        initialize_MImage8(&im1);
+    allocate_MImage8(&im1, 255, 255);
+    initialize_MImage8(&im1);
 
 
-        for(int i=0; i <255; i++) 
-            for(int j=0; j <255; j++) 
-                im1.data[j*255 + i] = i;
+    for(int i=0; i <255; i++) 
+        for(int j=0; j <255; j++) 
+            im1.data[j*255 + i] = i;
 
-        save_pgm_image_8("test.pgm", &im1);
+    save_pgm_image_8("test.pgm", &im1);
 
-        load_pgm_image_8("test.pgm", &im2);
+    load_pgm_image_8("test.pgm", &im2);
 
-        save_pgm_image_8("test2.pgm", &im2);
+    save_pgm_image_8("test2.pgm", &im2);
 
-        deallocate_MImage8(&im1);
-        deallocate_MImage8(&im1);
+    deallocate_MImage8(&im1);
+    deallocate_MImage8(&im1);
 
-        return 0;
+    return 0;
 }

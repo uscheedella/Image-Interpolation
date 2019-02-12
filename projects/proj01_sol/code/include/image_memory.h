@@ -25,8 +25,8 @@ int allocate_MImageF(MImageF* image, int width, int height);
 int initialize_MImageF(MImageF* image);
 int deallocate_MImageF(MImageF* image);
 
-// int nullify_RGBImageFloat(RGBImageFloat* image);
-// int allocate_RGBImageFloat(RGBImageFloat* image, int width, int height);
-// int deallocate_RGBImageFloat(RGBImageFloat* image);
+// int nullify_RGBImageF(RGBImageF* image);
+// int allocate_RGBImageF(RGBImageF* image, int width, int height);
+// int deallocate_RGBImageF(RGBImageF* image);
 
 #endif
