@@ -37,6 +37,12 @@ int load_pgm_image_8(char* filename, IntensityImage8* image) {
         return 1;
     }
 
+    if(color_depth > 255){
+        fprintf(stderr, "Error opening file %s: Incorrect color depth %d, must be <255.\n", 
+                filename, color_depth);
+        return 1;
+    }
+
     n_pixels = w*h;
 
     allocate_IntensityImage8(image, w, h);
