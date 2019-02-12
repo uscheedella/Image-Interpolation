@@ -65,6 +65,7 @@ int convert_MImage8_to_MImageF(MImage8* in, MImageF* out){
 int convert_MImageF_to_MImage8(MImageF* in, MImage8* out){
 
     int n_pixels;
+    float temp;
 
     if(in->data == NULL){
         fprintf(stderr, "Input image null.\n");
@@ -89,7 +90,10 @@ int convert_MImageF_to_MImage8(MImageF* in, MImage8* out){
     n_pixels = (in->width)*(in->height);
 
     for(int i=0; i< n_pixels; i++){
-        out->data[i] = (int)floor(255.0*(float)in->data[i]);
+        temp = (float)in->data[i];
+        temp = fmax(temp, 0.0);
+        temp = fmin(temp, 1.0);
+        out->data[i] = (int)floor(255.0*temp);
     }
 
     return 0;
