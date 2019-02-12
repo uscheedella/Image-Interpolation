@@ -102,71 +102,22 @@ int interp1d_cubic(MImageF* in, MImageF* out){
         i = min(i, in->width);
 
         // create system
-        // printf("xk = np.zeros(4)\n");
-        // printf("f = np.zeros(4)\n");
         for (int k=0; k<4; k++){
             xk = a + (i+k-1)*h;
-            // printf("xk[%d] = %f\n", k, xk);
             A[k*4 + 0] = pow(xk, 3.0);
             A[k*4 + 1] = pow(xk, 2.0);
             A[k*4 + 2] = xk; //pow(xk, 1.0);
             A[k*4 + 3] = 1.0; //pow(xk, 0.0);
             rhs[k] = in->data[i+k-1];
-            // printf("f[%d] = %f\n", k, rhs[k]);
             coeffs[k] = 0.0;
         }
 
-        // xk = a + (i-1)*h;
-        // A[0] = pow(xk, 3);
-        // A[1] = pow(xk, 2);
-        // A[2] = pow(xk, 1);
-        // A[3] = pow(xk, 0);
-        // rhs[0] = in->data[i-1];
-        // coeffs[0] = 0.0;
-
-        // xk = a + (i+0)*h;
-        // A[4] = pow(xk, 3);
-        // A[5] = pow(xk, 2);
-        // A[6] = pow(xk, 1);
-        // A[7] = pow(xk, 0);
-        // rhs[1] = in->data[i+0];
-        // coeffs[1] = 0.0;
-
-        // xk = a + (i+1)*h;
-        // A[8] = pow(xk, 3);
-        // A[9] = pow(xk, 2);
-        // A[10] = pow(xk, 1);
-        // A[11] = pow(xk, 0);
-        // rhs[2] = in->data[i+1];
-        // coeffs[2] = 0.0;
-
-        // xk = a + (i+2)*h;
-        // A[12] = pow(xk, 3);
-        // A[13] = pow(xk, 2);
-        // A[14] = pow(xk, 1);
-        // A[15] = pow(xk, 0);
-        // rhs[3] = in->data[i+2];
-        // coeffs[3] = 0.0;
-
         linear_solve(4, A, rhs, coeffs);
-
-        // printf("coeffs = np.zeros(4)\n");
-        // for (int k=0; k<4; k++)
-        //     printf("coeffs[%d] = %f\n", k, xk);
 
         out->data[ihat] = 0.0;
         for(int k=0; k<4; k++){
             out->data[ihat] += coeffs[k]*pow(xhat, (float)(3-k));
         }
-        
-        // xk = a + (i-1)*h;
-        // out->data[ihat] = coeffs[0]*pow(xk, 3.0);
-        // xk = a + (i+0)*h;
-        // out->data[ihat] += coeffs[1]*pow(xk, 2.0);
-        // xk = a + (i+1)*h;
-        // out->data[ihat] += coeffs[2]*pow(xk, 1.0);
-        // xk = a + (i+2)*h;
-        // out->data[ihat] += coeffs[3]*pow(xk, 0.0);
     }
 }
 

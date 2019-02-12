@@ -1,21 +1,65 @@
 #include <stdio.h>
 
+#include "image_types.h"
+
 #include "python_utilities.h"
 
 void print_numpy_header(FILE* outfile){
     fprintf(outfile, "import numpy as np\n\n");
 }
 
-void print_numpy_float_array(FILE* outfile, char* name, int N, float* arr){
-    fprintf(outfile, "%s = np.array([ ", name);
-    for(int i = 0; i < N-1; i++)
-        fprintf(outfile, "%f, ", arr[i]);
-    fprintf(outfile, "%f ])\n\n", arr[N-1]);
+void print_numpy_array_MImageF(FILE* outfile, char* name, MImageF* im){
+
+    int i, j;
+    int nx = im->width;
+    int ny = im->height;
+
+    fprintf(outfile, "%s = np.array([", name);
+
+    for(j=0; j < ny-1; j++){
+        fprintf(outfile, "[ ");
+
+        for(i=0; i < nx-1; i++){
+            fprintf(outfile, "%f, ", im->data[j*nx + i]);
+        }
+        fprintf(outfile, "%f ", im->data[j*nx + i]);
+        fprintf(outfile, "],  ");
+    }
+    fprintf(outfile, " [ ");
+
+    for(i=0; i < nx-1; i++){
+        fprintf(outfile, "%f, ", im->data[j*nx + i]);
+    }
+    fprintf(outfile, "%f ", im->data[j*nx + i]);
+    fprintf(outfile, "] ");
+
+    fprintf(outfile, "] )\n\n");
 }
 
-void print_numpy_char_array(FILE* outfile, char* name, int N, unsigned char* arr){
-    fprintf(outfile, "%s = np.array([ ", name);
-    for(int i = 0; i < N-1; i++)
-        fprintf(outfile, "%hhu, ", arr[i]);
-    fprintf(outfile, "%hhu ])\n\n", arr[N-1]);
+void print_numpy_array_MImage8(FILE* outfile, char* name, MImage8* im){
+
+    int i, j;
+    int nx = im->width;
+    int ny = im->height;
+
+    fprintf(outfile, "%s = np.array([", name);
+
+    for(j=0; j < ny-1; j++){
+        fprintf(outfile, "[ ");
+
+        for(i=0; i < nx-1; i++){
+            fprintf(outfile, "%hhu, ", im->data[j*nx + i]);
+        }
+        fprintf(outfile, "%hhu ", im->data[j*nx + i]);
+        fprintf(outfile, "],  ");
+    }
+    fprintf(outfile, " [ ");
+
+    for(i=0; i < nx-1; i++){
+        fprintf(outfile, "%hhu, ", im->data[j*nx + i]);
+    }
+    fprintf(outfile, "%hhu ", im->data[j*nx + i]);
+    fprintf(outfile, "] ");
+
+    fprintf(outfile, "] )\n\n");
 }

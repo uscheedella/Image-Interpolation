@@ -38,8 +38,8 @@ int test_convert_F_to_M(){
 
     convert_MImageF_to_MImage8(&in, &out);
 
-    print_numpy_float_array(stdout, "float_arr", nx, in.data);
-    print_numpy_char_array(stdout, "char_arr", nx, out.data);
+    print_numpy_array_MImageF(stdout, "float_arr", &in);
+    print_numpy_array_MImage8(stdout, "char_arr", &out);
     
     save_pgm_image_8("float_to_monochrome.pgm", &out);
 
@@ -78,8 +78,8 @@ int test_downsample(){
 
     interp1d_downsample(C, K, &in, &down);
 
-    print_numpy_float_array(stdout, "downsample_in", nx, in.data);
-    print_numpy_float_array(stdout, "downsample_out", nx, down.data);
+    print_numpy_array_MImageF(stdout, "downsample_in", &in);
+    print_numpy_array_MImageF(stdout, "downsample_out", &down);
 
     nullify_MImage8(&out);
     allocate_MImage8(&out, nx_down, ny);
@@ -121,8 +121,8 @@ int test_nearest(){
 
     interp1d_nearest(&in, &nearest);
 
-    print_numpy_float_array(stdout, "nearest_in", in.width, in.data);
-    print_numpy_float_array(stdout, "nearest_out", nearest.width, nearest.data);
+    print_numpy_array_MImageF(stdout, "nearest_in", &in);
+    print_numpy_array_MImageF(stdout, "nearest_out", &nearest);
 
     nullify_MImage8(&out);
     allocate_MImage8(&out, nx_nearest, ny);
@@ -164,8 +164,8 @@ int test_linear(){
 
     interp1d_linear(&in, &linear);
 
-    print_numpy_float_array(stdout, "linear_in", in.width, in.data);
-    print_numpy_float_array(stdout, "linear_out", linear.width, linear.data);
+    print_numpy_array_MImageF(stdout, "linear_in", &in);
+    print_numpy_array_MImageF(stdout, "linear_out", &linear);
 
     nullify_MImage8(&out);
     allocate_MImage8(&out, nx_linear, ny);
@@ -206,8 +206,8 @@ int test_cubic(){
 
     interp1d_cubic(&in, &cubic);
 
-    print_numpy_float_array(stdout, "cubic_in", in.width, in.data);
-    print_numpy_float_array(stdout, "cubic_out", cubic.width, cubic.data);
+    print_numpy_array_MImageF(stdout, "cubic_in", &in);
+    print_numpy_array_MImageF(stdout, "cubic_out", &cubic);
 
     nullify_MImage8(&out);
     allocate_MImage8(&out, nx_cubic, ny);
