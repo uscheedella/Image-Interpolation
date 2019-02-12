@@ -6,7 +6,7 @@ typedef struct intensity_image_float_def {
 
 	int width;
 	int height;
-} IntensityImageFloat;
+} MImageF;
 
 typedef struct rgb_image_float_def {
 	float* data;

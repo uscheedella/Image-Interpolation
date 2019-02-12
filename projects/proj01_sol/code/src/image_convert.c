@@ -17,8 +17,8 @@
 *   error code: 0 on success, 1 on failure
 */
 
-int convert_MImage8_to_IntensityImageFloat(MImage8* in, 
-                                                   IntensityImageFloat* out){
+int convert_MImage8_to_MImageF(MImage8* in, 
+                                                   MImageF* out){
 
     int n_pixels;
 
@@ -63,7 +63,7 @@ int convert_MImage8_to_IntensityImageFloat(MImage8* in,
 *   error code: 0 on success, 1 on failure
 */
 
-int convert_IntensityImageFloat_to_MImage8(IntensityImageFloat* in, 
+int convert_MImageF_to_MImage8(MImageF* in, 
                                                    MImage8* out){
 
     int n_pixels;

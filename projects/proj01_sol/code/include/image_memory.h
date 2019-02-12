@@ -20,10 +20,10 @@ int deallocate_MImage8(MImage8* image);
 // int allocate_RGBImage16(RGBImage16* image, int width, int height);
 // int deallocate_RGBImage16(RGBImage16* image);
 
-int nullify_IntensityImageFloat(IntensityImageFloat* image);
-int allocate_IntensityImageFloat(IntensityImageFloat* image, int width, int height);
-int initialize_IntensityImageFloat(IntensityImageFloat* image);
-int deallocate_IntensityImageFloat(IntensityImageFloat* image);
+int nullify_MImageF(MImageF* image);
+int allocate_MImageF(MImageF* image, int width, int height);
+int initialize_MImageF(MImageF* image);
+int deallocate_MImageF(MImageF* image);
 
 // int nullify_RGBImageFloat(RGBImageFloat* image);
 // int allocate_RGBImageFloat(RGBImageFloat* image, int width, int height);

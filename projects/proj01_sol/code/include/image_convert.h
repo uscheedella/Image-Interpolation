@@ -3,11 +3,11 @@
 
 #include "image_types.h"
 
-int convert_MImage8_to_IntensityImageFloat(MImage8* in, 
-                                                   IntensityImageFloat* out);
+int convert_MImage8_to_MImageF(MImage8* in, 
+                                                   MImageF* out);
 
 
-int convert_IntensityImageFloat_to_MImage8(IntensityImageFloat* in, 
+int convert_MImageF_to_MImage8(MImageF* in, 
                                                    MImage8* out);
 
 #endif

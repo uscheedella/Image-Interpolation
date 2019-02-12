@@ -124,7 +124,7 @@ int deallocate_MImage8(MImage8* image)
 *   error code: 0 on success
 */
 
-int nullify_IntensityImageFloat(IntensityImageFloat* image)
+int nullify_MImageF(MImageF* image)
 {
     image->width = 0;
     image->height = 0;
@@ -148,7 +148,7 @@ int nullify_IntensityImageFloat(IntensityImageFloat* image)
 *   error code: 0 on success, 1 on failure
 */
 
-int allocate_IntensityImageFloat(IntensityImageFloat* image, int width, int height)
+int allocate_MImageF(MImageF* image, int width, int height)
 {
     int n_pixels;
 
@@ -178,7 +178,7 @@ int allocate_IntensityImageFloat(IntensityImageFloat* image, int width, int heig
 *   error code: 0 on success
 */
 
-int initialize_IntensityImageFloat(IntensityImageFloat* image)
+int initialize_MImageF(MImageF* image)
 {
     int n_pixels = (image->width)*(image->height);
 
@@ -199,7 +199,7 @@ int initialize_IntensityImageFloat(IntensityImageFloat* image)
 *   error code: 0 on success
 */
 
-int deallocate_IntensityImageFloat(IntensityImageFloat* image)
+int deallocate_MImageF(MImageF* image)
 {
     image->width = 0;
     image->height = 0;
