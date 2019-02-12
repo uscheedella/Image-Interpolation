@@ -36,7 +36,7 @@ int convert_MImage8_to_MImageF(MImage8* in, MImageF* out){
         return 1;
     }
 
-    if(in->width != out->width){
+    if(in->height != out->height){
         fprintf(stderr, "Height mismatch.\n");
         return 1;
     }
@@ -82,7 +82,7 @@ int convert_MImageF_to_MImage8(MImageF* in, MImage8* out){
         return 1;
     }
 
-    if(in->width != out->width){
+    if(in->height != out->height){
         fprintf(stderr, "Height mismatch.\n");
         return 1;
     }
