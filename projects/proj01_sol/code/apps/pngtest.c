@@ -44,8 +44,6 @@ void process_file(PNGImage* image)
 
 void gradient(PNGImage* image)
 {
-    png_byte tmp;
-
     for (int y=0; y<image->height; y++) {
             png_byte* row = image->row_ptrs[y];
             for (int x=0; x<image->width; x++) {

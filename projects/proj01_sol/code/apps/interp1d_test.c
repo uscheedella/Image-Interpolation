@@ -45,6 +45,8 @@ int test_convert_F_to_M(){
 
     deallocate_MImageF(&in);
     deallocate_MImage8(&out);
+
+    return 0;
 }
 
 
@@ -92,6 +94,8 @@ int test_downsample(){
     deallocate_MImageF(&in);
     deallocate_MImageF(&down);
     deallocate_MImage8(&out);
+
+    return 0;
 }
 
 
@@ -135,6 +139,8 @@ int test_nearest(){
     deallocate_MImageF(&in);
     deallocate_MImageF(&nearest);
     deallocate_MImage8(&out);
+
+    return 0;
 }
 
 
@@ -178,6 +184,8 @@ int test_linear(){
     deallocate_MImageF(&in);
     deallocate_MImageF(&linear);
     deallocate_MImage8(&out);
+
+    return 0;
 }
 
 int test_cubic(){
@@ -220,6 +228,8 @@ int test_cubic(){
     deallocate_MImageF(&in);
     deallocate_MImageF(&cubic);
     deallocate_MImage8(&out);
+
+    return 0;
 }
 
 

@@ -67,6 +67,8 @@ int test_crop_linear(){
     deallocate_MImageF(&in);
     deallocate_MImageF(&crop);
     deallocate_MImage8(&out);
+
+    return 0;
 }
 
 int main(int argc, char **argv)
