@@ -1,3 +1,10 @@
+/*
+* Authors:
+*   Russell J. Hewett (rhewett@vt.edu)
+*
+* Not licensed for external distribution.
+*/
+
 #ifndef __IMAGE_UTILITIES_H__
 #define __IMAGE_UTILITIES_H__
 

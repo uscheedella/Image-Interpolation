@@ -1,3 +1,10 @@
+/*
+* Authors:
+*   Russell J. Hewett (rhewett@vt.edu)
+*
+* Not licensed for external distribution.
+*/
+
 #ifndef __IMAGE_CROP_H__
 #define __IMAGE_CROP_H__
 

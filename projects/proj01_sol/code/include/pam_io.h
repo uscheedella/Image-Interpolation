@@ -1,3 +1,10 @@
+/*
+* Authors:
+*   Russell J. Hewett (rhewett@vt.edu)
+*
+* Not licensed for external distribution.
+*/
+
 #ifndef __PAM_IO_H__
 #define __PAM_IO_H__
 

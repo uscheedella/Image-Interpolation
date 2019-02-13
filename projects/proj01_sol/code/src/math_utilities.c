@@ -1,3 +1,10 @@
+/*
+* Authors:
+*   Russell J. Hewett (rhewett@vt.edu)
+*
+* Not licensed for external distribution.
+*/
+
 #include "math_utilities.h"
 
 /*

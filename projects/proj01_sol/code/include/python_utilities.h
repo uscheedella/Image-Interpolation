@@ -1,3 +1,10 @@
+/*
+* Authors:
+*   Russell J. Hewett (rhewett@vt.edu)
+*
+* Not licensed for external distribution.
+*/
+
 #ifndef __PYTHON_UTILITIES_H__
 #define __PYTHON_UTILITIES_H__
 
