@@ -60,7 +60,7 @@ OBJECTS := $(subst $(PROJECT_LIBRARY_SOURCE_PATH),$(PROJECT_LIBRARY_BUILD_PATH),
 # Get all the applications from the apps directory
 APPS := $(patsubst $(PROJECT_APP_SOURCE_PATH)/%.c,%,$(wildcard $(PROJECT_APP_SOURCE_PATH)/*.c))
 
-all: project_lib $(APPS)
+all: libimageproc $(APPS)
 
 .DEFAULT:
 	mkdir -p $(PROJECT_APP_BUILD_PATH)/$@
@@ -71,6 +71,8 @@ all: project_lib $(APPS)
 $(PROJECT_LIBRARY_BUILD_PATH)/%.o: $(PROJECT_LIBRARY_SOURCE_PATH)/%.c
 	mkdir -p $(PROJECT_LIBRARY_BUILD_PATH)
 	$(CC) -c $< -o $@ $(CFLAGS)
+
+libimageproc: project_lib
 
 project_lib: $(OBJECTS)
 	mkdir -p $(PROJECT_LIBRARY_PATH)
