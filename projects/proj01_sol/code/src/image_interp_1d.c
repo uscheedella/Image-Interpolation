@@ -9,12 +9,6 @@
 #include "image_interp_1d.h"
 
 
-int compute_1d_downsample_size(int N, int C, int K){
-
-    return (int)ceil( (float)(N-C) / (float)K);
-}
-
-
 int interp1d_downsample(int C, int K, MImageF* in, MImageF* out){
 
     int i, i_hat;

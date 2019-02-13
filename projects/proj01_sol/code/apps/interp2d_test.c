@@ -9,7 +9,7 @@
 #include "image_types.h"
 #include "image_memory.h"
 #include "image_convert.h"
-#include "image_interp_1d.h"
+#include "image_utilities.h"
 #include "image_interp_2d.h"
 
 #include "pam_io.h"
@@ -99,8 +99,8 @@ int test_downsample(){
     Cy = 0;
     Ky = 2;
 
-    nx_down = compute_1d_downsample_size(nx, Cx, Kx);
-    ny_down = compute_1d_downsample_size(ny, Cy, Ky);
+    nx_down = compute_downsample_size(nx, Cx, Kx);
+    ny_down = compute_downsample_size(ny, Cy, Ky);
 
     nullify_MImageF(&down);
     allocate_MImageF(&down, nx_down, ny_down);
