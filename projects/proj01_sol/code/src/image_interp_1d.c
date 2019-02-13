@@ -158,7 +158,7 @@ int interp1d_cubic(MImageF* in, MImageF* out){
 
         i = (int)floor((x_hat-a)/h);
         i = max(i, 1);
-        i = min(i, in->width);
+        i = min(i, in->width-3);
 
         // create system
         for (int k=0; k<4; k++){
