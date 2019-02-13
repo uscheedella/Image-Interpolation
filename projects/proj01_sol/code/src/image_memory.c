@@ -7,6 +7,7 @@
 
 #include <stddef.h>
 #include <stdlib.h>
+#include <string.h>
 #include <stdio.h>
 
 #include "image_types.h"
@@ -85,8 +86,7 @@ int initialize_MImage8(MImage8* image)
 {
     int n_pixels = (image->width)*(image->height);
 
-    for(int i=0;i<n_pixels;i++)
-        image->data[i] = 0;
+    memset(image->data, 0, n_pixels*sizeof(unsigned char));
 
     return 0;
 }
@@ -189,8 +189,7 @@ int initialize_MImageF(MImageF* image)
 {
     int n_pixels = (image->width)*(image->height);
 
-    for(int i=0;i<n_pixels;i++)
-        image->data[i] = 0.0;
+    memset(image->data, 0, n_pixels*sizeof(float));
 
     return 0;
 }
