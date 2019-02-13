@@ -1,3 +1,19 @@
+## CMDA 3634 stuff
+
+# main data directory
+data
+
+# image formats
+*.png
+*.ppm
+*.pgm
+*.jpeg
+*.jpg
+
+# vim files
+*.swp
+~*
+
 ## From: https://github.com/github/gitignore
 ## CC0 license
 
