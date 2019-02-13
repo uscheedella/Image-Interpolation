@@ -4,11 +4,8 @@
 data
 
 # image formats
-*.png
 *.ppm
 *.pgm
-*.jpeg
-*.jpg
 
 # vim files
 *.swp
