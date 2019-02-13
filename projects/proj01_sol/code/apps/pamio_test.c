@@ -25,11 +25,11 @@ int main(int argc, char **argv)
         for(int j=0; j <255; j++) 
             im1.data[j*255 + i] = i;
 
-    save_pgm_image_8("test.pgm", &im1);
+    save_pgm_MImage8("test.pgm", &im1);
 
-    load_pgm_image_8("test.pgm", &im2);
+    load_pgm_MImage8("test.pgm", &im2);
 
-    save_pgm_image_8("test2.pgm", &im2);
+    save_pgm_MImage8("test2.pgm", &im2);
 
     deallocate_MImage8(&im1);
     deallocate_MImage8(&im1);

@@ -26,7 +26,7 @@
 *   error code, 0 for success, 1 for failure
 */
 
-int load_pgm_image_8(char* filename, MImage8* image) {
+int load_pgm_MImage8(char* filename, MImage8* image) {
 
     FILE* f;
     char format[2];
@@ -88,7 +88,7 @@ int load_pgm_image_8(char* filename, MImage8* image) {
 *   error code, 0 for success, 1 for failure
 */
 
-int save_pgm_image_8(char* filename, MImage8* image) {
+int save_pgm_MImage8(char* filename, MImage8* image) {
 
     FILE* f;
     int n_pixels;

@@ -53,7 +53,7 @@ int test_convert_F_to_M(){
     print_numpy_array_MImageF(stdout, "float_arr", &in);
     print_numpy_array_MImage8(stdout, "char_arr", &out);
     
-    save_pgm_image_8("float_to_monochrome_2d.pgm", &out);
+    save_pgm_MImage8("float_to_monochrome_2d.pgm", &out);
 
     deallocate_MImageF(&in);
     deallocate_MImage8(&out);
@@ -117,7 +117,7 @@ int test_downsample(){
 
     convert_MImageF_to_MImage8(&down, &out);
     
-    save_pgm_image_8("2d_downsample.pgm", &out);
+    save_pgm_MImage8("2d_downsample.pgm", &out);
 
     deallocate_MImageF(&in);
     deallocate_MImageF(&down);
@@ -174,7 +174,7 @@ int test_nearest(){
 
     convert_MImageF_to_MImage8(&nearest, &out);
     
-    save_pgm_image_8("2d_nearest.pgm", &out);
+    save_pgm_MImage8("2d_nearest.pgm", &out);
 
     deallocate_MImageF(&in);
     deallocate_MImageF(&nearest);
@@ -231,7 +231,7 @@ int test_linear(){
 
     convert_MImageF_to_MImage8(&linear, &out);
     
-    save_pgm_image_8("2d_linear.pgm", &out);
+    save_pgm_MImage8("2d_linear.pgm", &out);
 
     deallocate_MImageF(&in);
     deallocate_MImageF(&linear);
@@ -288,7 +288,7 @@ int test_cubic(){
 
     convert_MImageF_to_MImage8(&cubic, &out);
     
-    save_pgm_image_8("2d_cubic.pgm", &out);
+    save_pgm_MImage8("2d_cubic.pgm", &out);
 
     deallocate_MImageF(&in);
     deallocate_MImageF(&cubic);

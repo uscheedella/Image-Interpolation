@@ -33,7 +33,7 @@ int main(int argc, char **argv)
 
     convert_MImageF_to_MImage8(&im2, &im1);
 
-    save_pgm_image_8("test.pgm", &im1);
+    save_pgm_MImage8("test.pgm", &im1);
 
     deallocate_MImage8(&im1);
     deallocate_MImageF(&im2);

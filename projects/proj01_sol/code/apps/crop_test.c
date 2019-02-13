@@ -62,7 +62,7 @@ int test_crop_linear(){
 
     convert_MImageF_to_MImage8(&crop, &out);
     
-    save_pgm_image_8("2d_crop.pgm", &out);
+    save_pgm_MImage8("2d_crop.pgm", &out);
 
     deallocate_MImageF(&in);
     deallocate_MImageF(&crop);
