@@ -4,9 +4,19 @@
 
 #include "python_utilities.h"
 
+
+/*
+* Write the numpy import statement to a file.
+*/
+
 void print_numpy_header(FILE* outfile){
     fprintf(outfile, "import numpy as np\n\n");
 }
+
+
+/*
+* Write a float image to a numpy array named "name".
+*/
 
 void print_numpy_array_MImageF(FILE* outfile, char* name, MImageF* im){
 
@@ -35,6 +45,11 @@ void print_numpy_array_MImageF(FILE* outfile, char* name, MImageF* im){
 
     fprintf(outfile, "] )\n\n");
 }
+
+
+/*
+* Write a unsigned char image to a numpy array named "name".
+*/
 
 void print_numpy_array_MImage8(FILE* outfile, char* name, MImage8* im){
 

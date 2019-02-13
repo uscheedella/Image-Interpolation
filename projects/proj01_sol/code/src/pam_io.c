@@ -8,8 +8,24 @@
 #include "pam_io.h"
 
 
-// Based on https://stackoverflow.com/questions/2693631/read-ppm-file-and-store-it-in-an-array-coded-with-c
-// This is very fragile!
+/*
+* PGM format image loader for 8 bit gray scale images.
+*
+* Based on https://stackoverflow.com/questions/2693631/
+* This is quite fragile, it does not support comments or other spacings in the
+* PGM header.  Be careful using this!
+*
+* Note: This function acts as an allocator for image, as you cannot know the
+*       size in advance!
+*
+* Arguments:
+*   filename: name of file to load
+*   image: Image struct to load in to
+*
+* Returns:
+*   error code, 0 for success, 1 for failure
+*/
+
 int load_pgm_image_8(char* filename, MImage8* image) {
 
     FILE* f;
@@ -58,6 +74,20 @@ int load_pgm_image_8(char* filename, MImage8* image) {
     return 0;
 }
 
+
+/*
+* PGM format image saver for 8 bit gray scale images.
+*
+* Based on code from Stephen Timmel.
+*
+* Arguments:
+*   filename: name of file to save
+*   image: Image struct to save
+*
+* Returns:
+*   error code, 0 for success, 1 for failure
+*/
+
 int save_pgm_image_8(char* filename, MImage8* image) {
 
     FILE* f;
@@ -83,11 +113,19 @@ int save_pgm_image_8(char* filename, MImage8* image) {
     return 0;
 }
 
-// int load_ppm_image_8(char* filename, RGBImage8* image) {
 
-//     return 0;
-
-// }
+/*
+* PPM format image saver for 24 bit RGB images.
+*
+* Based on code from Stephen Timmel.
+*
+* Arguments:
+*   filename: name of file to save
+*   image: Image struct to save
+*
+* Returns:
+*   error code, 0 for success, 1 for failure
+*/
 
 int save_ppm_image_8(char* filename, RGBImage8* image) {
 

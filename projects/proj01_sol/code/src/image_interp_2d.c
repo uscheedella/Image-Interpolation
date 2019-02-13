@@ -9,7 +9,26 @@
 #include "image_interp_2d.h"
 
 
-int interp2d_downsample(int Cx, int Kx, int Cy, int Ky, MImageF* in, MImageF* out){
+/*
+* Interpolate a 2D image via downsampling.
+*
+* Assumes the output image has been pre-allocated.
+*
+* Arguments:
+*   Cx: Offset of the starting pixel for downsampling, x direction
+*   Kx: Downsampling factor, x direction
+*   Cy: Offset of the starting pixel for downsampling, y direction
+*   Ky: Downsampling factor, y direction
+*   in: input image pointer
+*   out: output image pointer
+*
+* Returns:
+*   error code: 0 on success, 1 on failure
+*/
+
+int interp2d_downsample(int Cx, int Kx, int Cy, int Ky, 
+                        MImageF* in, MImageF* out)
+{
 
     int i, i_hat;
     int j, j_hat;
@@ -32,6 +51,19 @@ int interp2d_downsample(int Cx, int Kx, int Cy, int Ky, MImageF* in, MImageF* ou
     return 0;
 }
 
+
+/*
+* Interpolate a 2D image via left-nearest neighbor interpolation.
+*
+* Assumes the output image has been pre-allocated.
+*
+* Arguments:
+*   in: input image pointer
+*   out: output image pointer
+*
+* Returns:
+*   error code: 0 on success, 1 on failure
+*/
 
 int interp2d_nearest(MImageF* in, MImageF* out){
 
@@ -76,6 +108,18 @@ int interp2d_nearest(MImageF* in, MImageF* out){
 }
 
 
+/*
+* Interpolate a 2D image via piecewise linear interpolation.
+*
+* Assumes the output image has been pre-allocated.
+*
+* Arguments:
+*   in: input image pointer
+*   out: output image pointer
+*
+* Returns:
+*   error code: 0 on success, 1 on failure
+*/
 
 int interp2d_linear(MImageF* in, MImageF* out){
 
@@ -138,24 +182,68 @@ int interp2d_linear(MImageF* in, MImageF* out){
 }
 
 
-void build_cubic_system(float a, int i, float h, float* data, float* A, float* b, float* coeffs){
-    
-    float x;
+/*
+* Helper function for building the cubic interpolation system
+*
+* Arguments:
+*   a: offset of real box describing image (for one dimension)
+*   i: pixel index of first data point (for one dimension)
+*   h: pixel spacing (for one dimension)
+*   data: pointer to the first piece of data for the rhs, assumes this is
+*         contiguous
+*   A: pointer to matrix to build, size 16 floats
+*   b: pointer to RHS to build
+*   x: pointer to solution vector to zero out prior to solve
+*
+* Returns:
+*   Nothing.
+*/
+
+void build_cubic_system(float a, int i, float h, float* data, 
+                        float* A, float* b, float* x)
+{  
+    float xi;
 
     for (int k=0; k<4; k++){
-        x = a + (i+k)*h;
-        A[k*4 + 0] = pow(x, 3.0);
-        A[k*4 + 1] = pow(x, 2.0);
-        A[k*4 + 2] = x; //pow(xk, 1.0);
-        A[k*4 + 3] = 1.0; //pow(xk, 0.0);
+        xi = a + (i+k)*h;
+        A[k*4 + 0] = pow(xi, 3.0);
+        A[k*4 + 1] = pow(xi, 2.0);
+        A[k*4 + 2] = xi;
+        A[k*4 + 3] = 1.0;
         b[k] = data[k];
-        coeffs[k] = 0.0;
+        x[k] = 0.0;
     }
 }
+
+
+/*
+* Helper function for evaluating a cubic polynomial
+*
+* Arguments:
+*   x: location to evaluate (for one dimension)
+*   coeffs: cubic polynomial coefficients
+*
+* Returns:
+*   Evaluation of polynomial
+*/
 
 float evaluate_cubic_polynomial(float* coeffs, float x){
     return coeffs[0]*pow(x, 3.0) + coeffs[1]*pow(x, 2.0) + coeffs[2]*x + coeffs[3]*1;
 }
+
+
+/*
+* Interpolate a 2D image via piecewise cubic interpolation.
+*
+* Assumes the output image has been pre-allocated.
+*
+* Arguments:
+*   in: input image pointer
+*   out: output image pointer
+*
+* Returns:
+*   error code: 0 on success, 1 on failure
+*/
 
 int interp2d_cubic(MImageF* in, MImageF* out){
 

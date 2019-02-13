@@ -5,8 +5,29 @@
 #include "image_crop.h"
 
 
+/*
+* Crops an image using linear interpolation.
+*
+* The coordinates (a_hat,c_hat) and (b_hat,d_hat) are the top left and bottom 
+* right coordinates, in real image coordinates, of the desired window of the
+* input image.  The input image is assumed to be defined by the box (0,0), 
+* (1,1).
+*
+* Arguments:
+*   a_hat: left x coordinate of the crop window
+*   b_hat: right x coordinate of the crop window
+*   c_hat: left y coordinate of the crop window
+*   d_hat: right y coordinate of the crop window
+*   in: input image pointer
+*   out: output image pointer
+*
+* Returns:
+*   error code: 0 on success, 1 on failure
+*/
 
-int crop_linear(float a_hat, float b_hat, float c_hat, float d_hat, MImageF* in, MImageF* out){
+int crop_linear(float a_hat, float b_hat, float c_hat, float d_hat, 
+                MImageF* in, MImageF* out)
+{
 
     int i, i_hat;
     int j, j_hat;

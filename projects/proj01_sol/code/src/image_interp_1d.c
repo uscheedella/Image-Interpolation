@@ -9,6 +9,21 @@
 #include "image_interp_1d.h"
 
 
+/*
+* Interpolate a 1D "image" via downsampling.
+*
+* Assumes the output image has been pre-allocated.
+*
+* Arguments:
+*   C: Offset of the starting pixel for downsampling
+*   K: Downsampling factor
+*   in: input image pointer
+*   out: output image pointer
+*
+* Returns:
+*   error code: 0 on success, 1 on failure
+*/
+
 int interp1d_downsample(int C, int K, MImageF* in, MImageF* out){
 
     int i, i_hat;
@@ -21,6 +36,19 @@ int interp1d_downsample(int C, int K, MImageF* in, MImageF* out){
     return 0;
 }
 
+
+/*
+* Interpolate a 1D "image" via left-nearest neighbor interpolation.
+*
+* Assumes the output image has been pre-allocated.
+*
+* Arguments:
+*   in: input image pointer
+*   out: output image pointer
+*
+* Returns:
+*   error code: 0 on success, 1 on failure
+*/
 
 int interp1d_nearest(MImageF* in, MImageF* out){
 
@@ -45,6 +73,18 @@ int interp1d_nearest(MImageF* in, MImageF* out){
 }
 
 
+/*
+* Interpolate a 1D "image" via piecewise linear interpolation.
+*
+* Assumes the output image has been pre-allocated.
+*
+* Arguments:
+*   in: input image pointer
+*   out: output image pointer
+*
+* Returns:
+*   error code: 0 on success, 1 on failure
+*/
 
 int interp1d_linear(MImageF* in, MImageF* out){
 
@@ -73,6 +113,20 @@ int interp1d_linear(MImageF* in, MImageF* out){
 
     return 0;
 }
+
+
+/*
+* Interpolate a 1D "image" via piecewise cubic interpolation.
+*
+* Assumes the output image has been pre-allocated.
+*
+* Arguments:
+*   in: input image pointer
+*   out: output image pointer
+*
+* Returns:
+*   error code: 0 on success, 1 on failure
+*/
 
 int interp1d_cubic(MImageF* in, MImageF* out){
 
