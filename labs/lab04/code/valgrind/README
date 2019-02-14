@@ -1,0 +1,17 @@
+Valgrind Lab:
+
+All code for this portion can be found in the valgrind subfolder.
+There are four independent programs, each with a single source file and a build rule.
+fibonacci: The fibonacci.c file is supposed to compute the first 30 fibonacci numbers.  Build using 'make fibonacci' and run the bin/fibonacci binary
+pascal: The pascal.c file is supposed to compute a pascal triangle of depth 17.  Build using 'make pascal' and run the bin/pascal binary
+rotate_vector: The rotate_vector.c file is supposed to make a vector of 7 random values and fill rows of a matrix with shifted copies of that vector.  An example with the vector [1,2,3,4,5,6,7] would look like
+             [1,2,3,4,5,6,7,
+              2,3,4,5,6,7,1,
+              3,4,5,6,7,1,2,
+              4,5,6,7,1,2,3,
+              5,6,7,1,2,3,4,
+              6,7,1,2,3,4,5,
+              7,1,2,3,4,5,6]
+ Build using 'make rotate_vector' and run the bin/rotate_vector binary.
+ array: The array_sum.c file is supposed to make a 5x5 matrix of random values and return the sum of all entries on each column.  Build using 'make array_sum' and run the bin/array_sum binary
+
