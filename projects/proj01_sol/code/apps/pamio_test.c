@@ -39,7 +39,7 @@ int main(int argc, char **argv)
     save_pgm_MImage8("test2.pgm", &im2);
 
     deallocate_MImage8(&im1);
-    deallocate_MImage8(&im1);
+    deallocate_MImage8(&im2);
 
     return 0;
 }

@@ -157,6 +157,7 @@ int interp2d_linear(MImageF* in, MImageF* out){
         
         y_hat = c + j_hat*hy_hat;
         j = (int)floor((y_hat-c)/hy);
+        j = min(j, in->height-2);
             
         yj = c + j*hy;
         yjp1 = c + (j+1)*hy;
@@ -166,7 +167,8 @@ int interp2d_linear(MImageF* in, MImageF* out){
 
             x_hat = a + i_hat*hx_hat;
             i = (int)floor((x_hat-a)/hx);
-            
+            i = min(i, in->width-2);
+
             xi = a + i*hx;
             xip1 = a + (i+1)*hx;
             wx = (xip1 - x_hat) / hx;

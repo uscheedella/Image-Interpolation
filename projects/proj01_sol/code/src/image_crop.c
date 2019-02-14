@@ -70,6 +70,7 @@ int crop_linear(float a_hat, float b_hat, float c_hat, float d_hat,
         
         y_hat = c_hat + j_hat*hy_hat;
         j = (int)floor((y_hat-c)/hy);
+        j = min(j, in->height-2);
             
         yj = c + j*hy;
         yjp1 = c + (j+1)*hy;
@@ -79,7 +80,8 @@ int crop_linear(float a_hat, float b_hat, float c_hat, float d_hat,
 
             x_hat = a_hat + i_hat*hx_hat;
             i = (int)floor((x_hat-a)/hx);
-            
+            i = min(i, in->height-2);
+
             xi = a + i*hx;
             xip1 = a + (i+1)*hx;
             wx = (xip1 - x_hat) / hx;
