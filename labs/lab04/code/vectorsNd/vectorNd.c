@@ -1,33 +1,76 @@
 #include <math.h>
+#include <stddef.h>
+#include "vectorNd.h"
+#include <string.h>
+#include <stdlib.h>
 
-#include "vector3d.h"
+float norm(VectorND* v) {
 
-float norm(Vector3D* v) {
+    float length = 0;
 
-    float length;
+    for(int x = 0; x < v->dimension; x++) {
 
-    length = sqrt(pow(v->x, 2.0) + pow(v->y, 2.0) + pow(v->z, 2.0));
+    length = length + sqrt(pow(v->data[x], 2.0));
+    
+    }
 
     return length;
 }
 
-void normalize(Vector3D* v) {
+float normalize(VectorND* v) {
     float length = norm(v);
-
-    v->x = v->x/length;
-    v->y = v->y/length;
-    v->z = v->z/length;
+    if (length < pow(10, -5)) {
+	return 1;
+    }
+    else {
+    	for (int x = 0; v->dimension;x++) {
+    		v->data[x] = v->data[x]/length;
+    	}
+    }
+    return 0;
 }
 
-void axpy(float alpha, Vector3D* vx, Vector3D* vy, Vector3D* vz) {
+float axpy(float alpha, VectorND* vx, VectorND* vy, VectorND* vz) {
+    float vxlength = norm(vx);
+    float vylength = norm(vy);
+    if (vxlength != vylength) {
+        return 1;
+    }
+    else {
+        for (int x = 0; vx->dimension;x++) {
+                vz->data[x] = alpha*vx->data[x] + vy->data[x];
+        }
+    return 0;
+    }
+}
 
-    vz->x = alpha*vx->x + vy->x;
-    vz->y = alpha*vx->y + vy->y;
-    vz->z = alpha*vx->z + vy->z;
+float inner_product(VectorND* vx, VectorND* vy, float* length) {
+    if (vx->data == NULL || vy->data == NULL) {
+	return 1;
+    } 
+    if (vx->dimension != vy->dimension) {
+        return 1;
+    }
+    else {
+	float sum = 0.0;
+        for (int x = 0; x< vx->dimension;x++) {
+                sum += vx->data[x]*vy->data[x];
+        }
+	length = &sum;
+    
+    return 0;
+    }
+}
+
+float allocate_VectorND(VectorND* v, int dim) {
+	v->data = malloc(dim*sizeof(float));
+	v->data = memset(v->data, 0, dim);
+	v->dimension = dim;
 
 }
 
-float inner_product(Vector3D* vx, Vector3D* vy) {
-    return vx->x*vy->x + vx->y*vy->y + vx->z*vy->z;
+float deallocate_VectorND(VectorND* v) {
+	free(v);
+	v->dimension = 0;
+	
 }
-
