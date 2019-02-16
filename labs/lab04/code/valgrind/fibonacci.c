@@ -3,7 +3,7 @@
 
 int main (int argc, char **argv) {
     //initialize variables
-    int array_size = 30;
+    int array_size = 32;
     int *nums = (int *) malloc(array_size);
     
     //seed with first two values
