@@ -14,19 +14,19 @@ int main(int argc, char **argv) {
 
     //fill rows of array with vector rotations
     for (int i = 0; i < vector_size; i++) {
-	for (int j = 0; j < vector_size; i++) {
+	for (int j = 0; j < vector_size; j++) {
 	    int index = (j+i)%vector_size;
 	    rotations[i*vector_size + index] = vector[j];
 	}
     }
 
     //print matrix entries
-    /*for (int i = 0; i < vector_size; i++) {
+    for (int i = 0; i < vector_size; i++) {
 	for (int j = 0; j < vector_size; j++) {
 	    printf("%f ",rotations[i*vector_size+j]);
 	}
 	printf("\n");
-	}*/
+	}
     free(vector);
     free(rotations);
     return 0;
