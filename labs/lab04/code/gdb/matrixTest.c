@@ -170,7 +170,7 @@ void testTallSkinny(){
   
   double* c = vecDiff(m, b, ans);
   
-  if(norm(m, b)<tol){
+  if(norm(m, c)<tol){
     printf("Test passed!\n");
   }
   else{
