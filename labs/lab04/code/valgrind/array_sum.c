@@ -21,7 +21,7 @@ int main(int argc, char **argv) {
 	for (int j = 0; j < sum_length; j++) {
 	    sum[i] += arr[j*sum_length+i];
 	}
-	//printf("%f\n",sum[i]);
+	printf("%f\n",sum[i]);
     }
 
     free(sum);
