@@ -5,14 +5,14 @@
 #include <stdlib.h>
 
 float norm(VectorND* v) {
-
-    float length = 0;
-
+    float length = 0.0;
+    float sum = 0.0;
     for(int x = 0; x < v->dimension; x++) {
 
-    length = length + sqrt(pow(v->data[x], 2.0));
+    sum += pow(v->data[x], 2.0);
     
     }
+    length = sqrt(sum);
 
     return length;
 }
@@ -23,7 +23,7 @@ float normalize(VectorND* v) {
 	return 1;
     }
     else {
-    	for (int x = 0; v->dimension;x++) {
+    	for (int x = 0; x < v->dimension;x++) {
     		v->data[x] = v->data[x]/length;
     	}
     }
@@ -31,13 +31,13 @@ float normalize(VectorND* v) {
 }
 
 float axpy(float alpha, VectorND* vx, VectorND* vy, VectorND* vz) {
-    float vxlength = norm(vx);
-    float vylength = norm(vy);
-    if (vxlength != vylength) {
+    //float vxlength = norm(vx);
+    //float vylength = norm(vy);
+    if (vx->dimension != vy->dimension || vx->dimension != vz->dimension || vy->dimension != vz->dimension) {
         return 1;
     }
     else {
-        for (int x = 0; vx->dimension;x++) {
+        for (int x = 0; x < vx->dimension;x++) {
                 vz->data[x] = alpha*vx->data[x] + vy->data[x];
         }
     return 0;
@@ -63,14 +63,18 @@ float inner_product(VectorND* vx, VectorND* vy, float* length) {
 }
 
 float allocate_VectorND(VectorND* v, int dim) {
-	v->data = malloc(dim*sizeof(float));
-	v->data = memset(v->data, 0, dim);
+	v->data = (float*)malloc(dim*sizeof(float));
 	v->dimension = dim;
+	if(v->data == NULL){
+		return 1;
+	}
+	v->data = memset(v->data, 0, dim);
 
 }
 
 float deallocate_VectorND(VectorND* v) {
-	free(v);
+	free(v->data);
+	v->data = NULL;
 	v->dimension = 0;
-	
+	return 0;	
 }

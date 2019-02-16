@@ -15,7 +15,7 @@ float axpy(float alpha, VectorND* vx, VectorND* vy, VectorND* vz);
 
 float inner_product(VectorND* vx, VectorND* vy, float* l);
 
-float allocate_VectorNd(VectorND*, int dim);
+float allocate_VectorND(VectorND*, int dim);
 
 float deallocate_VectorND(VectorND*);
 
