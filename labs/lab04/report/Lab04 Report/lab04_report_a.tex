@@ -1,0 +1,61 @@
+
+
+
+\maketitle
+\begin{enumerate}
+    \item Use the \texttt{listings} package to include your output (\texttt{output\_pt\_a\_vector.txt}) in your pdf.  You will need to copy \texttt{output\_pt\_a\_vector.txt} to the reports directory.
+    % Hint: the correct latex command is \lstinputlisting[language={}]{output.txt}
+
+    \textbf{ANSWER:} \lstinputlisting[language={}]{test.txt}
+    %\lstinputlisting[language={}]{test.txt}
+    
+
+    \item For each of the following use-cases, indicate if the specified array should be allocated on the stack, the heap, or either.  Explain your selection.
+    \begin{enumerate}
+        \item An array of integers length 10 in a function that is called a small number of times.
+        \begin{itemize}
+            \item A stack should be used because it's used within one function and its length is very small.
+        \end{itemize}
+        \item An array of doubles of length 3, where $\sim 10^3$ instances exist and frequently used in the program.
+        \begin{itemize}
+            \item A heap should be used because it's used throughout the whole program and the number of instances is fairly large.
+        \end{itemize}
+        \item An array of doubles of length 3, where $\sim 10^4$ instances exist and frequently used in the program.
+        \begin{itemize}
+            \item A heap should be used because it's used throughout the whole program and the number of instances is fairly large.
+        \end{itemize}
+        \item An array of doubles of length 3, where $\sim 10^5$ instances exist and frequently used in the program.
+        \begin{itemize}
+            \item A heap should be used because it's used throughout the whole program and the number of instances is very large.
+        \end{itemize}
+        \item An array of doubles of length 3, where $\sim 10^6$ instances exist and frequently used in the program.
+        \begin{itemize}
+            \item A heap should be used because it's used throughout the whole program and the number of instances is very large.
+        \end{itemize}
+        \item An array of doubles of length 3, where $\sim 10^8$ instances exist and frequently used in the program.
+        \begin{itemize}
+            \item A heap should be used because it's used throughout the whole program and the number of instances is very large.
+        \end{itemize}
+        \item An array of floats of length 10,000, to be used throughout the whole program.
+        \begin{itemize}
+            \item A heap should be used because it's used throughout the whole program its length is very large.
+        \end{itemize}
+        \item An array of floats of length 10,000, to be used in a single function.
+        \begin{itemize}
+            \item A heap or stack can be used, but a heap is preferred because even though the scope of it is small, its length is fairly large.
+        \end{itemize}
+    \end{enumerate}
+
+    \textbf{ANSWER:} Answer is bulleted.
+    
+
+    \item In C, there is no mechanism to see if a pointer points to heap memory that has already been allocated, so we cannot be sure that we do not re-allocate an array.  How can we code defensively to ensure that this does not happen?
+
+    \textbf{ANSWER:} We save the pointer as a variable and free the memory after we're done using it.
+    
+
+    \item Other than the instructor or TAs, who did you receive assistance from on this assignment?
+    
+    \textbf{ANSWER:} Lilian
+    
+\end{enumerate}
