@@ -4,7 +4,7 @@
 int main (int argc, char **argv) {
     //initialize variables
     int array_size = 32;
-    int *nums = (int *) malloc(array_size);
+    int *nums = (int *) malloc(array_size*sizeof(int));
     
     //seed with first two values
     nums[0] = 1;
@@ -15,10 +15,10 @@ int main (int argc, char **argv) {
 	nums[i] = nums[i-2] + nums[i-1];
     }
 
-    /*printf("the first %d fibonacci numbers are:\n",array_size);
+    printf("the first %d fibonacci numbers are:\n",array_size);
     for (int i = 0; i < array_size; i++) {
 	printf("%d: %d\n",i,nums[i]);
-	}*/
+	}
 
     //free memory and exit
     free(nums);
