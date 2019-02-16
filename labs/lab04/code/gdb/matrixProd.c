@@ -22,7 +22,7 @@ double dotProd(int n, double* x, double* y){
 void matrixVecProd(int m, int n, double* A, double* x, double* b){
 
   for(int i=0; i<m; i++){
-    b[i] = dotProd(n, A+i*m, x);
+    b[i] = dotProd(n, A+i*n, x);
   }
 }
 
