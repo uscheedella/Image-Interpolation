@@ -4,10 +4,10 @@
 
 int main(int argc,char **argv) {
     //depth of triangle
-    char depth = 17;
-    char spacing = 5;
-    char spacing_start = 3;
-    char length = depth*depth;
+    int depth = 17;
+    int spacing = 5;
+    int spacing_start = 3;
+    int length = depth*depth;
 
     //initial setup
     int *nums = (int *) malloc(length*sizeof(int));
