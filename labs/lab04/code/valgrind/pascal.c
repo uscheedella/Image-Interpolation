@@ -34,9 +34,9 @@ int main(int argc,char **argv) {
         for (int j = 0; j <= i; j++) {
             int num_to_print = nums[j*depth + (i - j)];
             printf("%d ",num_to_print);
-            /*for (int k = 0; k < spacing-log10(abs(num_to_print))-1; k++) {
+            for (int k = 0; k < spacing-log10(abs(num_to_print))-1; k++) {
                 printf(" ");
-            }*/
+            }
         }
         printf("\n");
     }
