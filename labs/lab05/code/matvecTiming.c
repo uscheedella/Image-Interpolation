@@ -4,6 +4,8 @@
 #include "VectorND.h"
 #include "Matrix.h"
 
+int nRuns = 50;
+
 int main(int argc, char *argv[]){
 	if(argc < 3){
 		printf("WARNING: Missing input argument specifying matrix dimensions. \n");
@@ -14,7 +16,8 @@ int main(int argc, char *argv[]){
 	// read input arguments to get number of rows and columns
 	int nRows = atoi(argv[1]);
 	int nCols = atoi(argv[2]);
-	printf("----------- Testing %d x %d matrix multiplied by %d dimensional vector ------- \n", nRows, nCols, nCols);
+
+	printf("matvec timing, %4d, %4d, %4d", nRows, nCols, nRuns);
 
 	// create A matrix thats nRows x nCols with random entries
 	Matrix A;
@@ -31,9 +34,6 @@ int main(int argc, char *argv[]){
 
 	// set up number of repeat runs, and declare timers
 	clock_t beginning, ending;
-	int nRuns = 50;
-	printf("Starting timing tests with %d repeat runs \n", nRuns);
-
 
 	// timing of A*x = b with outer loop over rows of A
 	beginning = clock();
@@ -41,7 +41,8 @@ int main(int argc, char *argv[]){
 	ending = clock();
 	double secondsToRun = (double)(ending-beginning)/(double)CLOCKS_PER_SEC;
 	double avgSecPerRunRows = secondsToRun/(double)nRuns;
-	printf("Matvec with rows as outer loop took %e seconds per run \n", avgSecPerRunRows);
+	
+	printf(", %lf, %lf", secondsToRun, avgSecPerRunRows);
 
 	// timing of A*x = b with outer loop over columns of A
 	beginning = clock();
@@ -49,7 +50,10 @@ int main(int argc, char *argv[]){
 	ending = clock();
 	secondsToRun = (double)(ending-beginning)/(double)CLOCKS_PER_SEC;
 	double avgSecPerRunCols = secondsToRun/(double)nRuns;
-	printf("Matvec with columns as outer loop took %e seconds per run \n", avgSecPerRunCols);
+
+	printf(", %lf, %lf", secondsToRun, avgSecPerRunCols);
+
+	printf("\n");
 
 	// cleanup
 	deallocate_Matrix(&A);
