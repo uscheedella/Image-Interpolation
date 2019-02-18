@@ -4,7 +4,7 @@
 int main (int argc, char **argv) {
     //initialize variables
     int array_size = 30;
-    int *nums = (int *) malloc(array_size);
+    int *nums = (int *) malloc(array_size*sizeof(int));
     
     //seed with first two values
     nums[0] = 1;
