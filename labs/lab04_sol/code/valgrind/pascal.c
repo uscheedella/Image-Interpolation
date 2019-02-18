@@ -26,7 +26,7 @@ int main(int argc,char **argv) {
     }
 
     //print diagonals of matrix
-    /*for (int i = 0; i < depth; i++) {
+    for (int i = 0; i < depth; i++) {
 	//spacing at the start
 	for (int j = 0; j < spacing_start*(depth-i-1); j++) {
 	    printf(" ");
@@ -39,7 +39,7 @@ int main(int argc,char **argv) {
 	    }
 	}
 	printf("\n");
-	}*/
+	}
     free(nums);
     return 0;
 }

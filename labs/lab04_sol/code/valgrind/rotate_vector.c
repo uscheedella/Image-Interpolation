@@ -21,12 +21,12 @@ int main(int argc, char **argv) {
     }
 
     //print matrix entries
-    /*for (int i = 0; i < vector_size; i++) {
+    for (int i = 0; i < vector_size; i++) {
 	for (int j = 0; j < vector_size; j++) {
 	    printf("%f ",rotations[i*vector_size+j]);
 	}
 	printf("\n");
-	}*/
+	}
     free(vector);
     free(rotations);
     return 0;
