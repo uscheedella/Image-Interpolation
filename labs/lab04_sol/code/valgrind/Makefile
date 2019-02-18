@@ -2,7 +2,7 @@ fibonacci:
 	gcc -g -o fibonacci fibonacci.c
 
 pascal:
-	gcc -g -o pascal pascal.c
+	gcc -g -o pascal pascal.c -lm
 
 array_sum:
 	gcc -g -o array_sum array_sum.c
