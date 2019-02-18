@@ -37,7 +37,7 @@ int main(int argc, char *argv[]){
 
 	// timing of A*x = b with outer loop over columns of A
 	beginning = clock();
-	for(int i=0; i<nRuns; ++i) matvec_outer_cols(&A, &x, &b);
+	for(int i=0; i<nRuns; ++i) matvec_col_oriented(&A, &x, &b);
 	ending = clock();
 	double secondsToRun = (double)(ending-beginning)/(double)CLOCKS_PER_SEC;
 	double avgSecPerRunCols = secondsToRun/(double)nRuns;

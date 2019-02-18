@@ -40,7 +40,7 @@ int rand_fill_Matrix(Matrix *mat){
 	return 0;
 }
 
-int matvec_outer_rows(Matrix *mat, VectorND *inVec, VectorND *outVec){
+int matvec_row_oriented(Matrix *mat, VectorND *inVec, VectorND *outVec){
 	// check dimensions
 	int nRows = mat->nRows;
 	int nCols = mat->nCols;
@@ -62,7 +62,7 @@ int matvec_outer_rows(Matrix *mat, VectorND *inVec, VectorND *outVec){
 	return 0;
 }
 
-int matvec_outer_cols(Matrix *mat, VectorND *inVec, VectorND *outVec){
+int matvec_col_oriented(Matrix *mat, VectorND *inVec, VectorND *outVec){
 	// check dimensions
 	int nRows = mat->nRows;
 	int nCols = mat->nCols;
@@ -85,7 +85,7 @@ int matvec_outer_cols(Matrix *mat, VectorND *inVec, VectorND *outVec){
 }
 
 
-int matvec_OMP_outer(Matrix *mat, VectorND *inVec, VectorND *outVec){
+int matvec_row_oriented_omp(Matrix *mat, VectorND *inVec, VectorND *outVec){
 	// THIS IS THE FUNCTION YOULL MODIFY FOR OMP PART
 	//
 	// check dimensions

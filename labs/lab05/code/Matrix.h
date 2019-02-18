@@ -17,10 +17,10 @@ int deallocate_Matrix(Matrix *mat);
 
 int rand_fill_Matrix(Matrix *mat);
 
-int matvec_outer_rows(Matrix *mat, VectorND *inVec, VectorND *outVec);
+int matvec_row_oriented(Matrix *mat, VectorND *inVec, VectorND *outVec);
 
-int matvec_outer_cols(Matrix *mat, VectorND *inVec, VectorND *outVec);
+int matvec_col_oriented(Matrix *mat, VectorND *inVec, VectorND *outVec);
 
-int matvec_OMP_outer(Matrix *mat, VectorND *inVec, VectorND *outVec);
+int matvec_row_oriented_omp(Matrix *mat, VectorND *inVec, VectorND *outVec);
 
 #endif
