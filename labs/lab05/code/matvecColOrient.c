@@ -46,7 +46,7 @@ int main(int argc, char *argv[]){
     t_total = (double)(t_end-t_start)/(double)CLOCKS_PER_SEC;
     t_avg = t_total/(double)nRuns;
 
-    printf(", %lf, %lf", t_total, t_avg);
+    printf(", %.10f, %.10f", t_total, t_avg);
 
     printf("\n");
 
