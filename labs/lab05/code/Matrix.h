@@ -4,11 +4,11 @@
 #define __MATRIX_H__
 
 typedef struct Matrix_tag {
-	// This defines a matrix stored in row major order so 
-	// the (row i, column j) entry 
-	float *data;
-	int nRows;
-	int nCols;
+    // This defines a matrix stored in row major order so
+    // the (row i, column j) entry
+    float *data;
+    int nRows;
+    int nCols;
 } Matrix;
 
 int allocate_Matrix(Matrix *mat, int nRows, int nCols);

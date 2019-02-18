@@ -2,8 +2,8 @@
 #define __VECTORND_H__
 
 typedef struct VectorND_tag {
-	float* data;
-	int dimension;
+    float* data;
+    int dimension;
 } VectorND;
 
 int allocate_VectorND(VectorND *v, int dimension);
