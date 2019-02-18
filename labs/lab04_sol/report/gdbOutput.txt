@@ -1,0 +1,36 @@
+Testing dotProd
+vecA = {1.000000, 2.000000, 3.000000}
+vecB = {4.000000, 5.000000, 6.000000}
+vecA*vecB = 32.000000
+Test Passed!
+
+
+Testing matrixVecProd with identity matrix
+A = 
+1.000000 0.000000 0.000000 
+0.000000 1.000000 0.000000 
+0.000000 0.000000 1.000000 
+x = {1.000000, 2.000000, 3.000000}
+b = {1.000000, 2.000000, 3.000000}
+Test passed!
+
+
+Testing matrixVecProd a short and fat matrix
+A = 
+1.000000 2.000000 3.000000 
+4.000000 5.000000 6.000000 
+x = {1.000000, 2.000000, 3.000000}
+b = {14.000000, 32.000000}
+Test passed!
+
+
+Testing matrixVecProd a tall and skinny matrix
+A = 
+1.000000 2.000000 
+3.000000 4.000000 
+5.000000 6.000000 
+x = {1.000000, 2.000000}
+b = {5.000000, 11.000000, 17.000000}
+Test passed!
+
+
