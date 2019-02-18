@@ -33,25 +33,34 @@ int main(int argc, char *argv[]){
 
 
 	// set up number of repeat runs, and declare timers
-	clock_t beginning, ending;
+	clock_t t_start, t_end;
+	double t_total, t_avg;
 
 	// timing of A*x = b with outer loop over rows of A
-	beginning = clock();
-	for(int i=0; i<nRuns; ++i) matvec_row_oriented(&A, &x, &b);
-	ending = clock();
-	double secondsToRun = (double)(ending-beginning)/(double)CLOCKS_PER_SEC;
-	double avgSecPerRunRows = secondsToRun/(double)nRuns;
+	t_start = clock();
 	
-	printf(", %lf, %lf", secondsToRun, avgSecPerRunRows);
+	for(int i=0; i<nRuns; ++i)
+		matvec_row_oriented(&A, &x, &b);
+
+	t_end = clock();
+	
+	t_total = (double)(t_end-t_start)/(double)CLOCKS_PER_SEC;
+	t_avg = t_total/(double)nRuns;
+	
+	printf(", %lf, %lf", t_total, t_avg);
 
 	// timing of A*x = b with outer loop over columns of A
-	beginning = clock();
-	for(int i=0; i<nRuns; ++i) matvec_col_oriented(&A, &x, &b);
-	ending = clock();
-	secondsToRun = (double)(ending-beginning)/(double)CLOCKS_PER_SEC;
-	double avgSecPerRunCols = secondsToRun/(double)nRuns;
+	t_start = clock();
+	
+	for(int i=0; i<nRuns; ++i)
+		matvec_col_oriented(&A, &x, &b);
 
-	printf(", %lf, %lf", secondsToRun, avgSecPerRunCols);
+	t_end = clock();
+	
+	t_total = (double)(t_end-t_start)/(double)CLOCKS_PER_SEC;
+	t_avg = t_total/(double)nRuns;
+
+	printf(", %lf, %lf", t_total, t_avg);
 
 	printf("\n");
 

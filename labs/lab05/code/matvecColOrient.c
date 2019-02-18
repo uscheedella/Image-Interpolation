@@ -17,7 +17,6 @@ int main(int argc, char *argv[]){
 	int nRows = atoi(argv[1]);
 	int nCols = atoi(argv[2]);
 	printf("cache col-oriented, %4d, %4d, %4d", nRows, nCols, nRuns);
-	// printf("----------- Testing %d x %d matrix multiplied by %d dimensional vector ------- \n", nRows, nCols, nCols);
 
 	// create A matrix thats nRows x nCols with random entries
 	Matrix A;
@@ -33,18 +32,21 @@ int main(int argc, char *argv[]){
 
 
 	// set up number of repeat runs, and declare timers
-	clock_t beginning, ending;
-	// printf("Starting timing tests with %d repeat runs \n", nRuns);
-
+	clock_t t_start, t_end;
+	double t_total, t_avg;
 
 	// timing of A*x = b with outer loop over columns of A
-	beginning = clock();
-	for(int i=0; i<nRuns; ++i) matvec_col_oriented(&A, &x, &b);
-	ending = clock();
-	double secondsToRun = (double)(ending-beginning)/(double)CLOCKS_PER_SEC;
-	double avgSecPerRunCols = secondsToRun/(double)nRuns;
-	printf(", %lf, %lf", secondsToRun, avgSecPerRunCols);
-	// printf("Matvec with columns as outer loop took %e seconds per run \n", avgSecPerRunCols);
+	t_start = clock();
+
+	for(int i=0; i<nRuns; ++i)
+		matvec_col_oriented(&A, &x, &b);
+
+	t_end = clock();
+
+	t_total = (double)(t_end-t_start)/(double)CLOCKS_PER_SEC;
+	t_avg = t_total/(double)nRuns;
+	
+	printf(", %lf, %lf", t_total, t_avg);
 
 	printf("\n");
 
