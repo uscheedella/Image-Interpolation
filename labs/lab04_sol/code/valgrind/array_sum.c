@@ -6,7 +6,7 @@ int main(int argc, char **argv) {
     int arr_length = 5*5;
 
     float *sum = (float *) malloc(sum_length*sizeof(float));
-    float *arr = (float *) malloc(sum_length*sizeof(float));
+    float *arr = (float *) malloc(arr_length*sizeof(float));
 
     //seed array with random numbers
     srand48(0);
