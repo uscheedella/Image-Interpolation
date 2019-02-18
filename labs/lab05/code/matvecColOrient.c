@@ -16,7 +16,7 @@ int main(int argc, char *argv[]){
     // read input arguments to get number of rows and columns
     int nRows = atoi(argv[1]);
     int nCols = atoi(argv[2]);
-    printf("cache col-oriented, %4d, %4d, %4d", nRows, nCols, nRuns);
+    printf("col-oriented timing, %4d, %4d, %4d", nRows, nCols, nRuns);
 
     // create A matrix thats nRows x nCols with random entries
     Matrix A;

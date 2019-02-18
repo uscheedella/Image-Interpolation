@@ -16,7 +16,7 @@ int main(int argc, char *argv[]){
     // read input arguments to get number of rows and columns
     int nRows = atoi(argv[1]);
     int nCols = atoi(argv[2]);
-    printf("cache row-oriented, %4d, %4d, %4d", nRows, nCols, nRuns);
+    printf("row-oriented timing, %4d, %4d, %4d", nRows, nCols, nRuns);
 
     // create A matrix thats nRows x nCols with random entries
     Matrix A;
@@ -34,7 +34,6 @@ int main(int argc, char *argv[]){
     // set up number of repeat runs, and declare timers
     clock_t t_start, t_end;
     double t_total, t_avg;
-
 
     // timing of A*x = b with outer loop over rows of A\n
     t_start = clock();
