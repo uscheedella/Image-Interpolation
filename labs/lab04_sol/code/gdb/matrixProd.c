@@ -7,7 +7,7 @@ double dotProd(int n, double* x, double* y){
 
   double dotProd = 0;
 
-  for(int i=0; i<=n; i++){
+  for(int i=0; i<n; i++){
     dotProd += x[i]*y[i];
   }
 
