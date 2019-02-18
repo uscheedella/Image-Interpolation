@@ -7,7 +7,7 @@ int main(int argc,char **argv) {
     char depth = 17;
     char spacing = 5;
     char spacing_start = 3;
-    char length = depth*depth;
+    int length = depth*depth;
     
     //initial setup
     int *nums = (int *) malloc(length*sizeof(int));
