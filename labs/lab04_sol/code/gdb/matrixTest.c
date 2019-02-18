@@ -155,7 +155,7 @@ void testTallSkinny(){
     }
   }
 
-  printf("Testing matrixVecProd a short and fat matrix\n");
+  printf("Testing matrixVecProd a tall and skinny matrix\n");
 
   printA(m, n, A);
 
