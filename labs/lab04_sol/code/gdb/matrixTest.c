@@ -118,7 +118,7 @@ void testShortFat(){
   double ans[2] = {14, 32};
 
   
-  double* c = vecDiff(n, b, ans);
+  double* c = vecDiff(m, b, ans);
   
   if(norm(m, c)<tol){ 
     printf("Test passed!\n");
