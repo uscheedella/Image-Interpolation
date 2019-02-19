@@ -1,0 +1,194 @@
+\begin{enumerate}
+    \item \texttt{matrixTest}
+    \begin{itemize}
+        \item Use the \texttt{listings} package to include your \texttt{matrixTest} output in the pdf.
+        \item For each bug, use the \texttt{listings} package to display the original line of code with the error, as well as the fix.  Describe the error.            
+    \end{itemize}
+    \textbf{ANSWER:} % answer goes here
+
+    \lstinputlisting[language={},frame=single,title=gdbOutput.txt]{gdbOutput.txt}
+\newpage 
+
+\begin{lstlisting}[frame=single]
+--- a/labs/lab04_sol/code/gdb/matrixProd.c
++++ b/labs/lab04_sol/code/gdb/matrixProd.c
+@@ -7,7 +7,7 @@ double dotProd(int n, double* x, double* y){
+ 
+   double dotProd = 0;
+ 
+-  for(int i=0; i<=n; i++){
++  for(int i=0; i<n; i++){
+     dotProd += x[i]*y[i];
+   }
+\end{lstlisting}
+The loop counts 1 extra time, from 0 to $N$, when it should count from 0 to $N-1$.
+
+
+\begin{lstlisting}[frame=single]
+--- a/labs/lab04_sol/code/gdb/matrixProd.c
++++ b/labs/lab04_sol/code/gdb/matrixProd.c
+@@ -22,7 +22,7 @@ double dotProd(int n, double* x, double* y){
+ void matrixVecProd(int m, int n, double* A, double* x, double* b){
+ 
+   for(int i=0; i<m; i++){
+-    b[i] = dotProd(n, A+i*m, x);
++    b[i] = dotProd(n, A+i*n, x);
+   }
+ }
+\end{lstlisting}
+The calculation of the start of the row in the mat-vec is not correct.  It assumes rows are length $M$ and not $N$.
+
+\begin{lstlisting}[frame=single]
+--- a/labs/lab04_sol/code/gdb/matrixTest.c
++++ b/labs/lab04_sol/code/gdb/matrixTest.c
+@@ -118,7 +118,7 @@ void testShortFat(){
+   double ans[2] = {14, 32};
+ 
+   
+-  double* c = vecDiff(n, b, ans);
++  double* c = vecDiff(m, b, ans);
+
+   if(norm(m, c)<tol){ 
+     printf("Test passed!\n");
+\end{lstlisting}
+For this test case, the vector b has length $M$, not $N$.
+   
+\begin{lstlisting}[frame=single]
+--- a/labs/lab04_sol/code/gdb/matrixTest.c
++++ b/labs/lab04_sol/code/gdb/matrixTest.c
+@@ -155,7 +155,7 @@ void testTallSkinny(){
+     }
+   }
+ 
+-  printf("Testing matrixVecProd a short and fat matrix\n");
++  printf("Testing matrixVecProd a tall and skinny matrix\n");
+ 
+   printA(m, n, A);
+\end{lstlisting}
+The print text refers to the wrong test.
+ 
+\begin{lstlisting}[frame=single]
+--- a/labs/lab04_sol/code/gdb/matrixTest.c
++++ b/labs/lab04_sol/code/gdb/matrixTest.c
+@@ -170,7 +170,7 @@ void testTallSkinny(){
+   
+   double* c = vecDiff(m, b, ans);
+   
+-  if(norm(m, b)<tol){
++  if(norm(m, c)<tol){
+     printf("Test passed!\n");
+   }
+   else{
+\end{lstlisting}
+The test should check the norm of the error vector, c, not the right-hand side vector b.
+    
+    \newpage
+    \item \texttt{fibonacci}
+    \begin{itemize}
+        \item Use the \texttt{listings} package to include your \texttt{fibonacci} output in the pdf.
+        \item For each bug, use the \texttt{listings} package to display the original line of code with the error, as well as the fix.  Describe the error.
+    \end{itemize}
+    \textbf{ANSWER:} % answer goes here
+
+    \lstinputlisting[language={},frame=single,title=fibOutput.txt]{fibOutput.txt}
+
+\begin{lstlisting}[frame=single]
+--- a/labs/lab04_sol/code/valgrind/fibonacci.c
++++ b/labs/lab04_sol/code/valgrind/fibonacci.c
+@@ -4,7 +4,7 @@
+ int main (int argc, char **argv) {
+     //initialize variables
+     int array_size = 30;
+-    int *nums = (int *) malloc(array_size);
++    int *nums = (int *) malloc(array_size*sizeof(int));
+     
+     //seed with first two values
+     nums[0] = 1;
+\end{lstlisting}
+
+The allocation if the \texttt{nums} array is missing the \texttt{sizeof}, so an incorrect number of bytes is allocated.
+
+    \newpage
+    \item \texttt{pascal}
+    \begin{itemize}
+        \item Use the \texttt{listings} package to include your \texttt{pascal} output in the pdf.
+        \item For each bug, use the \texttt{listings} package to display the original line of code with the error, as well as the fix.  Describe the error.
+    \end{itemize}
+    \textbf{ANSWER:} % answer goes here
+
+    \begin{tiny}
+    \lstinputlisting[language={},frame=single,title=pasOutput.txt]{pasOutput.txt}
+    \end{tiny}
+    
+\begin{lstlisting}[frame=single]
+--- a/labs/lab04_sol/code/valgrind/pascal.c
++++ b/labs/lab04_sol/code/valgrind/pascal.c
+@@ -7,7 +7,7 @@ int main(int argc,char **argv) {
+     char depth = 17;
+     char spacing = 5;
+     char spacing_start = 3;
+-    char length = depth*depth;
++    int length = depth*depth;
+     
+     //initial setup
+     int *nums = (int *) malloc(length*sizeof(int));
+
+\end{lstlisting}
+
+The maximum number that a char can store is 255, but \texttt{depth*depth} is 289, so there is an overflow.  We fix by using a number that can store more values.
+
+    \newpage
+    \item \texttt{array\_sum}
+    \begin{itemize}
+        \item Use the \texttt{listings} package to include your \texttt{array\_sum} output in the pdf.
+        \item For each bug, use the \texttt{listings} package to display the original line of code with the error, as well as the fix.  Describe the error.
+    \end{itemize}
+    \textbf{ANSWER:} % answer goes here
+
+    \lstinputlisting[language={},frame=single,title=sumOutput.txt]{sumOutput.txt}
+
+    
+\begin{lstlisting}[frame=single]
+--- a/labs/lab04_sol/code/valgrind/array_sum.c
++++ b/labs/lab04_sol/code/valgrind/array_sum.c
+@@ -6,7 +6,7 @@ int main(int argc, char **argv) {
+     int arr_length = 5*5;
+ 
+     float *sum = (float *) malloc(sum_length*sizeof(float));
+-    float *arr = (float *) malloc(sum_length*sizeof(float));
++    float *arr = (float *) malloc(arr_length*sizeof(float));
+ 
+     //seed array with random numbers
+     srand48(0);
+
+\end{lstlisting}
+
+The \texttt{arr} array was not allocated with the correct length so the reads in constructing the sum access out of bounds.
+
+    \newpage
+    \item \texttt{rotate\_vector}
+    \begin{itemize}
+        \item Use the \texttt{listings} package to include your \texttt{rotate\_vector} output in the pdf.
+        \item For each bug, use the \texttt{listings} package to display the original line of code with the error, as well as the fix.  Describe the error.
+    \end{itemize}
+    \textbf{ANSWER:} % answer goes here
+
+    \lstinputlisting[language={},frame=single,title=rotOutput.txt]{rotOutput.txt}
+    
+\begin{lstlisting}[frame=single]
+--- a/labs/lab04_sol/code/valgrind/rotate_vector.c
++++ b/labs/lab04_sol/code/valgrind/rotate_vector.c
+@@ -14,7 +14,7 @@ int main(int argc, char **argv) {
+ 
+     //fill rows of array with vector rotations
+     for (int i = 0; i < vector_size; i++) {
+-       for (int j = 0; j < vector_size; i++) {
++       for (int j = 0; j < vector_size; j++) {
+            int index = (j+i)%vector_size;
+            rotations[i*vector_size + index] = vector[j];
+        }
+\end{lstlisting}
+    
+The loop increment uses the wrong variable, so \texttt{j} does not change and \texttt{i} increments faster than it should.
+
+\end{enumerate}

@@ -1,0 +1,50 @@
+GDB Lab:
+
+All code for this portion can be found in the gdb subfolder.
+To use the code, compile using 'make matrixTest' and run the matrixTest file.
+There are two main source files.  matrixProd.c multiplies a matrix by a vector and matrixTest.c tests that this multiplication is correct.  Both files contain bugs, which you will need to use gdb to find.The objective of this lab is to use gdb to find and correct the bugs in matrixProd.c and matrixTest.c.
+You should first look over the entire code to make sure you understand what each function is supposed
+to do and what each test is testing. To get full credit you must correct both bugs in matrixProd.c and
+both bugs in matrixTest.c. Your tests must correctly test what the user intended.
+
+This code computes matrix vector products
+
+//operations
+double dotProd(int n, double* x, double* y);
+
+Computes the dot products of vectors x and y which have length n.
+
+void matrixVecProd(int m, int n, double* A, double* x, double* b);
+
+Computes the product of m by n matrix A with n vector x and stores the answer in m vector b.
+
+The matrix elements are stored in a flattened array, row major. So A[i*n+j] = A_[i,j].
+
+void printA(int m, int n, double* A);
+
+Prints out the contents of m by n matrix A.
+
+double norm(int n, double*x);
+
+Returns the L2 norm of n vector x.
+
+double* vecDiff(int n, double* a, double* b);
+
+Computes a-b where a and b are n vectors.
+
+//tests
+void testDotProd();
+
+Tests the dot product
+
+void testIdentity();
+
+Tests matrixVecProd with A being the identity.
+
+void testShortFat();
+
+Tests matrixVectorProd with a short-fat matrix.
+
+void testTallSkinny();
+
+Tests matrixVectorProd with a tall-skiny matrix.
