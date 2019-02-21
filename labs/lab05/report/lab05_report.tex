@@ -1,0 +1,157 @@
+\documentclass[letter]{article}
+
+\usepackage[margin=1in]{geometry} % make more efficient use of the page
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath} % math tools
+\usepackage{amsfonts} % math tools
+\RequirePackage{amssymb} % math tools
+\RequirePackage{amsbsy} % math tools
+
+\renewcommand{\vec}[1]{\ensuremath{\boldsymbol{#1}}} % make vectors nicer
+
+\usepackage{graphicx} % graphics
+\usepackage{xcolor} % colored text
+
+\usepackage{hyperref} % URLs and such
+\usepackage{verbatim} % allows \verb-- command
+
+\usepackage{algorithmicx} % algorithm environment
+\usepackage{listings} % code listings
+
+\usepackage{natbib} % bibliography
+
+\newcommand{\mypath}[1]{\texttt{\path{#1}}}
+\newcommand{\cmd}[1]{\begin{quote}\texttt{> #1}\end{quote}}
+
+
+\title{CMDA 3634 \\ Lab 03 Report}
+\author{Your Name Here}
+% \date{}
+
+
+\begin{document}
+
+\maketitle
+
+    \begin{enumerate}
+        \item Answer the following questions about your laptop computer.  You will need to refer to Internet resources for this information.  You must cite your sources.  Note, the mechanisms to find the answers to these questions are different for Windows vs macOS.  Find this information for your laptop, not for the VM.
+            \begin{itemize}
+                \item What brand, model, and version is your processor?
+                \item What size are the L1, L2, L3 (if it exists) caches?
+                \item How many bytes per cache line? 
+                \item How big is your main memory?
+            \end{itemize}
+        
+        \textbf{ANSWER:} % answer goes here
+
+
+        \item In the command line on your virtual machine, you can check information about the processor by checking the contents of the /proc/cpuinfo file: \cmd{cat /proc/cpuinfo}
+        Copy this information into a table. Does this match your laptop's 
+        processor? 
+        
+        \textbf{ANSWER:} % answer goes here
+        
+        \item In your own words, describe the difference between the two calculations being timed in \texttt{matvecColOrient.c} and \texttt{matvecRowOrient.c}. Before running any code, can you make any predictions about their relative performance for different sized matrices? 
+        
+        \textbf{ANSWER:} % answer goes here
+        
+        \item We will analyze square matrices for this exercise, although the code allows for rectangular matrix studies. Say that you were to perform a matrix-vector multiplication $\vec{A}\vec{x} = \vec{b}$, where $\vec{A} \in \mathbb{R}^{N\times N}$, and $\vec{x}, \vec{b} \in \mathbb{R}^N$. 
+            \begin{enumerate}
+                \item Write a general formula for how many bytes of data you expect this to use (similar to the $16N$ expression used in the random-order axpy example in class).
+                \item For your system, at what value for $N$ do you expect to exceed L1 cache? 
+                \item For your system, at what value for $N$ do you expect to move out of lower level (L2 or L2+L3) cache? 
+            \end{enumerate}
+        
+        \textbf{ANSWER:} % answer goes here
+
+        
+        \item Using the experiment script \mypath{cache_row_orient.sh}, record the results for \texttt{matvecRowOrient.c} in the table below, to analyze the cache performance for this data access pattern. 
+        
+        \textbf{ANSWER:} % answer goes here
+
+        \begin{center}
+        \begin{tabular}{|l | c |  c | c | c | c | r |} 
+        \hline
+        \textbf{nRows} & \textbf{nCols} & \textbf{ time (s)} &  L1 read miss $\%$ & LL read miss $\%$  &  L1 write miss $\%$ & LL write miss $\%$ \\ \hline
+        10 & 10 & & &  & &  \\
+        20 & 20 & & & & &   \\
+        40 & 40 & & & & &   \\
+        80 & 80 & & & & &    \\
+        160 & 160 & & & & &   \\
+        320 & 320 & & & & &   \\
+        640 & 640 & & & & &   \\
+        1280 & 1280 & & & & &   \\ 
+        2560 & 2560 & & & & &   \\
+        5120 & 5120 & & & & &   \\\hline
+        \end{tabular}
+        \end{center}
+        
+
+        \item Using the experiment scripts \mypath{cache_col_orient.sh}, record the results for \texttt{matvecColOrient.c} in the table below, to analyze the cache performance for this data access pattern. 
+        
+        \textbf{ANSWER:} % answer goes here
+
+        \begin{center}
+        \begin{tabular}{|l | c | c | c  | c | c | r |} 
+        \hline
+        \textbf{nRows} & \textbf{nCols} & \textbf{time (s)} & L1 read miss $\%$ & LL read miss $\%$ &  L1 write miss $\%$ & LL write miss $\%$\\ \hline
+        10 & 10 & & & & &   \\
+        20 & 20 & & & & &   \\
+        40 & 40 & & & & &   \\
+        80 & 80 & & &  & &   \\
+        160 & 160 & & & & &   \\
+        320 & 320 & & & & &   \\
+        640 & 640 & & &  & &  \\
+        1280 & 1280 & & & & &  \\ 
+        2560 & 2560 & & & & &   \\
+        5120 & 5120 & & & & &   \\\hline
+        \end{tabular}
+        \end{center}
+        
+        
+        \item Using your favorite plotting software (Excel, Python Matplotlib, Plot.ly, Matlab, etc.) plot the timing results for each of the above tables.  You should plot $N$ on the x-axis and the run-time on the y-axis.  Both axes should use a logarithmic scale.
+
+        Be sure to add any files/code used to produce the plot in your \mypath{lab05/report} folder.  Your plot must have a legend indicating which series corresponds to which experiment.  
+        
+        \textbf{ANSWER:} % answer goes here
+        
+        \item In the previous plot, where are the noticeable changes in the timing trends?   At the point(s) where the timing trends change, what is causing this change?  Support your argument with your memory size predictions and your cachegrind data. You may need to take more samples.  Be sure to include any additional code/files used to produce those figures in your \texttt{lab05/report} folder.
+        
+        \textbf{ANSWER:} % answer goes here
+        
+        \item How many processors does your virtual machine have? How do you know? Include a screenshot if it's useful. 
+        
+        \textbf{ANSWER:} % answer goes here
+       
+        \item In the table below, record your timing results for the serial matrix-vector multiply (with row-major access) and for the openmp matrix-vector multiply (with row-major access).   Also, record the ratio of the times.
+
+        Did you get as much speedup as you expected based on the number of processors? Why do you think this happened?
+        
+        \textbf{ANSWER:} % answer goes here
+
+         \begin{center}
+        \begin{tabular}{|l | c | c | c |r |} 
+        \hline
+        \textbf{nRows} & \textbf{nCols} & \textbf{time (s) without omp} & \textbf{time (s) with omp} & \textbf{serial time / omp time} \\ \hline
+        10 & 10 & & &   \\
+        20 & 20 & & &   \\
+        40 & 40 & & &  \\
+        80 & 80 & & &  \\
+        160 & 160 & &  &  \\
+        320 & 320 & & &  \\
+        640 & 640 & & &  \\
+        1280 & 1280 & & & \\ 
+        2560 & 2560 & & &  \\
+        5120 & 5120 & & &  \\\hline
+        \end{tabular}
+        \end{center}
+
+        \item Other than the instructor or TAs, who did you receive assistance from on this assignment?
+        
+        \textbf{ANSWER:} % answer goes here
+        
+    \end{enumerate}
+
+\end{document}

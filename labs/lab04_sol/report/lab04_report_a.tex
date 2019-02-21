@@ -1,0 +1,44 @@
+\begin{enumerate}
+    \item Use the \texttt{listings} package to include your output (\texttt{output\_pt\_a\_vector.txt}) in your pdf.  You will need to copy \texttt{output\_pt\_a\_vector.txt} to the reports directory.
+    % Hint: the correct latex command is \lstinputlisting[language={}]{output.txt}
+
+    \textbf{ANSWER:} % answer goes here
+    \lstinputlisting[language={}]{output_pt_a_vector.txt}
+    
+
+    \item For each of the following use-cases, indicate if the specified array should be allocated on the stack, the heap, or either.  Explain your selection.
+    \begin{enumerate}
+        \item An array of integers length 10 in a function that is called a small number of times.
+        \item An array of doubles of length 3, where $\sim 10^3$ instances exist and frequently used in the program.
+        \item An array of doubles of length 3, where $\sim 10^4$ instances exist and frequently used in the program.
+        \item An array of doubles of length 3, where $\sim 10^5$ instances exist and frequently used in the program.
+        \item An array of doubles of length 3, where $\sim 10^6$ instances exist and frequently used in the program.
+        \item An array of doubles of length 3, where $\sim 10^8$ instances exist and frequently used in the program.
+        \item An array of floats of length 10,000, to be used throughout the whole program.
+        \item An array of floats of length 10,000, to be used in a single function.
+    \end{enumerate}
+
+    \textbf{ANSWER:} % answer goes here
+
+
+    \begin{enumerate}
+        \item You should use the stack because the arrays are small and short lived.
+        \item Either are acceptable, but the stack is probably a better choice if there is risk that the heap will become fragmented.  
+        \item Either are acceptable, but the stack is probably a better choice if there is risk that the heap will become fragmented, as long as the rest of the data used in the program is small.
+        \item Either are acceptable, but the heap is getting more attractive, as the volume of data is starting to get large.
+        \item The heap is required, as the volume of data will exceed the available stack memory.  Care will need to be taken to avoid fragmentation.  This pattern is probably a bad design.
+        \item The heap is required, as the volume of data will exceed the available stack memory.  Care will need to be taken to avoid fragmentation.  This pattern is probably a bad design.
+        \item The heap is preferred, as a single allocation will not fragment, but the stack will be sufficient.
+        \item The stack is preferred here, as long as the function is not called frequently.
+    \end{enumerate}    
+
+    \item In C, there is no mechanism to see if a pointer points to heap memory that has already been allocated, so we cannot be sure that we do not re-allocate an array.  How can we code defensively to ensure that this does not happen?
+
+    \textbf{ANSWER:} We have to be vigilent that we initialize new pointers to \texttt{NULL}.  Then, we can use custom allocators and deallocators that can check the status of the pointer before acting.  As the C language has no support for this sort of protection, which is found in other languages like C++ and Fortran, we are required to code with discipline.  Always match allocation to deallocation and always initialize pointers.
+    
+
+    \item Other than the instructor or TAs, who did you receive assistance from on this assignment?
+    
+    \textbf{ANSWER:} No one.
+    
+\end{enumerate}
