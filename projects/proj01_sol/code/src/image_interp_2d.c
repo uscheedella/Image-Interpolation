@@ -33,7 +33,7 @@
 *   error code: 0 on success, 1 on failure
 */
 
-int interp2d_downsample(int Cx, int Kx, int Cy, int Ky, 
+int interp2d_downsample(int Cx, int Kx, int Cy, int Ky,
                         MImageF* in, MImageF* out)
 {
 
@@ -95,15 +95,17 @@ int interp2d_nearest(MImageF* in, MImageF* out){
 
     // X is the fast direction for this problem.
     for(int j_hat=0; j_hat < out->height; j_hat++){
-        
+
         y_hat = c + j_hat*hy_hat;
         j = (int)floor((y_hat-c)/hy);
+        j = max(0, j);
 
         for(int i_hat=0; i_hat < out->width; i_hat++){
 
             x_hat = a + i_hat*hx_hat;
             i = (int)floor((x_hat-a)/hx);
- 
+            i = max(0, i);
+
             idx_hat = j_hat*(out->width) + i_hat;
             idx = j*(in->width) + i;
 
@@ -154,11 +156,12 @@ int interp2d_linear(MImageF* in, MImageF* out){
 
     // X is the fast direction for this problem.
     for(int j_hat=0; j_hat < out->height; j_hat++){
-        
+
         y_hat = c + j_hat*hy_hat;
         j = (int)floor((y_hat-c)/hy);
+        j = max(0, j);
         j = min(j, in->height-2);
-            
+
         yj = c + j*hy;
         yjp1 = c + (j+1)*hy;
         wy = (yjp1 - y_hat) / hy;
@@ -167,6 +170,7 @@ int interp2d_linear(MImageF* in, MImageF* out){
 
             x_hat = a + i_hat*hx_hat;
             i = (int)floor((x_hat-a)/hx);
+            i = max(0, i);
             i = min(i, in->width-2);
 
             xi = a + i*hx;
@@ -186,7 +190,7 @@ int interp2d_linear(MImageF* in, MImageF* out){
             out->data[idx_hat] = wy*gj_hat + (1.0-wy)*gjp1_hat;
         }
     }
-    
+
     return 0;
 }
 
@@ -208,9 +212,9 @@ int interp2d_linear(MImageF* in, MImageF* out){
 *   Nothing.
 */
 
-void build_cubic_system(float a, int i, float h, float* data, 
+void build_cubic_system(float a, int i, float h, float* data,
                         float* A, float* b, float* x)
-{  
+{
     float xi;
 
     for (int k=0; k<4; k++){
@@ -281,19 +285,19 @@ int interp2d_cubic(MImageF* in, MImageF* out){
 
     // X is the fast direction for this problem.
     for(int j_hat=0; j_hat < out->height; j_hat++){
-        
+
         y_hat = c + j_hat*hy_hat;
         j = (int)floor((y_hat-c)/hy);
         j = max(j, 1);
         j = min(j, in->height-3);
-            
+
         for(int i_hat=0; i_hat < out->width; i_hat++){
 
             x_hat = a + i_hat*hx_hat;
             i = (int)floor((x_hat-a)/hx);
             i = max(i, 1);
             i = min(i, in->width-3);
-            
+
             // Do x direction on each of 4 rows
             for (int k=0; k<4; k++){
                 idx = (j+k-1)*(in->width) + i;
@@ -310,7 +314,7 @@ int interp2d_cubic(MImageF* in, MImageF* out){
             out->data[idx_hat] = evaluate_cubic_polynomial(coeffs, y_hat);
         }
     }
-    
+
     return 0;
 }
 

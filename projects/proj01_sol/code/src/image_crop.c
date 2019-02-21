@@ -8,6 +8,7 @@
 #include <math.h>
 
 #include "image_types.h"
+#include "math_utilities.h"
 
 #include "image_crop.h"
 

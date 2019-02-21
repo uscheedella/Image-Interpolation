@@ -72,6 +72,7 @@ int interp1d_nearest(MImageF* in, MImageF* out){
     for(int i_hat=0; i_hat < out->width; i_hat++){
         x_hat = a + i_hat*h_hat;
         i = (int)floor((x_hat-a)/h);
+        i = max(0, i);
 
         out->data[i_hat] = in->data[i];
     }
@@ -110,6 +111,10 @@ int interp1d_linear(MImageF* in, MImageF* out){
     for(int i_hat=0; i_hat < out->width; i_hat++){
         x_hat = a + i_hat*h_hat;
         i = (int)floor((x_hat-a)/h);
+        i = max(0, i);
+        i = min(i, in->width-2);
+
+
         xi = a + i*h;
         xip1 = a + (i+1)*h;
 
