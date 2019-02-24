@@ -14,13 +14,16 @@ int interp2d_downsample(int Cx, int Kx, int Cy, int Ky, MImageF* in, MImageF* ou
 
     int Mx = ceil((Nx-Cx) / Kx);
     int My = ceil((Ny-Cy) / Ky);
+    
+    int jhat;
+    int j;
 
-    for (ihat = 0; ihat <= Mx-1; ihat++) {
-        float i = Cx + ihat*Kx;
-        for (int jhat = 0; jhat <= My-1; jhat++) {
-            float j = Cy + jhat*Ky;
+    for (int ihat = 0; ihat <= Mx-1; ihat++) {
+        int i = (int)(floor(Cx + ihat*Kx));
+        for (jhat = 0; jhat <= My-1; jhat++) {
+            j = (int)(floor(Cy + jhat*Ky));
         }
-        out->[ihat,jhat] = in->[i,j];
+        out->data[ihat,jhat] = in->data[i,j];
     }
     return 0;
 }
@@ -40,15 +43,18 @@ int interp2d_nearest(MImageF* in, MImageF* out) {
    float hhat = (b-a) / (Ny-1);
    float j = (d-c) / (Mx-1);
    float jhat = (d-c) / (My-1);
+   
+   int khat;
+   int k; 
 
    for(int ihat = 0; ihat <= Ny; ihat++) {
         float xihat = a + ihat*hhat;
         int i = floor((xihat-a) / h);
-        for(int khat = 0; khat <= My; khat++) {
+        for(khat = 0; khat <= My; khat++) {
             float yihat = a + khat*jhat;
-            int k = floor((yihat-a) / j);
+            k = floor((yihat-a) / j);
         }
-        out->[ihat,khat] = in->[i,k];
+        out->data[ihat,khat] = in->data[i,k];
    }
     return 0;
 }
