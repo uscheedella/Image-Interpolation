@@ -12,22 +12,23 @@
 #include <stdlib.h>
 #include "math_utilities.h"
 #include "linalg.h"
+#include <stdio.h>
 
 int interp1d_downsample(int C, int K, MImageF* in, MImageF* out) {
     if (in->width == 0 || in->data == NULL) {
         return 1;
     }
     int N = in -> width;
-    int M = ceil((N-C)/K);
+    int M = (int)(ceil((N-C)/K));
 
     for (int x = 0; x <= M-1; x++) {
-        int i = C + x*K;
-        out->data[i] = in->data[i];
+        int i = (int)(floor(C + x*K));
+        out->data[x] = in->data[i];
     }
     return 0;
 }
 
-int interp1D_nearest(MImageF* in, MImageF* out) {
+int interp1d_nearest(MImageF* in, MImageF* out) {
     if (in -> data == NULL) {
         return 1;
     } 
@@ -55,18 +56,18 @@ int interp1d_linear(MImageF* in, MImageF* out) {
     float b = 1.0;
 
     int Nx = in -> width;
-    int Ny = in -> height;
+    int Mx = out -> width;
 
-    int hx = (b-a) / (Nx-1);
-    int jx = (b-a) / (Ny-1);
+    float hx = (float)((b-a) / (Nx-1));
+    float jx = (float)((b-a) / (Mx-1));
 
-    for(int y=0; y<= Ny-1; y++) {
+    for(int y=0; y<= Mx-1; y++) {
         float xihat = a + y*jx;
-        int i = floor((xihat - a)/jx);
+        int i = (int)(floor((xihat - a)/hx));
         float xi = a + i*hx;
         float xione = a + (i+1)*hx;
         float wx = (xione - xihat) / hx;
-        out->data[y] = wx*in->data[y] + (1-wx)*in->data[i+1];
+        out->data[y] = wx*in->data[i] + (1-wx)*in->data[i+1];
     }
     return 0;
 }
@@ -85,15 +86,16 @@ int interp1d_cubic(MImageF* in, MImageF* out) {
     float *xArr = malloc(4 * sizeof(float));
 
     for (int ihat = 0; ihat <= Mx-1; ihat++) {
-        float xihat = a + (ihat * hxhat);
-        float i = floor((xihat-a)/hx);
+        float xihat = a + (float)ihat * hxhat;
+        int i = (int)floor((xihat-a)/hx);
         i = max(1,i);
         i = min(i, Nx-3);
-        float xi = a + (i*hx);
-        int ximinone = (int)floor(a + (i-1)*hx);
-        int xipluszero = (int)floor(a + (i+0)*hx);
-        int xiplusone = (int)floor(a + (i+1)*hx);
-        int xiplustwo = (int)floor(a + (i+2)*hx);
+        //float xi = a + (i*hx);
+
+        float ximinone = a + (i-1.0)*hx;
+        float xipluszero = a + (i+0.0)*hx;
+        float xiplusone = a + (i+1.0)*hx;
+        float xiplustwo = a + (i+2.0)*hx;
 
         *(AArr+0) = powf(ximinone, 3.0);
         *(AArr+1) = powf(ximinone, 2.0);
@@ -115,19 +117,23 @@ int interp1d_cubic(MImageF* in, MImageF* out) {
         *(AArr+14) = xiplustwo;
         *(AArr+15) = 1.0;
 
-        *(bArr+0) = in->data[ximinone];
-        *(bArr+1) = in->data[xipluszero];
-        *(bArr+2) = in->data[xiplusone];
-        *(bArr+3) = in->data[xiplustwo];
+        *(bArr+0) = *(in->data + (i-1));
+        *(bArr+1) = *(in->data + i);
+        *(bArr+2) = *(in->data + (i+1));
+        *(bArr+3) = *(in->data + (i+2));
 
         linear_solve(4, AArr, bArr, xArr);
-        out->data[ihat] = *(xArr+0)*powf(xi, 3.0) + *(xArr+1)*powf(xi, 2.0) + *(xArr+2)*xi + *(xArr+3);
+
+        out->data[ihat] = ((*(xArr+0))*powf(xihat, 3.0)) + ((*(xArr+1))*powf(xihat, 2.0)) + ((*(xArr+2))*xihat) + (*(xArr+3));
 
     }
 
     free(AArr);
+    //AArr = NULL;
     free(xArr);
+    //xArr = NULL;
     free(bArr);
+    //bArr = NULL;
 
     return 0;
 }

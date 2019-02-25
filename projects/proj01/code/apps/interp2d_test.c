@@ -32,38 +32,38 @@ int test_convert_F_to_M(){
 
     float max_value;
 
-    // nullify_MImageF(&in);
-    // allocate_MImageF(&in, nx, ny);
-    // initialize_MImageF(&in);
+    nullify_MImageF(&in);
+    allocate_MImageF(&in, nx, ny);
+    initialize_MImageF(&in);
     
-    // float hx = 1.0/(nx-1);
-    // float hy = 1.0/(ny-1);
+    float hx = 1.0/(nx-1);
+    float hy = 1.0/(ny-1);
 
-    // max_value = -1.0;
-    // for(int i=0; i < nx; i++){
-    //     for(int j=0; j < ny; j++){
-    //         in.data[j*nx + i] = 0 + i*hx + j*hy;
-    //         max_value = fmax(max_value, in.data[j*nx + i]);
-    //     }
-    // }
+    max_value = -1.0;
+    for(int i=0; i < nx; i++){
+        for(int j=0; j < ny; j++){
+            in.data[j*nx + i] = 0 + i*hx + j*hy;
+            max_value = fmax(max_value, in.data[j*nx + i]);
+        }
+    }
 
-    // for(int i=0; i < nx; i++) 
-    //     for(int j=0; j < ny; j++) 
-    //         in.data[j*nx + i] /= max_value;
+    for(int i=0; i < nx; i++) 
+        for(int j=0; j < ny; j++) 
+            in.data[j*nx + i] /= max_value;
 
-    // nullify_MImage8(&out);
-    // allocate_MImage8(&out, nx, ny);
-    // initialize_MImage8(&out);
+    nullify_MImage8(&out);
+    allocate_MImage8(&out, nx, ny);
+    initialize_MImage8(&out);
 
-    // convert_MImageF_to_MImage8(&in, &out);
+    convert_MImageF_to_MImage8(&in, &out);
 
-    // print_numpy_array_MImageF(stdout, "float_arr", &in);
-    // print_numpy_array_MImage8(stdout, "char_arr", &out);
+    print_numpy_array_MImageF(stdout, "float_arr", &in);
+    print_numpy_array_MImage8(stdout, "char_arr", &out);
     
-    // save_pgm_MImage8("float_to_monochrome_2d.pgm", &out);
+    save_pgm_MImage8("float_to_monochrome_2d.pgm", &out);
 
-    // deallocate_MImageF(&in);
-    // deallocate_MImage8(&out);
+    deallocate_MImageF(&in);
+    deallocate_MImage8(&out);
 
     return 0;
 }
@@ -82,53 +82,53 @@ int test_downsample(){
 
     float max_value;
 
-    // nullify_MImageF(&in);
-    // allocate_MImageF(&in, nx, ny);
-    // initialize_MImageF(&in);
+    nullify_MImageF(&in);
+    allocate_MImageF(&in, nx, ny);
+    initialize_MImageF(&in);
     
-    // float hx = 1.0/(nx-1);
-    // float hy = 1.0/(ny-1);
+    float hx = 1.0/(nx-1);
+    float hy = 1.0/(ny-1);
 
-    // max_value = -1.0;
-    // for(int j=0; j < ny; j++){
-    //     for(int i=0; i < nx; i++){
-    //         in.data[j*nx + i] = 0 + i*hx + j*hy;
-    //         max_value = fmax(max_value, in.data[j*nx + i]);
-    //     }
-    // }
+    max_value = -1.0;
+    for(int j=0; j < ny; j++){
+        for(int i=0; i < nx; i++){
+            in.data[j*nx + i] = 0 + i*hx + j*hy;
+            max_value = fmax(max_value, in.data[j*nx + i]);
+        }
+    }
 
-    // for(int j=0; j < ny; j++)
-    //     for(int i=0; i < nx; i++)
-    //         in.data[j*nx + i] /= max_value;
+    for(int j=0; j < ny; j++)
+        for(int i=0; i < nx; i++)
+            in.data[j*nx + i] /= max_value;
 
-    // Cx = 1;
-    // Kx = 3;
-    // Cy = 0;
-    // Ky = 2;
+    Cx = 1;
+    Kx = 3;
+    Cy = 0;
+    Ky = 2;
 
-    // nx_down = compute_downsample_size(nx, Cx, Kx);
-    // ny_down = compute_downsample_size(ny, Cy, Ky);
+    nx_down = compute_downsample_size(nx, Cx, Kx);
+    ny_down = compute_downsample_size(ny, Cy, Ky);
 
-    // nullify_MImageF(&down);
-    // allocate_MImageF(&down, nx_down, ny_down);
-    // initialize_MImageF(&down);
+    nullify_MImageF(&down);
+    allocate_MImageF(&down, nx_down, ny_down);
+    initialize_MImageF(&down);
 
-    // interp2d_downsample(Cx, Kx, Cy, Ky, &in, &down);
+    interp2d_downsample(Cx, Kx, Cy, Ky, &in, &down);
 
-    // print_numpy_array_MImageF(stdout, "downsample_in", &in);
-    // print_numpy_array_MImageF(stdout, "downsample_out", &down);
+    print_numpy_array_MImageF(stdout, "downsample_in", &in);
+    print_numpy_array_MImageF(stdout, "downsample_out", &down);
 
-    // nullify_MImage8(&out);
-    // allocate_MImage8(&out, nx_down, ny_down);
-    // initialize_MImage8(&out);
+    nullify_MImage8(&out);
+    allocate_MImage8(&out, nx_down, ny_down);
+    initialize_MImage8(&out);
 
-    // convert_MImageF_to_MImage8(&down, &out);
+    convert_MImageF_to_MImage8(&down, &out);
     
-    // save_pgm_MImage8("2d_downsample.pgm", &out);
+    save_pgm_MImage8("2d_downsample.pgm", &out);
 
-    // deallocate_MImageF(&in);
-    // deallocate_MImageF(&down);
-    // deallocate_MImage8(&out);
+    deallocate_MImageF(&in);
+    deallocate_MImageF(&down);
+    deallocate_MImage8(&out);
 
     return 0;
 }
@@ -147,45 +147,45 @@ int test_nearest(){
 
     float max_value;
 
-    // nullify_MImageF(&in);
-    // allocate_MImageF(&in, nx, ny);
-    // initialize_MImageF(&in);
+    nullify_MImageF(&in);
+    allocate_MImageF(&in, nx, ny);
+    initialize_MImageF(&in);
     
-    // float hx = 1.0/(nx-1);
-    // float hy = 1.0/(ny-1);
+    float hx = 1.0/(nx-1);
+    float hy = 1.0/(ny-1);
 
-    // max_value = -1.0;
-    // for(int j=0; j < ny; j++){
-    //     for(int i=0; i < nx; i++){
-    //         in.data[j*nx + i] = 0 + i*hx + j*hy;
-    //         max_value = fmax(max_value, in.data[j*nx + i]);
-    //     }
-    // }
+    max_value = -1.0;
+    for(int j=0; j < ny; j++){
+        for(int i=0; i < nx; i++){
+            in.data[j*nx + i] = 0 + i*hx + j*hy;
+            max_value = fmax(max_value, in.data[j*nx + i]);
+        }
+    }
 
-    // for(int j=0; j < ny; j++)
-    //     for(int i=0; i < nx; i++)
-    //         in.data[j*nx + i] /= max_value;
+    for(int j=0; j < ny; j++)
+        for(int i=0; i < nx; i++)
+            in.data[j*nx + i] /= max_value;
 
-    // nullify_MImageF(&nearest);
-    // allocate_MImageF(&nearest, nx_nearest, ny_nearest);
-    // initialize_MImageF(&nearest);
+    nullify_MImageF(&nearest);
+    allocate_MImageF(&nearest, nx_nearest, ny_nearest);
+    initialize_MImageF(&nearest);
 
-    // interp2d_nearest(&in, &nearest);
+    interp2d_nearest(&in, &nearest);
 
-    // print_numpy_array_MImageF(stdout, "nearest_in", &in);
-    // print_numpy_array_MImageF(stdout, "nearest_out", &nearest);
+    print_numpy_array_MImageF(stdout, "nearest_in", &in);
+    print_numpy_array_MImageF(stdout, "nearest_out", &nearest);
 
-    // nullify_MImage8(&out);
-    // allocate_MImage8(&out, nx_nearest, ny_nearest);
-    // initialize_MImage8(&out);
+    nullify_MImage8(&out);
+    allocate_MImage8(&out, nx_nearest, ny_nearest);
+    initialize_MImage8(&out);
 
-    // convert_MImageF_to_MImage8(&nearest, &out);
+    convert_MImageF_to_MImage8(&nearest, &out);
     
-    // save_pgm_MImage8("2d_nearest.pgm", &out);
+    save_pgm_MImage8("2d_nearest.pgm", &out);
 
-    // deallocate_MImageF(&in);
-    // deallocate_MImageF(&nearest);
-    // deallocate_MImage8(&out);
+    deallocate_MImageF(&in);
+    deallocate_MImageF(&nearest);
+    deallocate_MImage8(&out);
 
     return 0;
 }
@@ -204,45 +204,45 @@ int test_linear(){
 
     float max_value;
 
-    // nullify_MImageF(&in);
-    // allocate_MImageF(&in, nx, ny);
-    // initialize_MImageF(&in);
+     nullify_MImageF(&in);
+     allocate_MImageF(&in, nx, ny);
+     initialize_MImageF(&in);
     
-    // float hx = 1.0/(nx-1);
-    // float hy = 1.0/(ny-1);
+     float hx = 1.0/(nx-1);
+     float hy = 1.0/(ny-1);
 
-    // max_value = -1.0;
-    // for(int j=0; j < ny; j++){
-    //     for(int i=0; i < nx; i++){
-    //         in.data[j*nx + i] = 0 + pow(i*hx,2.0) + pow(j*hy,2.0);
-    //         max_value = fmax(max_value, in.data[j*nx + i]);
-    //     }
-    // }
+     max_value = -1.0;
+     for(int j=0; j < ny; j++){
+         for(int i=0; i < nx; i++){
+             in.data[j*nx + i] = 0 + pow(i*hx,2.0) + pow(j*hy,2.0);
+             max_value = fmax(max_value, in.data[j*nx + i]);
+         }
+     }
 
-    // for(int j=0; j < ny; j++)
-    //     for(int i=0; i < nx; i++)
-    //         in.data[j*nx + i] /= max_value;
+     for(int j=0; j < ny; j++)
+         for(int i=0; i < nx; i++)
+             in.data[j*nx + i] /= max_value;
 
-    // nullify_MImageF(&linear);
-    // allocate_MImageF(&linear, nx_linear, ny_linear);
-    // initialize_MImageF(&linear);
+     nullify_MImageF(&linear);
+     allocate_MImageF(&linear, nx_linear, ny_linear);
+     initialize_MImageF(&linear);
 
-    // interp2d_linear(&in, &linear);
+     interp2d_linear(&in, &linear);
 
-    // print_numpy_array_MImageF(stdout, "linear_in", &in);
-    // print_numpy_array_MImageF(stdout, "linear_out", &linear);
+     print_numpy_array_MImageF(stdout, "linear_in", &in);
+     print_numpy_array_MImageF(stdout, "linear_out", &linear);
 
-    // nullify_MImage8(&out);
-    // allocate_MImage8(&out, nx_linear, ny_linear);
-    // initialize_MImage8(&out);
+     nullify_MImage8(&out);
+     allocate_MImage8(&out, nx_linear, ny_linear);
+     initialize_MImage8(&out);
 
-    // convert_MImageF_to_MImage8(&linear, &out);
+     convert_MImageF_to_MImage8(&linear, &out);
     
-    // save_pgm_MImage8("2d_linear.pgm", &out);
+     save_pgm_MImage8("2d_linear.pgm", &out);
 
-    // deallocate_MImageF(&in);
-    // deallocate_MImageF(&linear);
-    // deallocate_MImage8(&out);
+     deallocate_MImageF(&in);
+     deallocate_MImageF(&linear);
+     deallocate_MImage8(&out);
 
     return 0;
 }
@@ -261,45 +261,45 @@ int test_cubic(){
 
     float max_value;
 
-    // nullify_MImageF(&in);
-    // allocate_MImageF(&in, nx, ny);
-    // initialize_MImageF(&in);
+     nullify_MImageF(&in);
+     allocate_MImageF(&in, nx, ny);
+     initialize_MImageF(&in);
     
-    // float hx = 1.0/(nx-1);
-    // float hy = 1.0/(ny-1);
+     float hx = 1.0/(nx-1);
+     float hy = 1.0/(ny-1);
 
-    // max_value = -1.0;
-    // for(int j=0; j < ny; j++){
-    //     for(int i=0; i < nx; i++){
-    //         in.data[j*nx + i] = 0 + pow(i*hx,2.0) + pow(j*hy,2.0);
-    //         max_value = fmax(max_value, in.data[j*nx + i]);
-    //     }
-    // }
+     max_value = -1.0;
+     for(int j=0; j < ny; j++){
+         for(int i=0; i < nx; i++){
+             in.data[j*nx + i] = 0 + pow(i*hx,2.0) + pow(j*hy,2.0);
+             max_value = fmax(max_value, in.data[j*nx + i]);
+         }
+     }
 
-    // for(int j=0; j < ny; j++)
-    //     for(int i=0; i < nx; i++)
-    //         in.data[j*nx + i] /= max_value;
+     for(int j=0; j < ny; j++)
+         for(int i=0; i < nx; i++)
+             in.data[j*nx + i] /= max_value;
 
-    // nullify_MImageF(&cubic);
-    // allocate_MImageF(&cubic, nx_cubic, ny_cubic);
-    // initialize_MImageF(&cubic);
+     nullify_MImageF(&cubic);
+     allocate_MImageF(&cubic, nx_cubic, ny_cubic);
+     initialize_MImageF(&cubic);
 
-    // interp2d_cubic(&in, &cubic);
+     interp2d_cubic(&in, &cubic);
 
-    // print_numpy_array_MImageF(stdout, "cubic_in", &in);
-    // print_numpy_array_MImageF(stdout, "cubic_out", &cubic);
+     print_numpy_array_MImageF(stdout, "cubic_in", &in);
+     print_numpy_array_MImageF(stdout, "cubic_out", &cubic);
 
-    // nullify_MImage8(&out);
-    // allocate_MImage8(&out, nx_cubic, ny_cubic);
-    // initialize_MImage8(&out);
+     nullify_MImage8(&out);
+     allocate_MImage8(&out, nx_cubic, ny_cubic);
+     initialize_MImage8(&out);
 
-    // convert_MImageF_to_MImage8(&cubic, &out);
+     convert_MImageF_to_MImage8(&cubic, &out);
     
-    // save_pgm_MImage8("2d_cubic.pgm", &out);
+     save_pgm_MImage8("2d_cubic.pgm", &out);
 
-    // deallocate_MImageF(&in);
-    // deallocate_MImageF(&cubic);
-    // deallocate_MImage8(&out);
+     deallocate_MImageF(&in);
+     deallocate_MImageF(&cubic);
+     deallocate_MImage8(&out);
 
     return 0;
 }
