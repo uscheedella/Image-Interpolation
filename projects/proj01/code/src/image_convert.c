@@ -9,6 +9,11 @@
 #include <math.h>
 #include <stddef.h>
 
+/**
+ * Converts MImage8 to MImageF by traversing through each pixel and dividing
+ * each pixel's data by 255 to convert it to float.
+ *
+ **/
 int convert_MImage8_to_MImageF(MImage8* eight, MImageF* f) {
     if((eight->height == f->height) && (eight->width == f->width)) {
 
@@ -22,6 +27,12 @@ int convert_MImage8_to_MImageF(MImage8* eight, MImageF* f) {
     }
     return 0;
 }
+
+/**
+ * Converts MImageF to MImage8 by traversing through each pixel and multiplying
+ * each pixel's data by 255 to convert it to a value between 0.0 and 1.0.
+ *
+ **/
 
 int convert_MImageF_to_MImage8(MImageF* f, MImage8* eight) {
     if((f->width == eight->width) && (f->height == eight->height)) {

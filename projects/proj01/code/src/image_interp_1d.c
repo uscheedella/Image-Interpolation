@@ -14,6 +14,12 @@
 #include "linalg.h"
 #include <stdio.h>
 
+
+/**
+ * Downsamples in 1d and outputs as an image in a monochrome image format which stores data as a float type
+ * which stores the subsampled result.
+ *
+ **/
 int interp1d_downsample(int C, int K, MImageF* in, MImageF* out) {
     if (in->width == 0 || in->data == NULL) {
         return 1;
@@ -27,6 +33,12 @@ int interp1d_downsample(int C, int K, MImageF* in, MImageF* out) {
     }
     return 0;
 }
+
+/**
+ * Implements the nearest left-neighbor
+ * algorithm for a monochrome image format which stores data as a float type
+ *
+ **/
 
 int interp1d_nearest(MImageF* in, MImageF* out) {
     if (in -> data == NULL) {
@@ -51,6 +63,12 @@ int interp1d_nearest(MImageF* in, MImageF* out) {
 
 }
 
+/**
+ * Implements the piecewise linear
+ * algorithm for a monochrome image format which stores data as a float type
+ *
+ **/
+
 int interp1d_linear(MImageF* in, MImageF* out) {
     float a = 0.0;
     float b = 1.0;
@@ -71,6 +89,13 @@ int interp1d_linear(MImageF* in, MImageF* out) {
     }
     return 0;
 }
+
+/**
+ * Implements the piecewise cubic
+ * algorithm for a monochrome image format which stores data as a float type
+ *
+ **/
+
 int interp1d_cubic(MImageF* in, MImageF* out) {
     float a = 0.0;
     float b = 1.0;

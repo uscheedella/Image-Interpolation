@@ -13,6 +13,13 @@
 #include "math_utilities.h"
 #include "linalg.h"
 
+/**
+ * Implements 2D downsampling
+ * algorithm for a monochrome image format which stores data as a float type
+ * which stores the subsampled result.
+ *
+ **/
+
 int interp2d_downsample(int Cx, int Kx, int Cy, int Ky, MImageF* in, MImageF* out) {
     if(in->width == 0 || in->data == NULL) {
         return 1;
@@ -37,6 +44,12 @@ int interp2d_downsample(int Cx, int Kx, int Cy, int Ky, MImageF* in, MImageF* ou
     }
     return 0;
 }
+
+/**
+ * Implements 2D interpolation following the nearest left-neighbor
+ * algorithm for a monochrome image format which stores data as a float type
+ *
+ **/
 
 int interp2d_nearest(MImageF* in, MImageF* out) {
     float a = 0.0;
@@ -69,6 +82,12 @@ int interp2d_nearest(MImageF* in, MImageF* out) {
     }
     return 0;
 }
+
+/**
+ * Implements 2D interpolation following the second piecewise linear
+ * algorithm for a monochrome image format which stores data as a float type
+ *
+ **/
 
 int interp2d_linear(MImageF* in, MImageF* out) {
     float a = 0.0;
@@ -106,7 +125,10 @@ int interp2d_linear(MImageF* in, MImageF* out) {
     }
     return 0;
 }
-
+/**
+ *Implements 2D piecewise cubic interpolation
+ * algorithm for a monochrome image format which stores data as a float type
+ **/
 int interp2d_cubic(MImageF* in, MImageF* out) {
     float a = 0.0;
     float b = 1.0;
