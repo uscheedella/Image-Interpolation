@@ -5,11 +5,12 @@
 int main (int argc, char *argv[]){
 
   FILE* f = fopen("scale.txt", "a");
-  
+
+  long long int Ntests = atoll(argv[1]);
+
   double tic = omp_get_wtime();
   
-  long long int Ninside = 0; 
-  long long int Ntests = 1000000000;
+  long long int Ninside = 0;
   long long n;
   double estpi = 0;
 

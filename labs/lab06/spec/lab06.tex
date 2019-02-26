@@ -104,12 +104,12 @@ Monte Carlo algorithm for computing $\pi$: randomly choose points in a box with 
         \begin{enumerate}
             \item First look at the \texttt{readme} to understand what files and scripts are available.
             \item Now fill in the missing code in \texttt{pi.c}. Recall that we are throwing random points on the unit square resting on the first quadrant of the graph with its lower left vertext at the origin and seeing if they are within a unit circle of radius 1 centered at the origin. 
-            \item Run \texttt{pi.c} to make sure its prediction seems reasonable.
+            \item Run \texttt{pi.c} to make sure its prediction seems reasonable.  You will need to add the number of points to test as an argument.
             \item Copy your code from part (a) into the respective parts of \texttt{pi\_omp.c}.
             \item Determine which statement to use before the \texttt{for} loop in \texttt{pi\_omp.c}. (Hint: we need to keep \texttt{n} and \texttt{randBuffer} private and form a reduction on \texttt{Ninside}.)
             \item We have changed \texttt{pi\_omp.c} for you so each thread gets a separate random number generator.  However, if we always set the seed to \texttt{12345}, each thread will receive the same random numbers and our estimate of pi will not improve.  Change the argument to \texttt{srand48\_r} to a number that is different for each thread.  
-            \item Now run this code with at least two cores. Confirm that you are still approximating pi and that you see a reasonable speedup.
-            \item Now run \texttt{scale.sh} on your laptop. Use \texttt{plotScale.py} or the plotting tool of your choice to plot the scaling.  You can also change the number of threads to N using\\
+            \item Now run this code with at least two cores. Confirm that you are still approximating pi and that you see a reasonable speedup.  Don't forget to include the number of points to test as an argument.
+            \item Now run \texttt{scale.sh} on your laptop. Use \texttt{plotScale.py} or the plotting tool of your choice to plot the scaling.  You can change the number of threads to N using\\
             \texttt{> export OMP\_NUM\_THREADS=N} 
             \item Push your work to \texttt{code.vt.edu}. \texttt{ssh} into Cascades and clone your code. Submit the bash script as a job using \texttt{sbatch}. Then use \texttt{scp} to copy the results back to your laptop and plot them.  
         \end{enumerate}
