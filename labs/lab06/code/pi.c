@@ -5,10 +5,11 @@
 
 int main(int argc, char **argv){
 
+    long long int Ntests = atoll(argv[1]);
+    
     clock_t tic = clock();
 
     long long int Ninside = 0; //Number of points landing inside quarder of unit circle in the first quadrant
-    long long int Ntests = 1000000000;
     long long n;
   
     double estpi = 0;
