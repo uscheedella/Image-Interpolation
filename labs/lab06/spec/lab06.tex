@@ -89,7 +89,7 @@ Monte Carlo algorithm for computing $\pi$: randomly choose points in a box with 
 
 \textbf{Serial implementation:} The serial implementation is similar to the serial implementation presented in lecture. 
 
-\textbf{Parallel implementation:}  For the parallel implementation, the \texttt{srand48()}/\texttt{drand48} seed and pseudo-random number generating functions are not thread safe because they maintain a single internal state. You will need to replace them with the reentrant versions \texttt{srand48\_r} and \texttt{drand48\_r}.  We recommend you use an omp parallel region, and inside that region each thread initializes the random seed based on its thread number.  In the parallel region, perform a regular for loop (i.e not an \texttt{omp parallel for} loop) and use a reduction clause to sum up all the thread’s hit counts.
+\textbf{Parallel implementation:}  For the parallel implementation, the \texttt{srand48()}/\texttt{drand48} seed and pseudo-random number generating functions are not thread safe because they maintain a single internal state. They have been replaced with the reentrant versions \texttt{srand48\_r} and \texttt{drand48\_r}.  We recommend you use an omp parallel region, and inside that region each thread initializes the random seed based on its thread number.  In the parallel region, perform a regular for loop (i.e not an \texttt{omp parallel for} loop) and use a reduction clause to sum up all the thread’s hit counts.
 
 \textbf{Warning:} I have indicated where you should be running commands in a terminal with the \texttt{>} character.  This character is \textbf{not} part of the command!
 
@@ -104,11 +104,13 @@ Monte Carlo algorithm for computing $\pi$: randomly choose points in a box with 
         \begin{enumerate}
             \item First look at the \texttt{readme} to understand what files and scripts are available.
             \item Now fill in the missing code in \texttt{pi.c}. Recall that we are throwing random points on the unit square resting on the first quadrant of the graph with its lower left vertext at the origin and seeing if they are within a unit circle of radius 1 centered at the origin. 
-            \item Run \texttt{pi.c} to make sure it's prediction seems reasonable.
+            \item Run \texttt{pi.c} to make sure its prediction seems reasonable.
             \item Copy your code from part (a) into the respective parts of \texttt{pi\_omp.c}.
             \item Determine which statement to use before the \texttt{for} loop in \texttt{pi\_omp.c}. (Hint: we need to keep \texttt{n} and \texttt{randBuffer} private and form a reduction on \texttt{Ninside}.)
+            \item We have changed \texttt{pi\_omp.c} for you so each thread gets a separate random number generator.  However, if we always set the seed to \texttt{12345}, each thread will receive the same random numbers and our estimate of pi will not improve.  Change the argument to \texttt{srand48\_r} to a number that is different for each thread.  
             \item Now run this code with at least two cores. Confirm that you are still approximating pi and that you see a reasonable speedup.
-            \item Now run \texttt{scale.sh} on your laptop. Use \texttt{plotScale.py} or the plotting tool of your choice to plot the scaling.
+            \item Now run \texttt{scale.sh} on your laptop. Use \texttt{plotScale.py} or the plotting tool of your choice to plot the scaling.  You can also change the number of threads to N using\\
+            \texttt{> export OMP\_NUM\_THREADS=N} 
             \item Push your work to \texttt{code.vt.edu}. \texttt{ssh} into Cascades and clone your code. Submit the bash script as a job using \texttt{sbatch}. Then use \texttt{scp} to copy the results back to your laptop and plot them.  
         \end{enumerate}
             
@@ -130,13 +132,14 @@ Monte Carlo algorithm for computing $\pi$: randomly choose points in a box with 
 
     \begin{enumerate}
         \item Include a screenshot of the welcome screen that you see when you log into Cascades. 
+        \item Notice that the serial and parallel versions compute elapsed time in different ways.  Find a description of the \texttt{clock()} function online and think of something unexpected that it might return in our parallel version.
         \item Explain in your own words why this algorithm works.  How many samples are necessary to approximate $\pi$ to 3 digits? 4 digits? 5 digits?  Create a plot which shows the quality of approximation as a function of the number of samples.
         \item Put your scaling plots for the laptop and Cascades in your pdf. 
         \item Observe that we plateau on the laptop (assuming you have less that 16 cores). Why is this?
         
         \item The scaling for Cascades is approximately linear. Why is this? Can we expect this same scaling for other problems?
         
-        \item Why is \texttt{\#pragma omp parallel for} insufficient for completing \texttt{pi\_omp.c}?
+    \item Why is a \texttt{parallel for} on its own insufficient for completing \texttt{pi\_omp.c}?  List modifiers that we needed to add to the basic command.
         
     \end{enumerate}
 
