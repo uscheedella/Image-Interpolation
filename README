@@ -1,1 +1,3 @@
-This repository consists of my projects and labs in C.
+This repository consists of two folders that consist of my labs and projects that I have done in C and openMP.
+The labs are for coding practice and my first project is regarding interpolating images in a 1 dimensional, linear,
+and cubic manner using strided access patterns.
