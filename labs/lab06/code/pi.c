@@ -19,12 +19,12 @@ int main(int argc, char **argv){
 	double x = drand48();
 	double y = drand48();
      
-	if(//ToDo){ (check if radius is radius is less than 1)
+	if(sqrt(x*x + y*y) < 1){ //(check if radius is radius is less than 1)
 	     Ninside++;
 	}
     }
 
-    estpi = //ToDo; (divide area of circle by area of square)
+    estpi = (4 * Ninside) / Ntests; //(divide area of circle by area of square)
 
     clock_t toc = clock();
     double elapsed = (double)(toc-tic)/CLOCKS_PER_SEC;

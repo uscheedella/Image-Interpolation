@@ -10,5 +10,4 @@ run_omp:
 	./bin/pi_omp
 clean:
 	rm -rf ./bin/*
-	rm *~
 	rm *.txt
