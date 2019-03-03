@@ -34,8 +34,8 @@ int main(int argc, char **argv)
     allocate_MImageF(&im2, nx, ny);
     initialize_MImageF(&im2);
 
-    for(int i=0; i < nx; i++) 
-        for(int j=0; j < ny; j++) 
+    for(int i=0; i < nx; i++)
+        for(int j=0; j < ny; j++)
             im2.data[j*nx + i] = 0 + i*h;
 
     convert_MImageF_to_MImage8(&im2, &im1);

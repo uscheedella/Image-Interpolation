@@ -1,7 +1,7 @@
 /*
  * Portions of this file are copyright Guillaume Cottenceau
  * and redistributed freely under the X11 license.
- * 
+ *
  * Modifications by Russell J. Hewett are also licensed under the X11 license.
  *
  * http://zarb.org/~gc/html/libpng.html
@@ -163,12 +163,12 @@ void write_png_file(PNGImage* image, char* file_name)
         if (setjmp(png_jmpbuf(png_ptr)))
                 abort_("[write_png_file] Error during writing header");
 
-        png_set_IHDR(png_ptr, info_ptr, 
+        png_set_IHDR(png_ptr, info_ptr,
                      image->width, image->height,
-                     image->bit_depth, 
-                     image->color_type, 
+                     image->bit_depth,
+                     image->color_type,
                      PNG_INTERLACE_NONE,
-                     PNG_COMPRESSION_TYPE_BASE, 
+                     PNG_COMPRESSION_TYPE_BASE,
                      PNG_FILTER_TYPE_BASE);
 
         png_write_info(png_ptr, info_ptr);

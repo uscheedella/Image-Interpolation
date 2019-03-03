@@ -33,11 +33,11 @@ int test_convert_F_to_M(){
     nullify_MImageF(&in);
     allocate_MImageF(&in, nx, ny);
     initialize_MImageF(&in);
-    
+
     float h = 1.0/(nx-1);
 
-    for(int i=0; i < nx; i++) 
-        for(int j=0; j < ny; j++) 
+    for(int i=0; i < nx; i++)
+        for(int j=0; j < ny; j++)
             in.data[j*nx + i] = 0 + i*h;
 
     nullify_MImage8(&out);
@@ -48,7 +48,7 @@ int test_convert_F_to_M(){
 
     print_numpy_array_MImageF(stdout, "float_arr", &in);
     print_numpy_array_MImage8(stdout, "char_arr", &out);
-    
+
     save_pgm_MImage8("float_to_monochrome.pgm", &out);
 
     deallocate_MImageF(&in);
@@ -71,11 +71,11 @@ int test_downsample(){
     nullify_MImageF(&in);
     allocate_MImageF(&in, nx, ny);
     initialize_MImageF(&in);
-    
+
     float h = 1.0/(nx-1);
 
-    for(int i=0; i < nx; i++) 
-        for(int j=0; j < ny; j++) 
+    for(int i=0; i < nx; i++)
+        for(int j=0; j < ny; j++)
             in.data[j*nx + i] = 0 + i*h;
 
     C = 1;
@@ -96,7 +96,7 @@ int test_downsample(){
     initialize_MImage8(&out);
 
     convert_MImageF_to_MImage8(&down, &out);
-    
+
     save_pgm_MImage8("1d_downsample.pgm", &out);
 
     deallocate_MImageF(&in);
@@ -120,11 +120,11 @@ int test_nearest(){
     nullify_MImageF(&in);
     allocate_MImageF(&in, nx, ny);
     initialize_MImageF(&in);
-    
+
     float h = 1.0/(nx-1);
 
-    for(int i=0; i < nx; i++) 
-        for(int j=0; j < ny; j++) 
+    for(int i=0; i < nx; i++)
+        for(int j=0; j < ny; j++)
             in.data[j*nx + i] = 0 + i*h;
 
     nullify_MImageF(&nearest);
@@ -141,7 +141,7 @@ int test_nearest(){
     initialize_MImage8(&out);
 
     convert_MImageF_to_MImage8(&nearest, &out);
-    
+
     save_pgm_MImage8("1d_nearest.pgm", &out);
 
     deallocate_MImageF(&in);
@@ -165,11 +165,11 @@ int test_linear(){
     nullify_MImageF(&in);
     allocate_MImageF(&in, nx, ny);
     initialize_MImageF(&in);
-    
+
     float h = 1.0/(nx-1);
 
-    for(int i=0; i < nx; i++) 
-        for(int j=0; j < ny; j++) 
+    for(int i=0; i < nx; i++)
+        for(int j=0; j < ny; j++)
             in.data[j*nx + i] = 0 + pow(i*h, 3.0);
 
     nullify_MImageF(&linear);
@@ -186,7 +186,7 @@ int test_linear(){
     initialize_MImage8(&out);
 
     convert_MImageF_to_MImage8(&linear, &out);
-    
+
     save_pgm_MImage8("1d_linear.pgm", &out);
 
     deallocate_MImageF(&in);
@@ -209,11 +209,11 @@ int test_cubic(){
     nullify_MImageF(&in);
     allocate_MImageF(&in, nx, ny);
     initialize_MImageF(&in);
-    
+
     float h = 1.0/(nx-1);
 
-    for(int i=0; i < nx; i++) 
-        for(int j=0; j < ny; j++) 
+    for(int i=0; i < nx; i++)
+        for(int j=0; j < ny; j++)
             in.data[j*nx + i] = 0 + pow(i*h, 3.0);
 
     nullify_MImageF(&cubic);
@@ -230,7 +230,7 @@ int test_cubic(){
     initialize_MImage8(&out);
 
     convert_MImageF_to_MImage8(&cubic, &out);
-    
+
     save_pgm_MImage8("1d_cubic.pgm", &out);
 
     deallocate_MImageF(&in);

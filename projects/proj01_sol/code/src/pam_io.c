@@ -55,13 +55,13 @@ int load_pgm_MImage8(char* filename, MImage8* image) {
 
     // Fail if wrong format
     if(format[0] != 'P' || format[1] != '5') {
-        fprintf(stderr, "Error opening file %s: Incorrect file format %c%c, must be P5.\n", 
+        fprintf(stderr, "Error opening file %s: Incorrect file format %c%c, must be P5.\n",
                 filename, format[0], format[1]);
         return 1;
     }
 
     if(color_depth > 255){
-        fprintf(stderr, "Error opening file %s: Incorrect color depth %d, must be <255.\n", 
+        fprintf(stderr, "Error opening file %s: Incorrect color depth %d, must be <255.\n",
                 filename, color_depth);
         return 1;
     }

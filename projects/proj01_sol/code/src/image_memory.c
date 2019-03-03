@@ -34,7 +34,7 @@ int nullify_MImage8(MImage8* image)
     image->height = 0;
     image->data = NULL;
 
-    return 0;   
+    return 0;
 }
 
 
@@ -137,7 +137,7 @@ int nullify_MImageF(MImageF* image)
     image->height = 0;
     image->data = NULL;
 
-    return 0;   
+    return 0;
 }
 
 

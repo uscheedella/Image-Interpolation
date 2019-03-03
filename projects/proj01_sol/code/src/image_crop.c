@@ -16,9 +16,9 @@
 /*
 * Crops an image using linear interpolation.
 *
-* The coordinates (a_hat,c_hat) and (b_hat,d_hat) are the top left and bottom 
+* The coordinates (a_hat,c_hat) and (b_hat,d_hat) are the top left and bottom
 * right coordinates, in real image coordinates, of the desired window of the
-* input image.  The input image is assumed to be defined by the box (0,0), 
+* input image.  The input image is assumed to be defined by the box (0,0),
 * (1,1).
 *
 * Arguments:
@@ -33,7 +33,7 @@
 *   error code: 0 on success, 1 on failure
 */
 
-int crop_linear(float a_hat, float b_hat, float c_hat, float d_hat, 
+int crop_linear(float a_hat, float b_hat, float c_hat, float d_hat,
                 MImageF* in, MImageF* out)
 {
 
@@ -68,11 +68,11 @@ int crop_linear(float a_hat, float b_hat, float c_hat, float d_hat,
 
     // X is the fast direction for this problem.
     for(int j_hat=0; j_hat < out->height; j_hat++){
-        
+
         y_hat = c_hat + j_hat*hy_hat;
         j = (int)floor((y_hat-c)/hy);
         j = min(j, in->height-2);
-            
+
         yj = c + j*hy;
         yjp1 = c + (j+1)*hy;
         wy = (yjp1 - y_hat) / hy;
@@ -100,7 +100,7 @@ int crop_linear(float a_hat, float b_hat, float c_hat, float d_hat,
             out->data[idx_hat] = wy*gj_hat + (1.0-wy)*gjp1_hat;
         }
     }
-    
+
     return 0;
 }
 

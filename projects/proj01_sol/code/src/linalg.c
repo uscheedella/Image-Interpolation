@@ -35,7 +35,7 @@ int linear_solve(int N, float* A, float* b, float* x){
         x[i] = b[i];
 
     info = LAPACKE_sgesv(LAPACK_ROW_MAJOR, N, 1, A, N, ipiv, x, 1);
-    
+
     if (info){
         fprintf(stderr, "Error in LAPACKE sgesv.");
         return info;

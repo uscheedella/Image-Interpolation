@@ -28,8 +28,8 @@ int main(int argc, char **argv)
     initialize_MImage8(&im1);
 
 
-    for(int i=0; i <255; i++) 
-        for(int j=0; j <255; j++) 
+    for(int i=0; i <255; i++)
+        for(int j=0; j <255; j++)
             im1.data[j*255 + i] = i;
 
     save_pgm_MImage8("test.pgm", &im1);

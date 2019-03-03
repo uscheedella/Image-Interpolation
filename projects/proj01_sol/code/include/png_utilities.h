@@ -1,7 +1,7 @@
 /*
  * Portions of this file are copyright Guillaume Cottenceau
- * and redistributed freely under the X11 license.  
- * 
+ * and redistributed freely under the X11 license.
+ *
  * Modifications by Russell J. Hewett are also licensed under the X11 license.
  *
  * http://zarb.org/~gc/html/libpng.html
@@ -15,7 +15,7 @@ typedef struct png_image_def {
     // Image height and width
     int width;
     int height;
-    
+
     // Image color type (RGB, RGBA)
     png_byte color_type;
 
