@@ -7,12 +7,14 @@
 
 #include <math.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "linalg.h"
 
 #include "math_utilities.h"
 #include "image_types.h"
 
+#include "image_utilities.h"
 #include "image_interp_2d.h"
 
 
@@ -40,6 +42,26 @@ int interp2d_downsample(int Cx, int Kx, int Cy, int Ky,
     int i, i_hat;
     int j, j_hat;
     int idx, idx_hat;
+
+    if(in->data == NULL){
+        fprintf(stderr, "Input image null.\n");
+        return 1;
+    }
+
+    if(out->data == NULL){
+        fprintf(stderr, "Output image null.\n");
+        return 1;
+    }
+
+    if(compute_downsample_size(in->width, Cx, Kx) != out->width){
+        fprintf(stderr, "Width mismatch.\n");
+        return 1;
+    }
+
+    if(compute_downsample_size(in->height, Cy, Ky) != out->height){
+        fprintf(stderr, "Height mismatch.\n");
+        return 1;
+    }
 
     // X is the fast direction for this problem.
     for(int j_hat=0; j_hat < out->height; j_hat++){
@@ -86,6 +108,16 @@ int interp2d_nearest(MImageF* in, MImageF* out){
     const float b = 1.0;
     const float c = 0.0;
     const float d = 1.0;
+
+    if(in->data == NULL){
+        fprintf(stderr, "Input image null.\n");
+        return 1;
+    }
+
+    if(out->data == NULL){
+        fprintf(stderr, "Output image null.\n");
+        return 1;
+    }
 
     hx = (b - a) / (in->width-1.0);
     hx_hat = (b - a) / (out->width-1.0);
@@ -147,6 +179,16 @@ int interp2d_linear(MImageF* in, MImageF* out){
     const float b = 1.0;
     const float c = 0.0;
     const float d = 1.0;
+
+    if(in->data == NULL){
+        fprintf(stderr, "Input image null.\n");
+        return 1;
+    }
+
+    if(out->data == NULL){
+        fprintf(stderr, "Output image null.\n");
+        return 1;
+    }
 
     hx = (b - a) / (in->width-1.0);
     hx_hat = (b - a) / (out->width-1.0);
@@ -276,6 +318,16 @@ int interp2d_cubic(MImageF* in, MImageF* out){
     const float b = 1.0;
     const float c = 0.0;
     const float d = 1.0;
+
+    if(in->data == NULL){
+        fprintf(stderr, "Input image null.\n");
+        return 1;
+    }
+
+    if(out->data == NULL){
+        fprintf(stderr, "Output image null.\n");
+        return 1;
+    }
 
     hx = (b - a) / (in->width-1.0);
     hx_hat = (b - a) / (out->width-1.0);

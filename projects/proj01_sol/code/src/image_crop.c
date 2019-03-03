@@ -6,6 +6,7 @@
 */
 
 #include <math.h>
+#include <stdio.h>
 
 #include "image_types.h"
 #include "math_utilities.h"
@@ -52,6 +53,16 @@ int crop_linear(float a_hat, float b_hat, float c_hat, float d_hat,
     const float b = 1.0;
     const float c = 0.0;
     const float d = 1.0;
+
+    if(in->data == NULL){
+        fprintf(stderr, "Input image null.\n");
+        return 1;
+    }
+
+    if(out->data == NULL){
+        fprintf(stderr, "Output image null.\n");
+        return 1;
+    }
 
 
     // Clamp the ranges to 0-1

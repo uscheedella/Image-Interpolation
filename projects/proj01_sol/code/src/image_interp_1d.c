@@ -7,12 +7,14 @@
 
 #include <math.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "linalg.h"
 
 #include "math_utilities.h"
 #include "image_types.h"
 
+#include "image_utilities.h"
 #include "image_interp_1d.h"
 
 
@@ -34,6 +36,21 @@
 int interp1d_downsample(int C, int K, MImageF* in, MImageF* out){
 
     int i, i_hat;
+
+    if(in->data == NULL){
+        fprintf(stderr, "Input image null.\n");
+        return 1;
+    }
+
+    if(out->data == NULL){
+        fprintf(stderr, "Output image null.\n");
+        return 1;
+    }
+
+    if(compute_downsample_size(in->width, C, K) != out->width){
+        fprintf(stderr, "Width mismatch.\n");
+        return 1;
+    }
 
     for(int i_hat=0; i_hat < out->width; i_hat++){
         i = C + i_hat*K;
@@ -65,6 +82,16 @@ int interp1d_nearest(MImageF* in, MImageF* out){
 
     const float a = 0.0;
     const float b = 1.0;
+
+    if(in->data == NULL){
+        fprintf(stderr, "Input image null.\n");
+        return 1;
+    }
+
+    if(out->data == NULL){
+        fprintf(stderr, "Output image null.\n");
+        return 1;
+    }
 
     h = (b - a) / (in->width-1.0);
     h_hat = (b - a) / (out->width-1.0);
@@ -104,6 +131,16 @@ int interp1d_linear(MImageF* in, MImageF* out){
 
     const float a = 0.0;
     const float b = 1.0;
+
+    if(in->data == NULL){
+        fprintf(stderr, "Input image null.\n");
+        return 1;
+    }
+
+    if(out->data == NULL){
+        fprintf(stderr, "Output image null.\n");
+        return 1;
+    }
 
     h = (b - a) / (float)(in->width-1);
     h_hat = (b - a) / (out->width-1.0);
@@ -154,6 +191,16 @@ int interp1d_cubic(MImageF* in, MImageF* out){
 
     const float a = 0.0;
     const float b = 1.0;
+
+    if(in->data == NULL){
+        fprintf(stderr, "Input image null.\n");
+        return 1;
+    }
+
+    if(out->data == NULL){
+        fprintf(stderr, "Output image null.\n");
+        return 1;
+    }
 
     h = (b - a) / ((float)in->width-1.0);
     h_hat = (b - a) / ((float)out->width-1.0);
