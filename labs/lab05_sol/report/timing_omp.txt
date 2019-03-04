@@ -1,0 +1,25 @@
+numthreads=1
+experiment, M, N, nTrials, row total(s), row avg(s)
+row-oriented timing,   10,   10,   50, 0.0000188670, 0.0000003773
+row-oriented timing,   20,   20,   50, 0.0001022030, 0.0000020441
+row-oriented timing,   40,   40,   50, 0.0002892530, 0.0000057851
+row-oriented timing,   80,   80,   50, 0.0018160170, 0.0000363203
+row-oriented timing,  160,  160,   50, 0.0123601610, 0.0002472032
+row-oriented timing,  320,  320,   50, 0.0442736440, 0.0008854729
+row-oriented timing,  640,  640,   50, 0.1759697870, 0.0035193957
+row-oriented timing, 1280, 1280,   50, 0.4853094320, 0.0097061886
+row-oriented timing, 2560, 2560,   50, 1.3842201350, 0.0276844027
+row-oriented timing, 5120, 5120,   50, 5.7425453930, 0.1148509079
+
+numthreads=2
+experiment, M, N, nTrials, row total(s), row avg(s)
+row-oriented timing,   10,   10,   50, 0.0000497370, 0.0000009947
+row-oriented timing,   20,   20,   50, 0.0002311930, 0.0000046239
+row-oriented timing,   40,   40,   50, 0.0003031360, 0.0000060627
+row-oriented timing,   80,   80,   50, 0.0011145660, 0.0000222913
+row-oriented timing,  160,  160,   50, 0.0051575580, 0.0001031512
+row-oriented timing,  320,  320,   50, 0.0233995340, 0.0004679907
+row-oriented timing,  640,  640,   50, 0.0802201010, 0.0016044020
+row-oriented timing, 1280, 1280,   50, 0.3260907420, 0.0065218148
+row-oriented timing, 2560, 2560,   50, 1.3547484120, 0.0270949682
+row-oriented timing, 5120, 5120,   50, 5.2481679690, 0.1049633594
