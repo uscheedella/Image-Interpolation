@@ -1,0 +1,19 @@
+In this lab you will first implement serial code which approximates pi in pi.c.
+Make and run this code with:
+     > make
+     > make run
+
+Then you will implement an omp parallel modification of the serial code in pi_omp.c.
+Make and run this code with:
+     > make omp
+     > make run_omp
+
+You can clean your files with:
+    > make clean
+
+You can run the scaling study using the bash file scale.sh:
+    > bash scale.sh
+
+You can then plot the results using plotScale.py:
+    > python3 plotScale.py
+
