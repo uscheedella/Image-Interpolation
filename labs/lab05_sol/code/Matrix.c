@@ -102,6 +102,7 @@ int matvec_row_oriented_omp(Matrix *mat, VectorND *inVec, VectorND *outVec){
 
         // actually loop through all rows and columns to do the matrix vector multiplication, but break up the work into chunks:
     int i;
+    #pragma omp parallel for
     for(i=0; i<nRows; ++i){
         for(int j=0; j<nCols; ++j){
                         outVec->data[i] = outVec->data[i] + ( mat->data[i*nCols + j] * inVec->data[j]);

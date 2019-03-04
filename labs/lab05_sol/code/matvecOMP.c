@@ -4,6 +4,8 @@
 #include "VectorND.h"
 #include "Matrix.h"
 
+#include <omp.h>
+
 int nRuns = 50;
 
 int main(int argc, char *argv[]){
@@ -32,18 +34,18 @@ int main(int argc, char *argv[]){
 
 
     // set up number of repeat runs, and declare timers
-    clock_t t_start, t_end;
+    double t_start, t_end;
     double t_total, t_avg;
 
     // timing of A*x = b with outer loop over rows of A\n
-    t_start = clock();
+    t_start = omp_get_wtime();
 
     for(int i=0; i<nRuns; ++i)
         matvec_row_oriented(&A, &x, &b);
 
-    t_end = clock();
+    t_end = omp_get_wtime();
 
-    t_total = (double)(t_end-t_start)/(double)CLOCKS_PER_SEC;
+    t_total = t_end - t_start;
     t_avg = t_total/(double)nRuns;
 
     printf(", %.10f, %.10f", t_total, t_avg);
