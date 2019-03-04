@@ -1,4 +1,5 @@
 #include <omp.h>
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -15,9 +16,14 @@ int main (int argc, char *argv[]){
   double estpi = 0;
 
   struct drand48_data randBuffer;  
-  srand48_r(12345,&randBuffer);
+
+#pragma omp parallel
+  srand48_r(omp_get_num_threads(),&randBuffer);
 
   //Tricky pragma statement
+#pragma omp parallel for private(n, randBuffer) \
+                         shared(Ntests) \
+                         reduction(+:Ninside)
   for(n=0;n<Ntests;++n){
     double x;
     double y;
@@ -25,10 +31,14 @@ int main (int argc, char *argv[]){
     drand48_r(&randBuffer, &y);
     
     //Same expression as serial here
+    if(sqrt(pow(x,2) + pow(y,2)) < 1){
+        Ninside++;
+    }
   }
 
   //Same expression as serial code here
-  
+  estpi = 4*(double)Ninside / (double)Ntests;
+
   double toc = omp_get_wtime();
 
   double elapsedTime = toc - tic;
