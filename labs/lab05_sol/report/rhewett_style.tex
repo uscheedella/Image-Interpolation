@@ -1,0 +1,156 @@
+% Math related packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\RequirePackage{amssymb}
+\RequirePackage{amsbsy}
+
+% Astronomy related packages
+\usepackage{wasysym} % astronomical symbols
+
+% Latex stuff
+\usepackage{fmtcount} % access to page and footer counters
+\usepackage{multirow} % so columns in tabular can span multiple rows
+\usepackage{hhline}   % nicer double horizontal lines
+\usepackage{hyperref} % URLs and such
+\usepackage{verbatim} % allows \verb-- command
+\usepackage{rotating} % rotate text (useful in tables)
+\usepackage{multicol} % multiple columns in text
+\usepackage{bm}       % bold fonts
+\usepackage{fancyhdr} % clean headers and footers
+\usepackage[stable]{footmisc} % Make foot notes better
+\usepackage{enumitem}
+
+% Graphics packages
+\usepackage{graphics}
+\usepackage{graphicx}
+
+% Bibtex bibliography junk
+\usepackage{cite}
+
+\usepackage{lipsum}
+
+% Codes and Algorithms
+%\usepackage[noend]{algpseudocode}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{listings}
+
+% Beamer specific
+\usepackage{xmpmulti}
+
+% This should be replaced with something better
+\usepackage{colortbl}
+\definecolor{notegray}{gray}{0.85}
+\newcommand{\NOTE}[1]{\colorbox{notegray}{#1}}
+
+% Colors
+\usepackage{xcolor}
+\definecolor{mycyan}{RGB}{0,188,188}
+\definecolor{mymagenta}{RGB}{211,0,211}
+\definecolor{myred}{RGB}{211,0,0}
+\definecolor{mygreen}{RGB}{0,211,0}
+\definecolor{myblue}{RGB}{0,0,211}
+
+% Symbols
+\usepackage[official]{eurosym} % Get a euro symbol
+
+
+% Math commands
+
+% Vector macros
+\renewcommand{\vec}[1]{\ensuremath{\boldsymbol{#1}}}
+\newcommand{\vechat}[1]{\ensuremath{\vec{\hat #1}}}
+\newcommand{\vecbar}[1]{\ensuremath{\vec{\bar #1}}}
+\newcommand{\vectilde}[1]{\ensuremath{\vec{\tilde #1}}}
+\newcommand{\vecsubtilde}[2]{\ensuremath{\vec{\tilde #1}_{#2}}}
+\newcommand{\vectildeest}[3]{\ensuremath{\vec{\tilde #1}_{#2|#3}}}
+\newcommand{\vecsubbar}[2]{\ensuremath{\vec{\bar #1}_{#2}}}
+\newcommand{\vechatest}[3]{\ensuremath{\vec{\hat #1}_{#2|#3}}}
+\newcommand{\vechatsub}[2]{\ensuremath{\vec{\hat #1}_{#2}}}
+\newcommand{\vecsub}[2]{\ensuremath{\vec{#1}_{#2}}}
+%%%\renewcommand{\vec}[1]{\ensuremath{{\bf #1}}}
+\newcommand{\veczero}{\ensuremath{\vec{0}}}
+
+
+% Matrix macros
+\newcommand{\mat}[1]{\ensuremath{\boldsymbol{#1}}}
+\newcommand{\matest}[3]{\ensuremath{\mat{#1}_{#2|#3}}}
+\newcommand{\mattildeest}[3]{\ensuremath{\mattilde{#1}_{#2|#3}}}
+\newcommand{\mathat}[1]{\ensuremath{\mat{{\hat #1}}}}
+\newcommand{\matbar}[1]{\ensuremath{\mat{{\bar #1}}}}
+\newcommand{\mattilde}[1]{\ensuremath{\mat{{\tilde #1}}}}
+\newcommand{\matsubbar}[2]{\ensuremath{\mat{{\bar #1}}_{#2}}}
+\newcommand{\matsubtilde}[2]{\ensuremath{\mat{{\tilde #1}}_{#2}}}
+\newcommand{\matsub}[2]{\ensuremath{\mat{#1}_{#2}}}
+%%%\newcommand{\mat}[1]{\ensuremath{{\bf #1}}}
+\newcommand{\matzero}{\ensuremath{\mat{O}}}
+
+% Statistics macros
+\newcommand{\E}[1]{\ensuremath{ E[#1]}}
+\newcommand{\Covs}[1]{\ensuremath{\mathit{Cov}\bigparens{#1}}}
+\newcommand{\Cov}[2]{\ensuremath{\mathit{Cov}\bigparens{#1, #2}}}
+%\newcommand{\Covs}[1]{\ensuremath{\mathit{Cov}\left(#1 \right)}}
+%\newcommand{\Cov}[2]{\ensuremath{\mathit{Cov}\left(#1, #2 \right)}}
+
+
+% Blackboard and script letters
+\newcommand{\R}[1]{\ensuremath{\mathbb{R}^{#1}}}
+
+
+% Misc macros
+\providecommand{\abs}[1]{\lvert#1\rvert}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+\newcommand{\apri}{{\it a priori~}}
+\newcommand{\apost}{{\it a posteriori~}}
+
+\newcommand{\pd}[2]{\ensuremath{\frac{\partial#1}{\partial #2}}}
+\newcommand{\pdil}[2]{\ensuremath{\partial #1/\partial #2}}  %partial derivive inline
+
+\newcommand{\argmaxtext}{\operatornamewithlimits{arg\,max}~}
+\newcommand{\argmintext}{\operatornamewithlimits{arg\,min}~}
+\newcommand{\argmin}[1]{\underset{#1}{\argmintext}}
+\newcommand{\argmax}[1]{\underset{#1}{\argmaxtext}}
+
+%\newcommand{\Span}[1]{\textit{Span}\parens{#1}}
+\newcommand{\Span}[1]{\textit{Span}\bigparens{#1}}
+%\newcommand{\Null}[1]{\textit{Null}\parens{#1}}
+\newcommand{\Null}[1]{\textit{Null}\bigparens{#1}}
+ 
+%\newcommand{\deg}[1]{\ensuremath{{#1}^{\circ}}}
+
+\newcommand{\grad}{\ensuremath{\nabla}}
+\newcommand{\ddt}{\ensuremath{\frac{\textrm{d}}{\textrm{d}\tau}}}
+\newcommand{\direcderiv}[1]{\ensuremath{\left. \ddt {#1} \right|_{\tau=0}}}
+
+
+% left-right blocks
+\newcommand{\parens}[1]{\left( #1 \right)}
+\newcommand{\angles}[1]{\left< #1 \right>}
+\newcommand{\brackets}[1]{\left[ #1 \right]}
+\newcommand{\braces}[1]{\left\{ #1 \right\}}
+\newcommand{\bigparens}[1]{\big( #1 \big)}
+\newcommand{\bigangles}[1]{\big< #1 \big>}
+\newcommand{\bigbrackets}[1]{\big[ #1 \big]}
+\newcommand{\bigbraces}[1]{\big\{ #1 \big\}}
+\newcommand{\smallparens}[1]{\small( #1 \small)}
+\newcommand{\smallangles}[1]{\langle #1 \rangle}
+\newcommand{\smallbrackets}[1]{\big[ #1 \small]}
+\newcommand{\smallbraces}[1]{\small\{ #1 \small\}}
+
+% Astronomy paper stuff
+\newcommand{\FITSKeyword}[1]{\texttt{#1}}
+\newcommand{\ccode}[1]{\texttt{#1}}  % for c-language code
+
+% For the algorithm environment
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\algsetblockx{Begin}{End}{}{0.125in}[1]{{\bf Begin} #1}[1]{{\bf End} #1}
+\algsetblockx{MyFor}{MyForEnd}{}{0.125in}[1]{{\bf for}~#1~{\bf do}}{{\bf end for}}
+\algsetblockx{MyIf}{MyIfEnd}{}{0.125in}[1]{{\bf if}~#1~{\bf then}}{{\bf end if}}
+\algsetblockx{BeginComBlock}{EndComBlock}{}{0.125in}[1]{\texttt{// #1}}{}
+%\algblockx{Begin}{End}[1]{{\bf Begin} #1}[1]{{\bf End} #1}
+%\algblockx{BeginComBlock}{EndComBlock}[1]{\texttt{// #1}}{}
+
+
