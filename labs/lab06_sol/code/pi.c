@@ -17,15 +17,15 @@ int main(int argc, char **argv){
     srand48(12345);
   
     for(n=0;n<Ntests;++n){
-	double x = drand48();
-	double y = drand48();
+        double x = drand48();
+        double y = drand48();
      
-	if(//ToDo){ (check if radius is radius is less than 1)
-	     Ninside++;
-	}
+        if(sqrt(pow(x,2) + pow(y,2)) < 1){
+             Ninside++;
+        }
     }
 
-    estpi = //ToDo; (divide area of circle by area of square)
+    estpi = 4*(double)Ninside / (double)Ntests;
 
     clock_t toc = clock();
     double elapsed = (double)(toc-tic)/CLOCKS_PER_SEC;
