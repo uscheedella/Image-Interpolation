@@ -77,6 +77,14 @@
 
         We cannot use a simple \texttt{parallel for} because it defaults all external variables to shared.  This would create an issue where all theads update the same random buffer, and compute on the same random buffer, negating the effect of random point selection.  To protect the buffer, it must be private.  Additionally, the counter must either be in a critical region or used in a reduction clause to ensure that we correctly obtain the total across all threads.  Because a critical region creates a sequential operation, the reduction clause is preferred.  Alternatively, we could implement the reduction ourselves, but it is best to let the compiler/run-time handle it.
 
+        The required code is:
+
+        \begin{lstlisting}{frame=single}
+#pragma omp parallel for private(n, randBuffer) \
+                         shared(Ntests) \
+                         reduction(+:Ninside)
+        \end{lstlisting}
+
         \item Other than the instructor or TAs, who did you receive assistance from on this assignment?
         \textbf{ANSWER:} % answer goes here
         
