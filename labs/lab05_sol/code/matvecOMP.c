@@ -41,7 +41,7 @@ int main(int argc, char *argv[]){
     t_start = omp_get_wtime();
 
     for(int i=0; i<nRuns; ++i)
-        matvec_row_oriented(&A, &x, &b);
+        matvec_row_oriented_omp(&A, &x, &b);
 
     t_end = omp_get_wtime();
 

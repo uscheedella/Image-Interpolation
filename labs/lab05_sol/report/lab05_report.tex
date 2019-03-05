@@ -164,20 +164,20 @@
         \begin{tabular}{|l | c | c | c |c |} 
         \hline
         \textbf{nRows} & \textbf{nCols} & \textbf{time (s) without omp} & \textbf{time (s) with omp} & \textbf{serial time / omp time} \\ \hline
-        10   & 10   & 0.0000003773 & 0.0000009947 & 0.38 \\
-        20   & 20   & 0.0000020441 & 0.0000046239 & 0.44 \\
-        40   & 40   & 0.0000057851 & 0.0000060627 & 0.95 \\
-        80   & 80   & 0.0000363203 & 0.0000222913 & 1.63 \\
-        160  & 160  & 0.0002472032 & 0.0001031512 & 2.40 \\
-        320  & 320  & 0.0008854729 & 0.0004679907 & 1.89 \\
-        640  & 640  & 0.0035193957 & 0.0016044020 & 2.19 \\
-        1280 & 1280 & 0.0097061886 & 0.0065218148 & 1.49 \\
-        2560 & 2560 & 0.0276844027 & 0.0270949682 & 1.02 \\
-        5120 & 5120 & 0.1148509079 & 0.1049633594 & 1.09 \\\hline
+        10   & 10   & 0.0000003773 & 0.0000029303 & 0.13 \\
+        20   & 20   & 0.0000020441 & 0.0000037748 & 0.54 \\
+        40   & 40   & 0.0000057851 & 0.0000073627 & 0.79 \\
+        80   & 80   & 0.0000363203 & 0.0000168492 & 2.16 \\
+        160  & 160  & 0.0002472032 & 0.0000679969 & 3.64 \\
+        320  & 320  & 0.0008854729 & 0.0007240513 & 1.22 \\
+        640  & 640  & 0.0035193957 & 0.0025089509 & 1.40 \\
+        1280 & 1280 & 0.0097061886 & 0.0044077803 & 2.20 \\
+        2560 & 2560 & 0.0276844027 & 0.0152393860 & 1.82 \\
+        5120 & 5120 & 0.1148509079 & 0.0612268390 & 1.88 \\\hline
         \end{tabular}
         \end{center}
 
-        Initially we did not achieve a speedup of 2, as expected, because the startup cost of the second OpenMP thread were higher than the cost of the single thread doing work (and the problem fit into cache).  Until we exceeded the rough boundary of the cache, we obtained nearly the 2x speedup that was anticipated.  After the problem went to main memory, the performance reduced again, beacuse we crossed into the main memory boundary.
+        Initially we did not achieve a speedup of 2, as expected, because the startup cost of the second OpenMP thread were higher than the cost of the single thread doing work (and the problem fit into cache).  Generally, beyond that, we obtained nearly the 2x speedup that is anticipated.  Where we don't, we are experiencing effects of the problem filling local caches for each core.
 
         \item Other than the instructor or TAs, who did you receive assistance from on this assignment?
         
