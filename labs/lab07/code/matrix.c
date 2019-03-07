@@ -70,6 +70,7 @@ int matvec(Matrix* A, Vector* x, Vector* b){
         return 1;
 
     // actually loop through all rows and columns to do the matrix vector multiplication
+#pragma omp parallel for shared(N,M,b_data,x_data,A_data) private(i,j)
     for(i=0; i<M; i++){
         b_data[i] = 0.0;
         for(j=0; j<N; j++){
@@ -102,6 +103,7 @@ int matvec_triangular(Matrix* A, Vector* x, Vector* b){
         return 1;
 
     // actually loop through all rows and columns to do the matrix vector multiplication
+#pragma omp parallel for shared(N,M,b_data,x_data,A_data) private(i,j)
     for(i=0; i<M; i++){
         b_data[i] = 0.0;
         for(j=0; j<i; j++){
@@ -136,6 +138,7 @@ int matvec_triangular_guided(Matrix* A, Vector* x, Vector* b){
         return 1;
 
     // actually loop through all rows and columns to do the matrix vector multiplication
+#pragma omp parallel for shared(N,M,b_data,x_data,A_data) private(i,j) schedule(guided)
     for(i=0; i<M; i++){
         b_data[i] = 0.0;
         for(j=0; j<i; j++){

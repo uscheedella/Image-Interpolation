@@ -65,7 +65,8 @@ float norm(Vector* v) {
     float* v_data = v->data;
 
     float length = 0.0;
-
+    
+#pragma omp parallel for private(i) shared(N, v_data) reduction(+:length)
     for(i=0; i < N; i++){
         length += pow(v_data[i], 2.0);
     }
@@ -85,7 +86,7 @@ int normalize(Vector* v) {
 
     // Zero vector, nothing to do.
     if( abs(length) < 1e-5 ) return 0;
-
+#pragma omp parallel for shared(N,v_data) private(i)
     for(i=0; i < N; i++){
         v_data[i] /= length;
     }
@@ -107,7 +108,7 @@ int axpy(float alpha, Vector* vx, Vector* vy, Vector* vz) {
         (vx->N != vz->N)){
         return 1;
     }
-
+    #pragma omp parallel for shared(N,vz_data,vx_data,vy_data,alpha) private(i)
     for(i=0; i < N; i++){
         vz_data[i] = alpha*vx_data[i] + vy_data[i];
     }
@@ -127,7 +128,8 @@ int inner_product(Vector* vx, Vector* vy, float* ip) {
 
     // Sanity check on array dimensions
     if (vx->N != vy->N) return 1;
-
+    
+    #pragma omp parallel for shared(N,vx_data,vy_data) private(i) reduction(+:result)
     for(i=0; i < N; i++){
         result += vx_data[i]*vy_data[i];
     }
